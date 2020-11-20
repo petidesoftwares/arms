@@ -1,0 +1,100 @@
+/***************Page header styling begins here*****************/
+#logo{
+    width:60%;
+    height:60%;
+    padding-top: 2%;
+    float: left;
+}
+
+#main-header{
+    position: fixed;
+    /* border-bottom: solid 0.1em #708090; */
+}
+.header #h1{
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.header #h3{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /* position: fixed; */
+}
+/**************Ends here******************/
+#header-seperator{
+    margin-left: 1%;
+    width: 100%;
+    margin-bottom: 0px;
+}
+#session-selection{
+    color: #708090;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 0px;
+    margin-left: 80%;
+}
+/************************Dashbord styling begins here******************/
+#menu-list{
+    margin-top: 0px;
+    margin-left: 0px;
+    color: white;
+    position: fixed;
+    background-color: #708090; 
+}
+
+#menu_header{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    height: 15px;
+    background-color: #708090;
+}
+.dashboard_ul{
+    font-weight: bold;
+    font-size:16px;
+    margin-top: 2%;
+    list-style: none;
+    padding: 1%;
+}
+#list_item_pane{
+    text-align: justify;
+    overflow: auto;
+}
+
+.list_items{
+    display: block;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 3px;
+    /* border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; */
+    cursor: pointer;
+}
+.list_items:hover{
+    color: #DAA520;
+}
+.paintList{
+    background-color:white;
+    color: #708090;
+}
+/********************Ends here*********************/
+
+.menu-bar{
+    margin-left: 0px;
+    cursor: pointer;
+    position: fixed;
+}
+
+#close-menu{
+    cursor: pointer;
+}
+#display-pane{
+    height:460px;
+    overflow:auto;
+}

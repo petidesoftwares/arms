@@ -1,0 +1,118 @@
+/***************** General **************/
+.select-level-style{
+    color: azure;
+    font-size: 18px;
+    border: solid 0px #708090;
+    background-color: #708090;
+}
+
+.gen-att{
+    color: azure;
+    font-size: 18px;
+    border: solid 0px #708090;
+    background-color: #708090;
+    margin-left: 4%;
+    cursor: pointer;
+}
+
+/**************** End ******************/
+#viewstudent-title{
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 1%;
+}
+
+.student-view-option{
+    width: 45%;
+    height: 30px;
+    display: inline-block;
+    border: solid 0px #708090;
+    background-color: #708090;
+    color: azure;
+    font-size: 25px;
+    margin: 1%;
+    cursor: pointer;
+}
+#student-view-option-pane{
+    width: 34%;
+    display: inline-block;
+}
+#selected-student-form{
+    display: inline-block;
+    margin-left: 0%;
+}
+
+#all-student-pane label{
+    padding-right: 50px;
+}
+
+.selected-student-form2{
+    width: 45%;
+    display: inline-block;
+    margin-left: 2%;
+    border-bottom: solid 0.2em  #708090;
+}
+
+#by-status-session, #by-level-session{
+    width: 40%;
+}
+
+.selected-student-form2 input{
+    font-size: 16px;
+}
+.selected-student-form2 select{
+    font-size: 16px;
+}
+
+#side-space{
+    width: 20%;
+    display: inline-block;
+}
+
+/****************** View attendance styling***************/
+
+.all-page-title{
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 1%;
+}
+.att-semester{
+    width: 22%;
+    height: 27px;
+    display: inline-block;
+    border: solid 0px #708090;
+    background-color: #708090;
+    color: azure;
+    font-size: 20px;
+    margin: 1%;
+    cursor: pointer;
+}
+
+.att-level{
+    display: inline-block;
+}
+
+#att-sheet{
+    overflow-y: auto;
+}
+
+/******************* End****************/
+
+/****************** Upload Result*************/
+.current-repeat-option{
+    display: block;
+    margin-top: 2%;
+    margin-left: 25%;
+    font-size: 16px;
+}
+
+.upload-form-pane{
+    display: inline-block;
+    width: 40%;
+    margin-left: 3%;
+}
+.course-list{
+    display: inline-block;
+    width: 30%;
+    margin-left: 3%;
+}

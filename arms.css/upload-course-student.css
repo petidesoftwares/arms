@@ -1,0 +1,47 @@
+.uploadFile_style{
+    height: 30px;
+    width: 240px;
+    font-size: 16px;
+    border: solid 2px #708090;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.submit_btn_style{
+    background-color: #708090;
+    height: 30px;
+    width: 30%;
+    border: 0px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.col-spacer{
+    display: inline-block;
+    width: 3%;
+}
+
+#page-title{
+    height: 100px;
+    text-align: center;
+    font-size: 25px;
+}
+
+#form-pane{
+    border: solid 2px #708090;
+    height: 180px;
+    border-radius: 10px;
+}
+
+#form-pane form{
+    margin-top: 4%;
+    margin-left: 15%;
+}
+.upload-response-pane{
+    text-align: center;
+    font-size: 14px;
+}
