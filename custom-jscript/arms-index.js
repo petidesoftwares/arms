@@ -1,8 +1,14 @@
 $(document).ready(function(){
+    $.post("views/dashboard.html",function(data){
+        $("#display-pane").html(data);
+        $("#menu-list").hide();
+    })
 });
 
 function hideMenu(){
     $("#menu-list").hide(500);
+    $("#dashboard-item-pane-alter").hide();
+    $("#dashboard-item-pane").show();
 }
 
 function showMenu(){
