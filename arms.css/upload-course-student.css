@@ -26,7 +26,7 @@
 }
 
 #page-title{
-    height: 100px;
+    height: 50px;
     text-align: center;
     font-size: 25px;
 }
@@ -44,4 +44,44 @@
 .upload-response-pane{
     text-align: center;
     font-size: 14px;
+}
+
+.student-upload-tabs{
+    display: inline-block;
+    width: 25%;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+#batch-upload{
+    margin-left: 30%;
+    border-top: solid 2px #708090;
+    border-left: solid 2px #708090;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#single-upload{
+    border-top: solid 2px #708090;
+    border-right: solid 2px #708090;
+    border-left: solid 2px #708090;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#single-upload-form{
+    padding-left: 10%;
+    border: solid 2px #708090;
+    border-radius: 10px;
+}
+#single-upload-form input{
+    font-size: 22px;
+    width: 65%;
+    margin: 1%;
+}
+
+#admission_level{
+    margin-bottom: 2%;
 }

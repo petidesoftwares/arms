@@ -3,6 +3,7 @@ $(document).ready(function(){
         $("#display-pane").html(data);
         $("#menu-list").hide();
     })
+    $("#selected-student-form-level1").hide();
 });
 
 function hideMenu(){
@@ -74,4 +75,8 @@ function viewIndividualResult(){
         $("#display-pane").html(data);
         hideMenu();
     });
+}
+
+function updateSession(){
+    
 }
