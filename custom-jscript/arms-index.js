@@ -77,6 +77,13 @@ function viewIndividualResult(){
     });
 }
 
+function registerLecturers(){
+    $.post("views/register-lecturers.html",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
+}
+
 function updateSession(){
     
 }
