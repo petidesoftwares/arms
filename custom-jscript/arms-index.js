@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    $.post("views/dashboard.html",function(data){
+    $.post("dashboard.html",function(data){
         $("#display-pane").html(data);
+        $("#dashboard-item-pane-alter").hide();
         $("#menu-list").hide();
     })
     $("#selected-student-form-level1").hide();
@@ -21,7 +22,7 @@ function showMenu(){
 }
 
 function showDashboard(){
-    $.post("views/dashboard.html",function(data){
+    $.post("dashboard.html",function(data){
         $("#display-pane").html(data);
         $("#dashboard-item-pane-alter").hide();
         hideMenu();
@@ -29,56 +30,56 @@ function showDashboard(){
 }
 
 function uploadCourseView(){
-    $.post("views/upload-courses.html",function(data){
+    $.post("upload-courses.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function registerStudents(){
-    $.post("views/register-students.html",function(data){
+    $.post("register-students.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewStudents(){
-    $.post("views/view-students.html",function(data){
+    $.post("view-students.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewAttendance(){
-    $.post("views/view-attendance.html",function(data){
+    $.post("view-attendance.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function uploadResult(){
-    $.post("views/result-upload.html",function(data){
+    $.post("result-upload.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewGeneralResult(){
-    $.post("views/general-result.html",function(data){
+    $.post("general-result.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewIndividualResult(){
-    $.post("views/individual-result.html",function(data){
+    $.post("individual-result.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function registerLecturers(){
-    $.post("views/register-lecturers.html",function(data){
+    $.post("register-lecturers.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });

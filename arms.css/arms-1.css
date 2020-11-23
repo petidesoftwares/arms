@@ -63,6 +63,7 @@
     width: 20%;
     font-size: 18px;
     margin-bottom: 1%;
+    
 }
 
 /************************end here********************/
@@ -141,3 +142,27 @@
     height:460px;
     overflow:auto;
 }
+
+/*****************Login Form Styling****************/
+#login-form-pane{
+    border: solid 0.2em #708090;
+    padding: 2%;
+    margin-top: 5%;
+    padding-left: 10%;
+    border-radius: 10px;
+}
+
+#login-form-pane input{
+    width: 80%;
+    font-size: 20px;
+    margin-bottom: 2%;
+}
+
+#login-form-pane input[type=submit]{
+    width: 20%;
+    font-size: 20px;
+    margin-bottom: 2%;
+    margin-left: 60%;
+}
+
+/****************Ends here**************************/
