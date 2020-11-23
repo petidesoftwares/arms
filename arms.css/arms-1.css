@@ -23,6 +23,20 @@
     /* position: fixed; */
 }
 /**************Ends here******************/
+
+/******************pre-access styling*****************/
+#prelog-form-pane{
+    border: solid 0.2em #708090;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 2%;
+}
+#prelog-form-pane input{
+    font-size: 18px;
+    width: 20%;
+}
+
+/************************end here********************/
 #header-seperator{
     margin-left: 1%;
     width: 100%;
