@@ -5,6 +5,7 @@ $(document).ready(function(){
             window.location.href="preaccess/login.html";
         }else{
             $.post("preaccess/add-first-admin.php", function(data){
+                alert(data);
                 $(".pre-display-pane").html(data);
                 hideModal();
             })
