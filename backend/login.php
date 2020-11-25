@@ -2,16 +2,14 @@
 session_start();
 if(isset($_POST)){
     require('db_conn.php');
-    $conn = new DB_CONNECTION();
-    $connection= $conn->createConnection();
-    if($connection){
+    if($conn){
         $email = $_POST["login_email"];
         $password = $_POST["login_password"];
 
         $errorResponse ="";
 
         $algorithm = "sha512";
-        $queryLoginCredentials = mysqli_query($connection,"SELECT id, password FROM lecturer WHERE email ='".$email."' AND password ='".hash($algorithm, $password)."'");
+        $queryLoginCredentials = mysqli_query($conn,"SELECT id, password FROM lecturer WHERE email ='".$email."' AND password ='".hash($algorithm, $password)."'");
         if(mysqli_num_rows($queryLoginCredentials)>0){
             while($id = mysqli_fetch_assoc($queryLoginCredentials)){
                 $_SESSION['id'] = $id['id'];

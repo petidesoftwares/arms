@@ -1,10 +1,7 @@
 <?php
     if(isset($_POST)){
-        echo "in here";
         require('db_conn.php');
-        $conn = new DB_CONNECTION();
-        $connection= $conn->createConnection();
-        if($connection){
+        if($conn){
             $title =$_POST['title'];
             $fname =$_POST['fname'];
             $surname =$_POST['surname'];
@@ -18,7 +15,7 @@
 
             $algorithm = "sha512";
             $upassword = hash($algorithm,$password);
-            $insertIntoLecturer = mysqli_query($connection, "INSERT INTO lecturer(
+            $insertIntoLecturer = mysqli_query($conn, "INSERT INTO lecturer(
                 mobile_phone,
                 title,
                 firstname,
@@ -29,36 +26,36 @@
                 gender, 
                 status
             ) VALUES(
-                '".mysqli_real_escape_string($connection,$mobile)."',
-                '".mysqli_real_escape_string($connection,$title)."',
-                '".mysqli_real_escape_string($connection,$fname)."',
-                '".mysqli_real_escape_string($connection,$surname)."',
-                '".mysqli_real_escape_string($connection,$rank)."',
-                '".mysqli_real_escape_string($connection,$email)."',
-                '".mysqli_real_escape_string($connection,$upassword)."',
-                '".mysqli_real_escape_string($connection,$gender)."',
+                '".mysqli_real_escape_string($conn,$mobile)."',
+                '".mysqli_real_escape_string($conn,$title)."',
+                '".mysqli_real_escape_string($conn,$fname)."',
+                '".mysqli_real_escape_string($conn,$surname)."',
+                '".mysqli_real_escape_string($conn,$rank)."',
+                '".mysqli_real_escape_string($conn,$email)."',
+                '".mysqli_real_escape_string($conn,$upassword)."',
+                '".mysqli_real_escape_string($conn,$gender)."',
                 'Available'
-            )") or die(mysqli_error($connection));
+            )") or die(mysqli_error($conn));
             if($insertIntoLecturer){
-                $queryId = mysqli_query($connection, "SELECT id FROM lecturer GROUP BY id DESC LIMIT 1")or die(mysqli_error($connection));
+                $queryId = mysqli_query($conn, "SELECT id FROM lecturer GROUP BY id DESC LIMIT 1")or die(mysqli_error($conn));
                 if(mysqli_num_rows($queryId)>0){
                     $id = mysqli_fetch_assoc($queryId);
                     if($othername!=""){
-                        $insertOthername = mysqli_query($connection, "INSERT INTO lecturer_othername(
+                        $insertOthername = mysqli_query($conn, "INSERT INTO lecturer_othername(
                             lecturer_id,
                             othername
                         ) VALUES(
                             ".$id['id'].",
-                            '".mysqli_real_escape_string($connection,$othername)."'
-                        )")or die(mysqli_error($connection));
+                            '".mysqli_real_escape_string($conn,$othername)."'
+                        )")or die(mysqli_error($conn));
                     }
-                    $insertIntoAdmin = mysqli_query($connection, "INSERT INTO admin(
+                    $insertIntoAdmin = mysqli_query($conn, "INSERT INTO admin(
                         lecturer_id,
                         position
                     ) VALUES(
                         ".$id['id'].",
-                        '".mysqli_real_escape_string($connection,$position)."'
-                    )") or die(mysqli_error($connection));
+                        '".mysqli_real_escape_string($conn,$position)."'
+                    )") or die(mysqli_error($conn));
                     if($insertIntoAdmin){
                         header("Location:../preaccess/login-view.php");
                     }
