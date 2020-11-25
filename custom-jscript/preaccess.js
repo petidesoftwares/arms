@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    alert("hrhh");
     $.post("backend/prelogin-checker.php", function(data){
         alert(data);
         if(data == "Content present"){
