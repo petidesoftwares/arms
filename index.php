@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="custom-css/base-customstyle.css">
     <link rel="stylesheet" href="arms.css/arms-1.css">
-    <script src="custom-jscript/jquery.js"></script>
+    <script src="custom-jscript/jquery-3.5.1.min.js"></script>
     <script src="custom-jscript/preaccess.js"></script>
     <title>Add Admin</title>
 </head>
