@@ -29,7 +29,7 @@
             </form>
             <div class="col-12 upload-response-pane" id="course-upload-response"></div>
             <div id="sample-file-pane">
-                <button name="get-sample-file" id="get-sample-file">Download sample file for data preparation</button>
+                <button name="get-sample-file" id="get-sample-file" onclick="downLoadCourseFile()">Download sample file for data preparation</button>
             </div>
         </div>
         <div class="col-7" id ="single-upload-form">

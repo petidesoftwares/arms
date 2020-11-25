@@ -15,3 +15,15 @@ function batchUpload(){
     $("#form-pane").show();
     $("#single-upload-form").hide();
 }
+
+function downLoadCourseFile(){
+    window.location.href="../downloads/Course Registration.xlsx";
+}
+
+function downloadStudentUploadFile(){
+    window.location.href="../downloads/Student Registration File.xlsx";
+}
+
+function downloadLecturerRregistrationFile(){
+    window.location.href="../downloads/Lecturers Upload File.xlsx";
+}
