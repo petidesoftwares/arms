@@ -33,7 +33,7 @@ class DB_CONNECTION{
     }
 
     function createConnection(){
-        $conn = mysqli_connect($this->$cleardb_server,$this->$cleardb_username,$this->$cleardb_password) or die('No Connection Established');
+        $conn = mysqli_connect($this->$cleardb_server,$this->$cleardb_username,$this->$cleardb_password,$this->$cleardb_db) or die('No Connection Established');
         if($conn){
             if(mysqli_select_db($conn, $this->$cleardb_db)==true){
                 return $conn;
