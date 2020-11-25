@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    alert("here");
     $.post("backend/prelogin-checker.php", function(data){
+        alert(data);
         if(data == "Content present"){
             window.location.href="preaccess/login.html";
         }else{
