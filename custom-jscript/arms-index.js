@@ -5,6 +5,7 @@ $(document).ready(function(){
         $("#menu-list").hide();
     })
     $("#selected-student-form-level1").hide();
+    checkTotalAdmin();
 });
 
 function hideMenu(){
@@ -82,6 +83,22 @@ function registerLecturers(){
     $.post("register-lecturers.html",function(data){
         $("#display-pane").html(data);
         hideMenu();
+    });
+}
+
+function checkTotalAdmin(){
+    $.post("backend/check-total-admin.php",function(data){
+        if(data==0 || data==1){
+            $("#add-second-admin").show();
+        }else{
+            $("#add-second-admin").hide();
+        }
+        
+    });
+}
+function addSecondAdmin(){
+    $.post("add-second-admin.php",function(data){
+        $("#display-pane").html(data);
     });
 }
 

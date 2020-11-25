@@ -83,6 +83,7 @@
 #menu-list{
     margin-top: 0px;
     margin-left: 0px;
+    height: 490px;;
     color: white;
     position: fixed;
     background-color: #708090; 
@@ -103,8 +104,9 @@
     padding: 1%;
 }
 #list_item_pane{
+    height: 90%;
     text-align: justify;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
 .list_items{
@@ -166,3 +168,45 @@
 }
 
 /****************Ends here**************************/
+
+/************* modal starts here ****************/
+#modal {
+    display: block;
+    /* float: left; */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    z-index: 50;
+    top: 0;
+    margin-top: -0.5em;
+    margin-left: -16.7em;
+}
+
+#closeModal {
+    color: #fff;
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    margin: 1em;
+    margin-left: 7em;
+    position: absolute;
+}
+
+#validation-info-board{
+    background-color: white;
+    margin-top: 19%;
+    border-radius: 10px;
+    height: 25%;
+    text-align: center;
+}
+
+#validation-info{
+    color: red;
+    text-align: center;
+    margin-bottom: 8%;
+}
+#clear-modal{
+    font-size: 18px;
+}
+/****************Ends here****************/
