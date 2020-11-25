@@ -8,10 +8,10 @@
     $cleardb_db       = substr($cleardb_url["path"],1);
 
     $active_group = 'default';
-    $query_builder = TRUE;
+    $query_builder = FALSE;
 
     $conn = mysqli_connect($this->$cleardb_server,$this->$cleardb_username,$this->$cleardb_password,$this->$cleardb_db) or die('No Connection Established');
-    
+
     function closeConnection(){
         mysqli_connection_close();
     }
