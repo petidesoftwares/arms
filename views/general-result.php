@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../custom-css/base-customstyle.css">
     <link rel="stylesheet" href="../arms.css/admin.css">
-    <script src=".//custom-jscript/jquery.js"></script>
+    <script src="../custom-jscript/jquery-3.5.1.min.js"></script>
     <script src="../custom-jscript/admin.js"></script>
-    <title>Inividual Result</title>
+    <title>General Result</title>
 </head>
 <body>
     <div class="col-12">
@@ -18,7 +18,7 @@
                 <div class="menu-icon-bar-3"></div>
             </div>
         </div><div class="col-10"></div>
-        <div class="col-12 all-page-title" id="ind-result-page-title">INDIVIDUAL RESULT</div>
+        <div class="col-12 all-page-title" id="gen-result-page-title">GENERAL RESULT</div>
 
         <div class="col-3"></div>
         <div class="col-8">
@@ -27,7 +27,7 @@
             <div class="att-level"><select name="seleect-att-level" id="seleect-att-level" class="rounded-corner-btn select-level-style">
                 <option>Select Level</option>
             </select></div>
-            <button class="rounded-corner-btn gen-att" id="ind-result-btn">Get Students</button>
+            <button class="rounded-corner-btn gen-att" id="gen-result-btn">View Result</button>
         </div>
     </div>
 </body>

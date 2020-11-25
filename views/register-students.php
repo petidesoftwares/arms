@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../custom-css/base-customstyle.css">
     <link rel="stylesheet" href="../arms.css/upload-course-student.css">
-    <script src="../custom-jscript/jquery.js"></script>
+    <script src="../custom-jscript/jquery-3.5.1.min.js"></script>
     <script src="../custom-jscript/course-student-upload.js"></script>
     <title>Register Students</title>
 </head>

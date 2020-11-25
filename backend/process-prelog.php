@@ -60,7 +60,7 @@
                         '".mysqli_real_escape_string($connection,$position)."'
                     )") or die(mysqli_error($connection));
                     if($insertIntoAdmin){
-                        header("Location:../preaccess/login.html");
+                        header("Location:../preaccess/login-view.php");
                     }
                 
                 }
@@ -91,7 +91,7 @@
                         <div class="col-2"></div>
                         <div class="col-7">
                             <?php
-                                header("Refresh:5; url=index.html");
+                                header("Refresh:5; url=index.php");
                                 set_error_handler("loginError",E_USER_WARNING);
                                 trigger_error("Error: A network error occoured while uploading details!", E_USER_WARNING);
                     

@@ -15,7 +15,7 @@ if(isset($_POST)){
         if(mysqli_num_rows($queryLoginCredentials)>0){
             while($id = mysqli_fetch_assoc($queryLoginCredentials)){
                 $_SESSION['id'] = $id['id'];
-                header('Location:../views/home.html');
+                header('Location:../views/home.php');
             }
             
         }else{
@@ -44,7 +44,7 @@ if(isset($_POST)){
                 <div class="col-2"></div>
                 <div class="col-7">
                     <?php
-                        header("Refresh:5; url=../preaccess/login.html");
+                        header("Refresh:5; url=../preaccess/login.php");
                         set_error_handler("loginError",E_USER_WARNING);
                         trigger_error("Error: User not found. invalid username or password!", E_USER_WARNING);
             

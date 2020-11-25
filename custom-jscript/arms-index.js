@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $.post("dashboard.html",function(data){
+    $.post("dashboard.php",function(data){
         $("#display-pane").html(data);
         $("#dashboard-item-pane-alter").hide();
         $("#menu-list").hide();
@@ -23,7 +23,7 @@ function showMenu(){
 }
 
 function showDashboard(){
-    $.post("dashboard.html",function(data){
+    $.post("dashboard.php",function(data){
         $("#display-pane").html(data);
         $("#dashboard-item-pane-alter").hide();
         hideMenu();
@@ -31,56 +31,56 @@ function showDashboard(){
 }
 
 function uploadCourseView(){
-    $.post("upload-courses.html",function(data){
+    $.post("upload-courses.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function registerStudents(){
-    $.post("register-students.html",function(data){
+    $.post("register-students.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewStudents(){
-    $.post("view-students.html",function(data){
+    $.post("view-students.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewAttendance(){
-    $.post("view-attendance.html",function(data){
+    $.post("view-attendance.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function uploadResult(){
-    $.post("result-upload.html",function(data){
+    $.post("result-upload.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewGeneralResult(){
-    $.post("general-result.html",function(data){
+    $.post("general-result.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function viewIndividualResult(){
-    $.post("individual-result.html",function(data){
+    $.post("individual-result.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
 }
 
 function registerLecturers(){
-    $.post("register-lecturers.html",function(data){
+    $.post("register-lecturers.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
     });
