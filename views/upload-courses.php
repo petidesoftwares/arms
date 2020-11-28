@@ -1,3 +1,8 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $sessions = getSessions();
+    $options =  getAllOptions();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,33 +39,53 @@
         </div>
         <div class="col-7" id ="single-upload-form">
             <label for="academic-session">Session:</label><select name="academic_session" id="academic_session">
-
+            <?php
+                        $secondYear=1;
+                        foreach($sessions as $session){
+                            $secondYear+= $session['year'];
+                            echo '<option value="'.$session['year'].'">'.$session['year'].'/'.$secondYear.'</option>';
+                        }
+                    ?>
             </select><br>
             <input type="text" name="course_code" id="course_code" placeholder="Enter Course Code">
             <input type="text" name="course_title" id="course_title" placeholder="Enter Course Title">
             <input type="number" name="unit" id="unit" placeholder="Enter units"><br>
             <label>Semester:</label>
-            <input type="radio" name="semester" id="first_semester"><label for="first_semester">First</label>
-            <input type="radio" name="semester" id="second_semester"><label for="second_semester">Second</label><br>
+            <input type="radio" name="semester" id="first_semester" value="First" checked><label for="first_semester">First</label>
+            <input type="radio" name="semester" id="second_semester" value="Second"><label for="second_semester">Second</label><br>
             <label for="course-level">Level</label><select name="course_level" id="course_level">
                 <option value="100">100</option>
-                <option value="200">100</option>
-                <option value="300">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
             </select><br>
-            <label for="course-optionl">Option:</label><select name="course_level" id="course_level">
-                <!-- <option value="100">100</option>
-                <option value="200">100</option>
-                <option value="300">100</option> -->
+            <label for="course-optionl">Option:</label><select name="course_option" id="course_option">
+                <?php
+                    foreach($options as $option){
+                        echo '<option value="'.$option['option'].'">'.$option['option'].'</option>';
+                    }
+                ?>
             </select><br>
-            <label for="course-status">Status/Type:</label><select name="course_level" id="course_level">
-                <option value="100">100</option>
-                <option value="200">100</option>
-                <option value="300">100</option>
+            <label for="course-status">Status/Type:</label><select name="course_status" id="course_status">
+                <option value="Compulsory">Compulsory</option>
+                <option value="Elective">Elective</option>
+                <option value="Borrowed">Borrowed</option>
             </select><br>
-            <input type="number" name="min_pass_mark" id="min_pass_mark" placeholder="Minimum Pass Score"><br>
-            <button name="submit_student" id="submit_student" onclick="submitStudent()">Submit</button>
+            <input type="number" name="min_pass_mark" id="min_pass_mark" placeholder="Minimum Pass Score not less than 45"><br>
+            <button name="submit_course" id="submit_course" onclick="submitCourse()">Submit</button>
         </div>
         <div class="col-2"></div>
+    </div>
+    <div class="col-12-custom" id = 'modal'>
+        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
+        <div class="col-3"></div>
+        <div class="col-5" id="validation-info-board">
+            <h3>Error Message</h3>
+            <div id="validation-info"></div>
+            <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
+        </div>
+        <div class="col-3"></div>
     </div>
 </body>
 </html>

@@ -1,3 +1,7 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $sessions = getSessions();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +38,38 @@
                 </div>
             </div>
             <div class="col-7" id ="single-upload-form">
-                <label for="admission-session">Admission Session</label><select name="admission_session" id="admission_session">
-
+                <label for="admission-session">Admission Session</label>
+                <select name="admission_session" id="admission_session">
+                    <?php
+                        $secondYear=1;
+                        foreach($sessions as $session){
+                            $secondYear+= $session['year'];
+                            echo '<option value="'.$session['year'].'">'.$session['year'].'/'.$secondYear.'</option>';
+                        }
+                    ?>
                 </select><br>
                 <input type="text" name="reg_number" id="reg_number" placeholder="Enter Matric. or Jamb reg. number">
                 <input type="text" name="fname" id="fname" placeholder="Enter first name">
                 <input type="text" name="surname" id="surname" placeholder="Enter surname"><br>
                 <label for="admission-level">Admission Level</label><select name="admission_level" id="admission_level">
                     <option value="100">100</option>
-                    <option value="200">100</option>
-                    <option value="300">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
                 </select><br>
                 <button name="submit_student" id="submit_student" onclick="submitStudent()">Submit</button>
             </div>
         </div>
         <div class="col-2"></div>
+    </div>
+    <div class="col-12-custom" id = 'modal'>
+        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
+        <div class="col-3"></div>
+        <div class="col-5" id="validation-info-board">
+            <h3>Error Message</h3>
+            <div id="validation-info"></div>
+            <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
+        </div>
+        <div class="col-3"></div>
     </div>
 </body>
 </html>

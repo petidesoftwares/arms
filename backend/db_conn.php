@@ -18,8 +18,4 @@
 
     $conn = mysqli_connect($cleardb_server,$cleardb_username,$cleardb_password,$cleardb_db) or die('No Connection Established');
 
-    function closeConnection(){
-        mysqli_connection_close();
-    }
-
 ?>
