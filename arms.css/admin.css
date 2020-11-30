@@ -16,6 +16,7 @@
 }
 
 /**************** End ******************/
+/************ View student styling begins here****************/
 #viewstudent-title{
     text-align: center;
     font-size: 25px;
@@ -69,6 +70,32 @@
     display: inline-block;
 }
 
+#list-view{
+    margin-top: 2%;
+    height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+#list-view td, th{
+    font-size: 20px;
+    border: solid 0.1em white;
+}
+
+#list-view table{
+    margin-left: 2%;
+    border-collapse: collapse;
+}
+#bio-data-view{
+    margin-top: 2%;
+    float: right;
+}
+
+#grey-row{
+    background-color: grey;
+    color: white;
+}
+/******************** Ends here *******************/
+
 /****************** View attendance styling***************/
 
 .all-page-title{
@@ -116,3 +143,5 @@
     width: 30%;
     margin-left: 3%;
 }
+
+

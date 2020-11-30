@@ -29,4 +29,14 @@
         }
     }
 
+    function getAllStudents(){
+        require('db_conn.php');
+        if($conn){
+            $queryAllStudents = mysqli_query($conn, "SELECT student.matno, student.surname, student.firstname, (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS othername from student, student_othernames") or die(mysqli_error($conn));
+            if(mysqli_num_rows($queryAllStudents)>0){
+                return $queryAllStudents;
+            }
+        }
+    }
+
 ?>

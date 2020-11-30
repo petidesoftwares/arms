@@ -6,7 +6,10 @@ $(document).ready(function(){
 })
 
 function checkAllStudents(){
-
+    $.post("student-list-view.php", function(data){
+        $("#list-view").html(data);
+        $("#list-view").css("border","solid 0.2em #708090");
+    })
 }
 
 function checkSelectedStudents(){

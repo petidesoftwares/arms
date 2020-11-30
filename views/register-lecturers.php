@@ -1,3 +1,7 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $titles = getTitles();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,15 +39,29 @@
             </div>
             <div class="col-7" id ="single-upload-form">
                 <label for="title">Title</label><select name="title" id="title">
-
+                    <?php
+                        foreach($titles as $title){
+                            echo '<option value="'.$title['title'].'">'.$title['title'].'';
+                        }
+                    ?>
                 </select><br>
-                <input type="text" name="lf_title" id="l_fname" placeholder="Enter first name">
+                <input type="text" name="l_fname" id="l_fname" placeholder="Enter first name">
                 <input type="text" name="l_surname" id="l_surname" placeholder="Enter surname">
                 <input type="number" name="mobile" id="mobile" placeholder="Enter phone number"><br>
-                <button name="submit_student" id="submit_student" onclick="submitStudent()">Submit</button>
+                <button name="submit_student" id="submit_student" onclick="submitLecturer()">Submit</button>
             </div>
         </div>
         <div class="col-2"></div>
+    </div>
+    <div class="col-12-custom" id = 'modal'>
+        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
+        <div class="col-3"></div>
+        <div class="col-5" id="validation-info-board">
+            <h3>Error Message</h3>
+            <div id="validation-info"></div>
+            <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
+        </div>
+        <div class="col-3"></div>
     </div>
 </body>
 </html>

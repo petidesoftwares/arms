@@ -112,7 +112,7 @@ function submitCourse(){
         $("#modal").show();
         $("#validation-info").html("Minimum pass mark cannot be empty");
     }
-    else if($("#min_pass_mark").val()==0){
+    else if($("#min_pass_mark").val()<45){
         $("#modal").show();
         $("#validation-info").html("Minimum pass mark cannot be less than 45");
     }
@@ -126,7 +126,7 @@ function submitCourse(){
         var option = $("#course_option").val();
         var status = $("#course_status").val();
         var min_pass_mark = $("#min_pass_mark").val();
-        $.post("../backend/process-single-course-upload.php", {session:session, code: code, title:title, unit:unit, level:level, option:option, status:status, min_pass_mark:min_pass_mark},function(data){
+        $.post("../backend/process-single-course-upload.php", {session:session, code: code, title:title, unit:unit, semester:semester, level:level, option:option, status:status, min_pass_mark:min_pass_mark},function(data){
             if(data == "Course successfully uploaded"){
                 $("#course_code").val("");
                 $("#course_title").val("");
@@ -134,6 +134,54 @@ function submitCourse(){
                 $("#course_level").val("100");
                 $("#course_status").val("Compulsory");
                 $("#min_pass_mark").val("");
+                $("#modal").show();
+                $("#validation-info").css("color","green");
+                $("#validation-info").html(data);
+                
+            }
+            else{
+                $("#modal").show();
+                $("#validation-info").html(data);
+            }
+            
+        })
+    }
+}
+function submitLecturer(){
+     if($("#l_fname").val()==""){
+        $("#modal").show();
+        $("#validation-info").html("A valid first name cannot be empty");
+    }
+    else if($("#l_fname").val().length <3){
+        $("#modal").show();
+        $("#validation-info").html("A valid first name must have a minimum of 3 characters");
+    }
+    else if($("#l_surname").val()==""){
+        $("#modal").show();
+        $("#validation-info").html("A valid surname cannot be empty");
+    }
+    else if($("#l_surname").val().length <3){
+        $("#modal").show();
+        $("#validation-info").html("A valid surname must have a minimum of 3 characters");
+    }
+    else if($("#mobile").val()==""){
+        $("#modal").show();
+        $("#validation-info").html("A valid mobile phone number cannot be empty");
+    }
+    else if($("#mobile").val().length<11){
+        $("#modal").show();
+        $("#validation-info").html("A valid mobile phone number must have a minimum of 11 digits");
+    }
+    else{
+        var title = $("#title").val();
+        var fname = $("#l_fname").val();
+        var surname = $("#l_surname").val();
+        var mobile = $("#mobile").val();
+        $.post("../backend/process-single-lecturer-upload.php", {title:title, fname:fname, surname:surname, mobile:mobile},function(data){
+            if(data == "Lecturer successfully uploaded"){
+                $("#l_fname").val("");
+                $("#l_surname").val("");
+                $("#mobile").val("");
                 $("#modal").show();
                 $("#validation-info").css("color","green");
                 $("#validation-info").html(data);

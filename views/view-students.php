@@ -41,7 +41,9 @@
         </div>
     </div>
     <div class="col-12" id="student-viewport">
-        <div id="side-space"></div><div class="col-5" id="list-view">List view</div><div class="col-4" id="bio-data-view">Bio data view</div>
+        <div id="side-space"></div>
+        <div class="col-5" id="list-view"></div>
+        <div class="col-4" id="bio-data-view">Bio data view</div>
     </div>
     
 </body>
