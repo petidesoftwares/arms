@@ -6,5 +6,7 @@
             "email": "petideenterprise@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.15"
+    }
 }

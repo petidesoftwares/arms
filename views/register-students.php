@@ -27,10 +27,10 @@
             <div class="student-upload-tabs" id="batch-upload" onclick="batchUpload()">Batch</div><div class="student-upload-tabs" id="single-upload" onclick="singleUpload()">Single</div></div>
             <div class="col-3"></div>
             <div class="col-7" id="form-pane">
-                <form enctype="multipart/form-data" id="studentRegForm">
+                <form enctype="multipart/form-data"  id="studentRegForm">
                     <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                     <div class="col-spacer"></div>
-                    <input type="submit" name="submit" value="Upload New Students" class="btn-large rounded-corner-btn submit_btn_style" id="uploadStudent_btn"/>
+                    <input type="submit" name="submit" value="Upload New Students" class="btn-large rounded-corner-btn submit_btn_style" id="uploadStudent_btn" onclick = "studentBatchUpload();"/>
                 </form>
                 <div class="col-12 upload-response-pane" id="student-upload-response"></div>
                 <div id="sample-file-pane">
@@ -62,10 +62,10 @@
         <div class="col-2"></div>
     </div>
     <div class="col-12-custom" id = 'modal'>
-        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
+        <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' />
         <div class="col-3"></div>
         <div class="col-5" id="validation-info-board">
-            <h3>Error Message</h3>
+            <h3>Message</h3>
             <div id="validation-info"></div>
             <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
         </div>

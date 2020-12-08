@@ -30,7 +30,7 @@
                 <form enctype="multipart/form-data" id="lecturerRegForm">
                     <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                     <div class="col-spacer"></div>
-                    <input type="submit" name="submit" value="Upload New Lecturers" class="btn-large rounded-corner-btn submit_btn_style" id="uploadLecturer_btn"/>
+                    <input type="submit" name="submit" value="Upload New Lecturers" class="btn-large rounded-corner-btn submit_btn_style" id="uploadLecturer_btn" onclick = "lecturerBatchUpload()"/>
                 </form>
                 <div class="col-12 upload-response-pane" id="lecturer-upload-response"></div>
                 <div id="sample-file-pane">

@@ -30,7 +30,7 @@
             <form enctype="multipart/form-data" id="courseRegForm">
                 <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                 <div class="col-spacer"></div>
-                <input type="submit" name="submit" value="Upload New Courses" class="btn-large rounded-corner-btn submit_btn_style" id="uploadCourse_btn"/>
+                <input type="submit" name="submit" value="Upload New Courses" class="btn-large rounded-corner-btn submit_btn_style" id="uploadCourse_btn" onclick = "courseBatchUpload()"/>
             </form>
             <div class="col-12 upload-response-pane" id="course-upload-response"></div>
             <div id="sample-file-pane">
@@ -81,7 +81,7 @@
         <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
         <div class="col-3"></div>
         <div class="col-5" id="validation-info-board">
-            <h3>Error Message</h3>
+            <h3>Message</h3>
             <div id="validation-info"></div>
             <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
         </div>

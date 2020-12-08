@@ -23,9 +23,9 @@
                 foreach($students as $student){
                     $s_n++;
                     if($s_n%2==0){
-                        echo '<tr id = "grey-row"><td>'.$s_n.'</td><td>'.$student['matno'].'</td><td>'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+                        echo '<tr id = "grey-row"><td>'.$s_n.'</td><td><button id = "getStudent_id" onclick = "getStudentId()">'.$student['matno'].'</button></td><td>'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
                     }else{
-                        echo '<tr><td>'.$s_n.'</td><td>'.$student['matno'].'</td><td>'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+                        echo '<tr><td>'.$s_n.'</td><td><button id = "getStudent_id" onclick = "getStudentId()">'.$student['matno'].'</button></td><td>'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
                     }   
                 }
             ?>
