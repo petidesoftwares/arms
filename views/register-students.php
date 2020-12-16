@@ -1,6 +1,6 @@
 <?php
     require("../backend/admin-task-function.php");
-    $sessions = getSessions();
+    $sessions = getCurrentSession();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +62,7 @@
         <div class="col-2"></div>
     </div>
     <div class="col-12-custom" id = 'modal'>
-        <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' />
+        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
         <div class="col-3"></div>
         <div class="col-5" id="validation-info-board">
             <h3>Message</h3>

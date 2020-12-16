@@ -3,9 +3,9 @@ $(document).ready(function(){
         $("#display-pane").html(data);
         $("#dashboard-item-pane-alter").hide();
         $("#menu-list").hide();
+        checkTotalAdmin();
     })
     $("#selected-student-form-level1").hide();
-    checkTotalAdmin();
 });
 
 function hideMenu(){
@@ -20,6 +20,7 @@ function showMenu(){
     $(".menu-frame").hide();
     $("#dashboard-item-pane-alter").show();
     $("#dashboard-item-pane").hide();
+    checkTotalAdmin();
 }
 
 function showDashboard(){
@@ -87,7 +88,7 @@ function registerLecturers(){
 }
 
 function checkTotalAdmin(){
-    $.post("backend/check-total-admin.php",function(data){
+    $.post("../backend/check-total-admin.php",function(data){
         if(data==0 || data==1){
             $("#add-second-admin").show();
         }else{
@@ -97,9 +98,18 @@ function checkTotalAdmin(){
     });
 }
 function addSecondAdmin(){
-    $.post("add-second-admin.php",function(data){
-        $("#display-pane").html(data);
-    });
+    var type = $("#second_admin").val();
+    if( type == "fresh_lecturer"){
+        $.post("add-second-admin.php",function(data){
+            $("#display-pane").html(data);
+            hideMenu();
+        });
+    }else if(type == "existing_lecturer"){
+        $.post("add-admin-from-system-view.php",function(data){
+            $("#display-pane").html(data);
+            hideMenu();
+        });
+    }
 }
 
 function updateSession(){

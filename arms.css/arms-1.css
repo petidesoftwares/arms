@@ -122,6 +122,33 @@
     border-top-right-radius: 5px; */
     cursor: pointer;
 }
+
+.list_items select{
+    margin-bottom: 1%;
+    margin-top: 1%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-left: 3px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: #708090;
+    cursor: pointer;
+}
+
+#second_admin option{
+    background-color: #708090;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#second_admin:hover{
+    color: #DAA520;
+}
+
 .list_items:hover{
     color: #DAA520;
 }
@@ -210,3 +237,87 @@
     font-size: 18px;
 }
 /****************Ends here****************/
+
+/************* modal starts here ****************/
+#modal {
+    display: block;
+    /* float: left; */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    z-index: 50;
+    top: 0;
+    margin-top: -0.5em;
+    margin-left: -0.9em;
+}
+
+#closeModal {
+    color: #fff;
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    margin: 1em;
+    margin-left: 7em;
+    position: absolute;
+}
+
+#validation-info-board{
+    background-color: white;
+    margin-top: 19%;
+    border-radius: 10px;
+    height: 25%;
+    text-align: center;
+}
+
+#validation-info{
+    color: red;
+    text-align: center;
+    margin: 2%;
+    margin-bottom: 2%;
+    height: 50px;
+}
+#clear-modal{
+    font-size: 18px;
+}
+/****************Ends here****************/
+
+/****************** Second admin form *****************/
+#second-admin-form-pane{
+    border: solid 0.2em #708090;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 2%;
+    /* padding-left: 10%; */
+}
+
+#second-admin-form-pane span{
+    margin-left: 35%;
+    text-align: center;
+    font-weight: bold;
+}
+
+#second-admin-form-pane input{
+    width: 80%;
+    font-size: 18px;
+    margin-bottom: 2%;
+}
+
+#second-admin-form-pane select{
+    font-size: 18px;
+    margin-bottom: 2%;
+}
+
+#second-admin-form-pane input[type=radio]{
+    width: 5%;
+    font-size: 18px;
+    margin-bottom: 2%;
+}
+#second-admin-form-pane input[type=submit]{
+    width: 20%;
+    font-size: 18px;
+    margin-bottom: 1%;
+    
+}
+
+/**************** Ends here*******************/

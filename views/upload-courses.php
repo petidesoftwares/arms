@@ -1,6 +1,6 @@
 <?php
     require("../backend/admin-task-function.php");
-    $sessions = getSessions();
+    $sessions = getCurrentSession();
     $options =  getAllOptions();
 ?>
 <!DOCTYPE html>
