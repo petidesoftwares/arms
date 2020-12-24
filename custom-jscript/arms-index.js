@@ -55,6 +55,9 @@ function viewStudents(){
 function viewAttendance(){
     $.post("view-attendance.php",function(data){
         $("#display-pane").html(data);
+        $("#select_att_option").hide();
+        $("#course-table-display-pane").hide();
+        $("#att-sheet").hide();
         hideMenu();
     });
 }

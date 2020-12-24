@@ -203,33 +203,58 @@ function hideModal(){
 /****************** Ends here ***********************/
 
 /******************* Batch upload starts here *******************/
+function validateFileField(){
+    var input = $("input[type = 'file']").val();
+    var validate = true;
+    var message = "";
+    if(input==""){
+        validate = false;
+        message = "File field cannot be empty, upload a valid file";
+    }
+    if(validate == false){
+        $("#modal").show();
+        $("#validation-info").css("color","red");
+        $("#validation-info").html(message);
+    }else{
+        return validate;
+    }
+}
 function studentBatchUpload(){
     $("#studentRegForm").submit(function(e){
         e.preventDefault();
-        $.ajax({
-            type: 'post',
-            enctype: 'multipart/form-data',
-            url: '../backend/batch-student-upload.php',
-            data : new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function(){
-                $('#uploadStudent_btn').attr('disable', 'disable');
-            },
-            success: function(response){
-                $("#modal").show();
-                $("#validation-info").css("color","green");
-                $("#validation-info").html(response);
-                $('uploadStudent_btn').removeAttr('disable');
-            },
-            error: function(e){
-                $("#modal").show();
-                $("#validation-info").css("color","red");
-                $("#validation-info").html("ERROR: "+e);
-             },
-            
-        });
+        var input = $("input[type = 'file']").val();
+        if(input==""){
+            $("#modal").show();
+            $("#validation-info").css("color","red");
+            $("#validation-info").html("File field cannot be empty, upload a valid file");
+        }
+        else{
+            $.ajax({
+                type: 'post',
+                enctype: 'multipart/form-data',
+                url: '../backend/batch-student-upload.php',
+                data : new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#uploadStudent_btn').attr('disable', 'disable');
+                },
+                success: function(response){
+                    $("#modal").show();
+                    $("#validation-info").css("color","green");
+                    $("#validation-info").html(response);
+                    $('uploadStudent_btn').removeAttr('disable');
+                    $("input[type = 'file']").val("");
+                },
+                error: function(e){
+                    $("#modal").show();
+                    $("#validation-info").css("color","red");
+                    $("#validation-info").html("ERROR: "+e);
+                },
+                
+            });
+        }
     })
 
 }
@@ -237,30 +262,39 @@ function studentBatchUpload(){
 function lecturerBatchUpload(){
     $("#lecturerRegForm").submit(function(e){
         e.preventDefault();
-        $.ajax({
-            type: 'post',
-            enctype: 'multipart/form-data',
-            url: '../backend/lecturer-batch-upload.php',
-            data : new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function(){
-                $('#uploadLecturer_btn').attr('disable', 'disable');
-            },
-            success: function(response){
-                $("#modal").show();
-                $("#validation-info").css("color","green");
-                $("#validation-info").html(response);
-                $('uploadLecturer_btn').removeAttr('disable');
-            },
-            error: function(e){
-                $("#modal").show();
-                $("#validation-info").css("color","red");
-                $("#validation-info").html("ERROR: "+e);
-             },
-            
-        });
+        var input = $("input[type = 'file']").val();
+        if(input==""){
+            $("#modal").show();
+            $("#validation-info").css("color","red");
+            $("#validation-info").html("File field cannot be empty, upload a valid file");
+        }
+        else{
+            $.ajax({
+                type: 'post',
+                enctype: 'multipart/form-data',
+                url: '../backend/lecturer-batch-upload.php',
+                data : new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#uploadLecturer_btn').attr('disable', 'disable');
+                },
+                success: function(response){
+                    $("#modal").show();
+                    $("#validation-info").css("color","green");
+                    $("#validation-info").html(response);
+                    $('uploadLecturer_btn').removeAttr('disable');
+                    $("input[type = 'file']").val("");
+                },
+                error: function(e){
+                    $("#modal").show();
+                    $("#validation-info").css("color","red");
+                    $("#validation-info").html("ERROR: "+e);
+                },
+                
+            });
+        }
     })
 
 }
@@ -268,30 +302,39 @@ function lecturerBatchUpload(){
 function courseBatchUpload(){
     $("#courseRegForm").submit(function(e){
         e.preventDefault();
-        $.ajax({
-            type: 'post',
-            enctype: 'multipart/form-data',
-            url: '../backend/course-batch-upload.php',
-            data : new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function(){
-                $('#uploadCourse_btn').attr('disable', 'disable');
-            },
-            success: function(response){
-                $("#modal").show();
-                $("#validation-info").css("color","green");
-                $("#validation-info").html(response);
-                $('uploadCourse_btn').removeAttr('disable');
-            },
-            error: function(e){
-                $("#modal").show();
-                $("#validation-info").css("color","red");
-                $("#validation-info").html("ERROR: "+e);
-             },
-            
-        });
+        var input = $("input[type = 'file']").val();
+        if(input==""){
+            $("#modal").show();
+            $("#validation-info").css("color","red");
+            $("#validation-info").html("File field cannot be empty, upload a valid file");
+        }
+        else{
+            $.ajax({
+                type: 'post',
+                enctype: 'multipart/form-data',
+                url: '../backend/course-batch-upload.php',
+                data : new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function(){
+                    $('#uploadCourse_btn').attr('disable', 'disable');
+                },
+                success: function(response){
+                    $("#modal").show();
+                    $("#validation-info").css("color","green");
+                    $("#validation-info").html(response);
+                    $('uploadCourse_btn').removeAttr('disable');
+                    $("input[type = 'file']").val("");
+                },
+                error: function(e){
+                    $("#modal").show();
+                    $("#validation-info").css("color","red");
+                    $("#validation-info").html("ERROR: "+e);
+                },
+                
+            });
+        }
     })
 
 }

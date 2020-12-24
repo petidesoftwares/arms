@@ -1,9 +1,13 @@
+var courseTitle = "";
 $(document).ready(function(){
     $("#selected-student-form-level1").hide();
     $("#selected-student-form-level2").hide();
     $("#selected-student-form").hide();
     hideModal();
     $("#modal").hide();
+    $("#select_att_option").hide();
+    $("#course-table-display-pane").hide();
+    $("#att-sheet").hide();
 })
 
 function checkAllStudents(){
@@ -120,3 +124,116 @@ function submitSecondadmin(){
         $("#validation-info").html(data);
     });
 }
+
+/*************** Attendance Script *****************/
+function activateLevel(){
+    $("#select-att-level").prop("disabled", false);
+}
+function getAttendanceCourseList() {
+    var session = $("#academic-session").val();
+    var semester = $("input[name='semester']:checked").val();
+    var level = $("#select-att-level").val();
+    if(level >= 400){
+        $("#select_att_option").show(500);  
+    }else{
+        var option = "All";
+        $.ajax({
+            type:"POST",
+            url:"../backend/get-attendance-courses.php",
+            data:{session:session, semester:semester,level:level,option:option},
+            cache: false,
+            success:function(data){
+                if(data.indexOf("ERROR!")>=0){
+                    alert(data);
+                }else{
+                    var data = JSON.parse(data);
+                    for(var i = 0; i<data.length; i++){
+                        var obj = data[i];
+                        var code = obj.code;
+                        var title = obj.title;
+                        var units = obj.units;
+
+                        $("#course-table-display-pane").show();
+                        if(i%2!==0){
+                            document.getElementById("course-table-body").innerHTML+='<tr id="greyed"><td id = "code'+i+'" onclick = "getCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getCode('+i+')">'+units+'</td</tr>';
+                        }else{
+                            document.getElementById("course-table-body").innerHTML+='<tr><td id = "code'+i+'" onclick = "getCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getCode('+i+')">'+units+'</td</tr>';
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
+function  getAttendanceWithOption() {
+    var session = $("#academic-session").val();
+    var semester = $("input[name='semester']:checked").val();
+    var level = $("#select-att-level").val();
+    var option = $("#select_att_option").val();
+        $.post("../backend/get-attendance-courses.php",{session:session, semester:semester,level:level,option:option},function(data){
+            if(data.indexOf("ERROR!")>=0){
+                alert(data);
+            }else{
+                data = JSON.parse(data);
+                for(var i = 0; i<data.length; i++){
+                    var obj = data[i];
+                    var code = obj.code;
+                    var title = obj.title;
+                    var units = obj.units;
+                    $("#course-table-display-pane").show();
+                        if(i%2!==0){
+                            document.getElementById("course-table-body").innerHTML+='<tr id="greyed"><td id = "code" onclick = "getCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getCode('+i+')">'+units+'</td</tr>';
+                        }else{
+                            document.getElementById("course-table-body").innerHTML+='<tr><td id = "code" onclick = "getCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getCode('+i+')">'+units+'</td</tr>';
+                        }
+                }
+            }
+        })
+}
+
+function getCode(a){
+    var code = $("#code"+a+"").html();
+    var session = $("#academic-session").val();
+    
+    $("#course_code").val(code);
+    $("#units").val($("#units"+a+"").html());
+    $("#semester").val($("input[name='semester']:checked").val());
+    $("#session").val(session);
+    $("#title").val($("#title"+a+"").html());
+
+    $("#att-sheet").show();
+    $("#att_list_body").html("");
+    $.post("../backend/get-enrolled-level.php",{code:code, session:session},function(data){
+        
+        data = JSON.parse(data);
+        for(var i =0;i < data.length; i++){
+            var obj = data[i];
+            var level = obj.level;
+            document.getElementById("att_list_body").innerHTML+='<tr><td colspan="9">'+level+'</td></tr>';
+            $.post("../backend/generate-attendance-list.php",{code:code, session:session, level:level},function(data_2){
+                data_2 = JSON.parse(data_2);
+                var s_n = 0;
+                for(var j = 0; j<data_2.length; j++){
+                    var obj_2 = data_2[j];
+                    var matno = obj_2.matno;
+                    var fname = obj_2.firstname;
+                    var surname = obj_2.surname;
+                    var othername;
+                    if( obj_2.othername==null ||  obj_2.othername==""){
+                        othername = "";
+                    }else{
+                        othername = obj_2.othername;
+                    }
+                    s_n++;
+                    document.getElementById("att_list_body").innerHTML+='<tr><td>'+s_n+'</td><td>'+matno+'</td><td>'+fname+' '+surname+' '+othername+'</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>';
+                }
+            })
+        }
+    })
+    
+}
+
+// function generateAttendancePdf(){
+//     alert($("#course_code").val());
+// }

@@ -14,31 +14,35 @@
             $highestRow=$worksheet->getHighestRow();
             $algorithm = "sha512";
             $s_n=0;
-            for($row=5;$row<=$highestRow; $row++){
-                if($worksheet->getCellByColumnAndRow(1,$row)!="" && $worksheet->getCellByColumnAndRow(1,$row)!=null){
-                    $s_n++;
-                    $insertIntoStudent = "INSERT INTO student(
-                        matno,
-                        firstname,
-                        surname,
-                        admission_level,
-                        admission_session,
-                        password
-                        ) VALUES(
-                            '".mysqli_real_escape_string($conn, strtoupper($worksheet->getCellByColumnAndRow(2,$row)))."',
-                            '".mysqli_real_escape_string($conn, ucfirst($worksheet->getCellByColumnAndRow(3,$row)))."',
-                            '".mysqli_real_escape_string($conn, ucfirst($worksheet->getCellByColumnAndRow(4,$row)))."',
-                            '".mysqli_real_escape_string($conn, $worksheet->getCellByColumnAndRow(5,$row))."',
-                            ".mysqli_real_escape_string($conn, $worksheet->getCellByColumnAndRow(6,$row)).",
-                            '".mysqli_real_escape_string($conn, hash($algorithm,$worksheet->getCellByColumnAndRow(2,$row)))."'
-                        )";
-                    if(mysqli_query($conn, $insertIntoStudent)){
-                        $errorFlag = true;
+            $querySessions = mysqli_query($conn, "SELECT year FROM academic_session ORDER BY year DESC LIMIT 1") or die(mysqli_error($conn));
+            if(mysqli_num_rows($querySessions)>0){
+                $currentSession = mysqli_fetch_assoc($querySessions);
+                for($row=5;$row<=$highestRow; $row++){
+                    if($worksheet->getCellByColumnAndRow(1,$row)!="" && $worksheet->getCellByColumnAndRow(1,$row)!=null){
+                        $s_n++;
+                        $insertIntoStudent = "INSERT INTO student(
+                            matno,
+                            firstname,
+                            surname,
+                            admission_level,
+                            admission_session,
+                            password
+                            ) VALUES(
+                                '".mysqli_real_escape_string($conn, strtoupper($worksheet->getCellByColumnAndRow(2,$row)))."',
+                                '".mysqli_real_escape_string($conn, ucfirst($worksheet->getCellByColumnAndRow(3,$row)))."',
+                                '".mysqli_real_escape_string($conn, ucfirst($worksheet->getCellByColumnAndRow(4,$row)))."',
+                                '".mysqli_real_escape_string($conn, $worksheet->getCellByColumnAndRow(5,$row))."',
+                                ".$currentSession['year'].",
+                                '".mysqli_real_escape_string($conn, hash($algorithm,$worksheet->getCellByColumnAndRow(2,$row)))."'
+                            )";
+                        if(mysqli_query($conn, $insertIntoStudent)){
+                            $errorFlag = true;
+                        }else{
+                            $errorFlag=false;
+                        }
                     }else{
-                        $errorFlag=false;
+                        break;
                     }
-                }else{
-                    break;
                 }
             }
             if($errorFlag==true){

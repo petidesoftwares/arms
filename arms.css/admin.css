@@ -121,8 +121,76 @@
 
 #att-sheet{
     overflow-y: auto;
+    float: right;
 }
 
+#course-table-display-pane{
+    overflow-y: auto;
+}
+
+#course-table{
+    border-collapse: collapse;
+}
+#course-table td{
+    border: solid 1px #708090;
+    font-size: 18px;
+}
+
+#course-table th{
+    background-color: #708090;
+    color: white;
+}
+#course-table tr{
+    cursor: pointer;
+    border: solid 1px white
+}
+
+#greyed{
+    background-color: grey;
+    color: white;
+    border: solid 1px white;
+}
+
+/* #att-sheet{
+    float: right;
+} */
+
+#att-sheet table{
+    border-collapse: collapse;
+}
+#att-sheet th, td{
+    border: solid 1px #708090;
+}
+#att-sheet th{
+    font-size: 18px;
+    height: 70px;
+}
+#att_list_body td{
+    text-align: center;
+}
+
+.no-transform{
+    vertical-align: bottom;
+}
+
+.transform-text{
+    -webkit-transform: rotateZ(-90deg); /* Safari */
+    transform: rotateZ(-90deg);
+}
+
+.adjust-alignment{
+    -webkit-transform: rotateZ(-90deg); /* Safari */
+    transform: rotateZ(-90deg);
+    text-align: left;
+    position: relative;
+    top: 10px;
+    
+}
+
+#pdf-g-btn{
+    margin-left: 60%;
+    margin-bottom: 2%;
+}
 /******************* End****************/
 
 /****************** Upload Result*************/

@@ -1,3 +1,7 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $sessions = getSessions();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +22,16 @@
                 <div id="h1">ACADEMIC RECORD MANAGMENT SYSTEM</div>
                 <div id="h3">MY DEPARTMENT</div>
             </div>
-            <div id="session-selection"> Academic Session:<select name="academic-session" id="academic-session" class="rounded-corner-btn"></select></div>
+            <div id="session-selection"> Academic Session:<select name="academic-session" id="academic-session" class="rounded-corner-btn">
+                    <?php
+                        $secondYear=1;
+                        foreach($sessions as $session){
+                            $secondYear+= $session['year'];
+                            echo '<option value="'.$session['year'].'">'.$session['year'].'/'.$secondYear.'</option>';
+                        }
+                    ?>
+                </select>
+        </div>
             <hr id="header-seperator"/>
         </div>
        

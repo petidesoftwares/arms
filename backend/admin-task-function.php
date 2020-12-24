@@ -60,4 +60,41 @@
         }
     }
 
+    function getAttebdanceOptions(){
+        require('db_conn.php');
+        if($conn){
+            $getOptions = mysqli_query($conn, "SELECT option FROM option WHERE option !='All'") or die(mysqli_error($conn));
+            if(mysqli_num_rows($getOptions)>0){
+                return $getOptions;
+            }
+        }
+    }
+
+    function getAttendance($code, $session){
+        require('db_conn.php');
+        if($conn){
+            // $session = $_POST["session"];
+            // $code = $_POST["code"];
+            $getEnrolledLevel = mysqli_query($conn,"SELECT level FROM course_registration WHERE code = '".$code."' AND session = ".$session."") or die(mysqli_error($conn));
+            if(mysqli_num_rows($getEnrolledLevel)>0){
+                $attArray = array();
+                while($rows=mysqli_fetch_assoc($getEnrolledLevel)){
+                    $levelarray = array();
+                    $getMatno = mysqli_query($conn, "SELECT matno FROM `course_registration` WHERE session=".$session." AND level=".$rows['level']." AND code='".$code."' AND score=-1 ") or die(mysqli_error($conn));
+                    if(mysqli_num_rows($getMatno)>0){
+                        // $attArray = array();
+                        while($rows = mysqli_fetch_assoc($getMatno)){
+                            $queryList = mysqli_query($conn, "SELECT matno, firstname, surname, (SELECT othername FROM student_othernames WHERE student.id = student_othernames.student_id) as othername FROM student WHERE matno = '".$rows['matno']."'") or die(mysqli_error($conn));
+                            while($bioData = mysqli_fetch_assoc($queryList)){
+                                $levelarray[]=$bioData;
+                            }
+                        }
+                    }
+                    $attArray[] = $levelarray;
+                }
+                return $attArray;
+            }
+        }
+    }
+
 ?>

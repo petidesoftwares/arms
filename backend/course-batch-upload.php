@@ -11,29 +11,43 @@
         $worksheet=$obj->getActiveSheet();
         $highestRow=$worksheet->getHighestRow();
         $algorithm = "sha512";
-
-        for($row=5;$row<=$highestRow; $row++){
-            if($worksheet->getCellByColumnAndRow(1,$row)){
-                $regNewCourseQuery = "INSERT INTO course(code, session_taken, title, units, level_taken, semester, taken_by, status, min_pass_score) VALUES(
-                '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(2,$row))."',
-                ".$worksheet->getCellByColumnAndRow(3,$row).",
-                '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(4,$row))."',
-                ".$worksheet->getCellByColumnAndRow(5,$row).",
-                ".$worksheet->getCellByColumnAndRow(6,$row).",
-                '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(7,$row))."',
-                '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(8,$row))."',
-                '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(9,$row))."',
-                ".$worksheet->getCellByColumnAndRow(10,$row).")";
-                if(mysqli_query($conn, $regNewCourseQuery)){
-                $errorFlag =true;
-                }
-                else{
-                    $errorFlag=false;
+        $querySessions = mysqli_query($conn, "SELECT year FROM academic_session ORDER BY year DESC LIMIT 1") or die(mysqli_error($conn));
+        if(mysqli_num_rows($querySessions)>0){
+            $currentSession = mysqli_fetch_assoc($querySessions);
+            for($row=5;$row<=$highestRow; $row++){
+                if($worksheet->getCellByColumnAndRow(1,$row)){
+                    $regNewCourseQuery = "INSERT INTO course(
+                        code,
+                        session_taken, 
+                        title, 
+                        units, 
+                        level_taken, 
+                        semester, 
+                        taken_by, 
+                        status, 
+                        min_pass_score
+                        ) VALUES(
+                    '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(2,$row))."',
+                    ".$currentSession['year'].",
+                    '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(3,$row))."',
+                    ".$worksheet->getCellByColumnAndRow(4,$row).",
+                    ".$worksheet->getCellByColumnAndRow(5,$row).",
+                    '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(6,$row))."',
+                    '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(7,$row))."',
+                    '".mysqli_real_escape_string($conn,$worksheet->getCellByColumnAndRow(8,$row))."',
+                    ".$worksheet->getCellByColumnAndRow(9,$row).")";
+                    if(mysqli_query($conn, $regNewCourseQuery)){
+                    $errorFlag =true;
+                    }
+                    else{
+                        $errorFlag=false;
+                    }
                 }
             }
         }
         if($errorFlag == true){
-            echo $highestRow." row(s) uploaded successfully";
+            $uploadedRows = $highestRow-4;
+            echo $uploadedRows." row(s) uploaded successfully";
         }
         else{
             echo mysqli_error($conn);
