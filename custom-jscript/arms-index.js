@@ -65,6 +65,8 @@ function viewAttendance(){
 function uploadResult(){
     $.post("result-upload.php",function(data){
         $("#display-pane").html(data);
+        $("#result-batch-upload").hide();
+        $("#result-form-upload").hide();
         hideMenu();
     });
 }

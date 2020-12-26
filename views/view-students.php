@@ -1,3 +1,13 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $session = getCurrentSession();
+    $currentSession = 0;
+    foreach($session as $c_session){
+        $currentSession = $c_session['year'];
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +38,15 @@
         <input type="radio" name="selected_students_options" id="by-level" onclick="checkByLevel()"><label for="by-level">By Level</label>
         <input type="radio" name="selected_students_options" id="by-status" onclick="checkByStatus()"><label for="by-status">By Status</label>
         <div class="selected-student-form2" id="selected-student-form-level1">
-            <select name="level" id="select-level">
+            <select name="level" id="select-level" onchange = "getSelectedStudents()">
                 <option>Select Level</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
             </select>
-            <input type="text" name="selected_students_options" id="by-level-session" value="Session">
+            <input type="text" name="selected_students_options" id="by-level-session" value="<?php echo $currentSession?>">
         </div>
         <div class="selected-student-form2" id="selected-student-form-level2">
             <select name="status" id="select-status">
@@ -43,7 +58,12 @@
     <div class="col-12" id="student-viewport">
         <div id="side-space"></div>
         <div class="col-5" id="list-view"></div>
-        <div class="col-4" id="bio-data-view">Bio data view</div>
+        <div class="col-4" id="bio-data-view">
+            <div id="student_photo"></div>
+            <table id="biodata-table">
+
+            </table>
+        </div>
     </div>
     
 </body>

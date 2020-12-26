@@ -21,21 +21,58 @@
         <div class="col-12 all-page-title" id="">UPLOAD STUDENT RESULT</div>
         <div class="col-3"></div>
         <div class="col-7">
-            <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="fs-result-upload"><label for="fs-result-upload">First Semester</label></div>
-            <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="ss-result-upload"><label for="ss-result-upload"></label>Second Semester</div>
+            <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="fs-result-upload" value="First"><label for="fs-result-upload">First Semester</label></div>
+            <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="ss-result-upload" value = "Second"><label for="ss-result-upload">Second Semester</label></div>
             <div class="att-level">
                 <select name="level" id="upload-result-level" class="rounded-corner-btn select-level-style" onchange="getCurrent_Reseat()">
                 <option>Select Level</option>
-                <option value="voom">voom</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
                 </select>
             </div>
             <div class="current-repeat-option" id="current-repeat-option">
-                <input type="radio" name="curent-repeat" id="current"><label for="current">Current</label>
-                <input type="radio" name="curent-repeat" id="reseat"><label for="reseat">Reseat</label>
+                <input type="radio" name="curent-repeat" id="current" value="current" ><label for="current" onclick = "getCurrentCourses()">Current</label>
+                <input type="radio" name="curent-repeat" id="reseat" value ="reseat" ><label for="reseat" onclick = "getCurrentCourses()">Reseat</label>
             </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-1"></div><div class="course-list"> Course List</div><div class="upload-form-pane">Form</div> <div class="col-1"></div>
+        <div class = "col-12-custom" id="result-batch-upload">
+            <div class="col-1"></div>
+            <div class="course-list" id="course-table">
+                <table id = "result-course-table">
+                    <th>Course Code</th>
+                        <th>Course Title</th>
+                        <th>Units</th>
+                    </thead>
+                    <tbody id="course-table-body">
+                    </tbody>
+                </table>
+            </div>
+            <div class="upload-form-pane">
+                <div id="form-pane">
+                    <form enctype="multipart/form-data" id="resultUploadForm">
+                        <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                        <input type="hidden" name="code" id="course-code">
+                        <div class="col-spacer"></div>
+                        <input type="submit" name="submit" value="Upload Result" class="btn-large rounded-corner-btn submit_btn_style" id="uploadResult_btn" onclick = "courseBatchUpload()"/>
+                    </form>
+                    <div class="col-12 upload-response-pane" id="result-upload-response"></div>
+                </div> 
+            </div> 
+            <div class="col-1"></div>
+        </div>
+        <div class = "col-12-custom" id="result-form-upload">
+            <!-- <div class="col-1"></div>
+            <div class="col-1"></div>
+            <div class="course-list">Course List</div>
+            <div class="upload-form-pane">Form</div> 
+            <div class="col-1"></div> -->
+        </div>
+        <div id="sample-file-pane">
+            <button name="get-sample-file" id="get-sample-file" onclick="downLoadCourseFile()">Download sample file for data preparation</button>
+        </div>
     </div>
 </body>
 </html>

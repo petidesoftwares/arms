@@ -8,6 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../custom-jscript/jquery-3.5.1.min.js"></script>
+    <script src="../custom-jscript/admin.js"></script>
     <title>StudentList</title>
 </head>
 <body>
@@ -23,9 +25,9 @@
                 foreach($students as $student){
                     $s_n++;
                     if($s_n%2==0){
-                        echo '<tr id = "grey-row"><td>'.$s_n.'</td><td><button id = "getStudent_id" onclick = "getStudentId()">'.$student['matno'].'</button></td><td>'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+                        echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td onclick = "getStudentId('.$s_n.')"></tr>';
                     }else{
-                        echo '<tr><td>'.$s_n.'</td><td><button id = "getStudent_id" onclick = "getStudentId()">'.$student['matno'].'</button></td><td>'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+                        echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td onclick = "getStudentId('.$s_n.')"></tr>';
                     }   
                 }
             ?>

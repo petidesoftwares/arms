@@ -8,6 +8,8 @@ $(document).ready(function(){
     $("#select_att_option").hide();
     $("#course-table-display-pane").hide();
     $("#att-sheet").hide();
+    $("#result-batch-upload").hide();
+    $("#result-form-upload").hide();
 })
 
 function checkAllStudents(){
@@ -17,6 +19,51 @@ function checkAllStudents(){
     })
 }
 
+function getStudentId(a){
+    $("#biodata-table").html("");
+    var matno = $("#getStudent_id_"+a).html();
+    var currentSession = $("#academic-session").val();
+    $.post("../backend/get-students-biodata.php",{matno:matno},function(data){
+        data = JSON.parse(data);
+        for(var i = 0;  i < data.length; i++){
+            var biodata = data[i];
+            var student_matno = biodata.matno;
+            var fname = biodata.firstname;
+            var surname = biodata.surname;
+            var othername = biodata.othername;
+            var adm_session = biodata.admission_session;
+            var studentLevel;
+            if(adm_session>currentSession){
+                studentLevel = currentSession-adm_session;
+            }else{
+                studentLevel = 100;
+            }
+            if(verifyStudentPhoto(student_matno)==false){
+                document.getElementById("student_photo").innerHTML = '<img src="../images/human.png"/>';
+            }else{
+                document.getElementById("student_photo").innerHTML = '<img src="'+verifyStudentPhoto(student_matno)+'"/>';
+            }
+            document.getElementById("biodata-table").innerHTML+='<tr><td>Mat Number:</td><td>'+student_matno+'</td></tr>'+
+            '<tr><td>Surname:</td><td>'+surname+'</td></tr>'+
+            '<tr><td>Firt Name:</td><td>'+fname+'</td></tr>'+
+            '<tr><td>Othername:</td><td>'+othername+'</td></tr>'+
+            '<tr><td>Level:</td><td>'+studentLevel+'</td></tr>';
+        }
+    });
+}
+
+function verifyStudentPhoto(imageName){
+    var image  = new Image();
+    var image_url = "../images/"+imageName+".png";
+    image.src = image_url;
+    if(image.width==0){
+        return false;
+    }else{
+        return image_url;
+    }
+     
+}
+
 function checkSelectedStudents(){
     $("#selected-student-form").show(300);
 }
@@ -24,6 +71,38 @@ function checkSelectedStudents(){
 function checkByLevel(){
     $("#selected-student-form-level2").hide();
     $("#selected-student-form-level1").show(300);    
+}
+
+function getSelectedStudents(){
+    var level = $("#select-level").val();
+    var session = $("#by-level-session").val();
+    $.post("../backend/get-students-by-level.php",{level:level, session:session},function(data){
+        if(data.indexOf("ERROR!")>=0){
+            alert(data);
+        }else{
+            var output='<table><thead id = "grey-row"><th>S/N</th><th>Mat Number</th><th>Full Name</th></thead><tbody>';
+            var s_n = 0;
+            var data = JSON.parse(data);
+            for(var i = 0; i<data.length;i++){
+                var b_data = data[i];
+                var matno = b_data.matno;
+                var fname = b_data.firstname;
+                var surname = b_data.surname;
+                var othername = b_data.othername;
+                s_n++;
+                if(s_n%2==0){
+                    output+='<tr id = "grey-row"><td>'+s_n+'</td><td id = "getStudent_id_'+s_n+'" onclick = "getStudentId('+s_n+')">'+matno+'</td><td onclick = "getStudentId('+s_n+')">'+surname+', '+fname+' '+othername+'</td></tr>';
+                }else{
+                    output+='<tr><td>'+s_n+'</td><td id = "getStudent_id_'+s_n+'" onclick = "getStudentId('+s_n+')">'+matno+'</td><td onclick = "getStudentId('+s_n+')">'+surname+', '+fname+' '+othername+'</td></tr>';
+                }
+                
+            }
+            output+='</tbody></table>';
+            // alert(output);
+            document.getElementById("list-view").innerHTML=output;
+            $("#list-view").css("border","solid 0.2em #708090");
+        }
+    })
 }
 
 function checkByStatus(){
@@ -233,7 +312,33 @@ function getCode(a){
     })
     
 }
+/*************** Result Upload*******************/
+function getCurrentCourses(){
+    var semester = $("input[name='result-semester-upload']:checked").val();
+    var level = $("#upload-result-level").val();
+    var session = $("#academic-session").val();
+    $.post("../backend/get-enrolled-courses.php",{semester:semester, level:level, session:session}, function(data){
+        if(data.indexOf("No")>=0){
+            alert(data);
+        }else{
+            var data = JSON.parse(data);
+            for(var i = 0; i<data.length; i++){
+                var obj = data[i];
+                var code = obj.code;
+                var title = obj.title;
+                var units = obj.units
+                $("#result-batch-upload").show();
+                if(i%2!==0){
+                    document.getElementById("course-table-body").innerHTML+='<tr id="greyed"><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td</tr>';
+                }else{
+                    document.getElementById("course-table-body").innerHTML+='<tr><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td</tr>';
+                }
+            }
+        }
+    })
+}
 
-// function generateAttendancePdf(){
-//     alert($("#course_code").val());
-// }
+function getResultCourseCode(a){
+    var code = $("#code"+a+"").html();
+    $("#course-code").val(code);
+}

@@ -85,6 +85,9 @@
     margin-left: 2%;
     border-collapse: collapse;
 }
+#list-view td{
+    cursor: pointer;
+}
 #bio-data-view{
     margin-top: 2%;
     float: right;
@@ -93,6 +96,25 @@
 #grey-row{
     background-color: grey;
     color: white;
+}
+#student_photo{
+    float: left;
+    max-width: 35%;
+    max-height: 45%;
+    border: solid 1px #708090;
+    border-radius: 5%;
+    margin-right: 10px;
+}
+#student_photo img{
+    width: 140px;
+    height: 140px;
+}
+
+#biodata-table{
+    border-collapse: collapse;
+}
+#biodata-table td{
+    font-size: 22px;
 }
 /******************** Ends here *******************/
 
@@ -129,6 +151,9 @@
 }
 
 #course-table{
+    border-collapse: collapse;
+}
+#result-course-table{
     border-collapse: collapse;
 }
 #course-table td{
@@ -202,14 +227,72 @@
 }
 
 .upload-form-pane{
+    border: solid 2px #708090;
     display: inline-block;
     width: 40%;
-    margin-left: 3%;
+    margin-right: 5%;
+    margin-top: 1%;
+    float: right;
 }
 .course-list{
     display: inline-block;
     width: 30%;
     margin-left: 3%;
+    margin-top: 1%;
 }
 
+.uploadFile_style{
+    height: 25px;
+    width: 240px;
+    font-size: 18px;
+    border: solid 2px #708090;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.submit_btn_style{
+    background-color: #708090;
+    height: 30px;
+    width: 30%;
+    border: 0px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.col-spacer{
+    display: inline-block;
+    width: 3%;
+}
+
+#form-pane{
+    border: solid 2px #708090;
+    height: 180px;
+    border-radius: 10px;
+}
+
+#form-pane form{
+    margin-top: 4%;
+    margin-left: 15%;
+}
+#sample-file-pane{
+    width: 100%;
+    text-align: center;
+    margin-top: 23%;
+    border-radius: 7px;
+    /* position: relative;
+    top: 80%; */
+}
+#form-pane button{
+    font-size: 16px;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.upload-response-pane{
+    text-align: center;
+    font-size: 14px;
+}
 
