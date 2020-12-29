@@ -10,14 +10,14 @@
     <title>Add Admin</title>
 </head>
 <body>
-    <div class="col-12" id="main-header">
-        <div>
-        <div class="col-2"> <img src="images/ndu_bg_logo.png" alt="logo" id="logo"/> </div>
-        <div class="col-9 header"> 
-            <div id="h1">ACADEMIC RECORD MANAGMENT SYSTEM</div>
-            <div id="h3">MY DEPARTMENT</div>
+    <div class="col-12-custom" id="main-header">
+        <div class="header"> 
+            <div id="logo-pane"> 
+                <img src="images/ndu_bg_logo.png" alt="logo" id="logo"/>
+            </div>
+                <p id="h1"> ACADEMIC RECORD MANAGMENT SYSTEM</p>
+                <p id = "h3"> MY DEPARTMENT</p>
         </div>
-        <hr id="header-seperator"/>
     </div>
     <div class="col-2"></div>
     <div class="col-7 pre-display-pane"></div>

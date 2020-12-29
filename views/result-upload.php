@@ -20,7 +20,7 @@
         </div><div class="col-10"></div>
         <div class="col-12 all-page-title" id="">UPLOAD STUDENT RESULT</div>
         <div class="col-3"></div>
-        <div class="col-7">
+        <div class="col-8">
             <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="fs-result-upload" value="First"><label for="fs-result-upload">First Semester</label></div>
             <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="ss-result-upload" value = "Second"><label for="ss-result-upload">Second Semester</label></div>
             <div class="att-level">
@@ -33,9 +33,10 @@
                 <option value="500">500</option>
                 </select>
             </div>
+            
             <div class="current-repeat-option" id="current-repeat-option">
                 <input type="radio" name="curent-repeat" id="current" value="current" ><label for="current" onclick = "getCurrentCourses()">Current</label>
-                <input type="radio" name="curent-repeat" id="reseat" value ="reseat" ><label for="reseat" onclick = "getCurrentCourses()">Reseat</label>
+                <input type="radio" name="curent-repeat" id="reseat" value ="reseat" ><label for="reseat" onclick = "getReseatCourses()">Reseat</label>
             </div>
         </div>
         <div class = "col-12-custom" id="result-batch-upload">
@@ -45,6 +46,7 @@
                     <th>Course Code</th>
                         <th>Course Title</th>
                         <th>Units</th>
+                        <th>Download Result Data File</th>
                     </thead>
                     <tbody id="course-table-body">
                     </tbody>
@@ -56,7 +58,7 @@
                         <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                         <input type="hidden" name="code" id="course-code">
                         <div class="col-spacer"></div>
-                        <input type="submit" name="submit" value="Upload Result" class="btn-large rounded-corner-btn submit_btn_style" id="uploadResult_btn" onclick = "courseBatchUpload()"/>
+                        <input type="submit" name="submit" value="Upload Result" class="btn-large rounded-corner-btn submit_btn_style" id="uploadResult_btn" onclick = "resultBatchUpload()"/>
                     </form>
                     <div class="col-12 upload-response-pane" id="result-upload-response"></div>
                 </div> 
@@ -70,9 +72,17 @@
             <div class="upload-form-pane">Form</div> 
             <div class="col-1"></div> -->
         </div>
-        <div id="sample-file-pane">
-            <button name="get-sample-file" id="get-sample-file" onclick="downLoadCourseFile()">Download sample file for data preparation</button>
+        
+    </div>
+    <div class="col-12-custom" id = 'modal'>
+        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
+        <div class="col-3"></div>
+        <div class="col-5" id="validation-info-board">
+            <h3>Message</h3>
+            <div id="validation-info"></div>
+            <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
         </div>
+        <div class="col-3"></div>
     </div>
 </body>
 </html>

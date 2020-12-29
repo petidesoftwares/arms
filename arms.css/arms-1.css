@@ -1,7 +1,13 @@
 /***************Page header styling begins here*****************/
+#logo-pane{
+    width: 10%;
+    height: 100%;
+    float: left;
+}
+
 #logo{
-    width:60%;
-    height:60%;
+    width:100%;
+    height:100%;
     padding-top: 2%;
     float: left;
 }
@@ -10,16 +16,20 @@
     position: fixed;
     /* border-bottom: solid 0.1em #708090; */
 }
+.header{
+    margin-top: -2%;
+    margin-bottom: -2%;
+}
 .header #h1{
-    font-size: 35px;
+    font-size: 250%;
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 0%;
 }
 .header #h3{
-    font-size: 25px;
+    font-size: 180%;
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0%;
+    margin-bottom: 0%;
     /* position: fixed; */
 }
 /**************Ends here******************/
@@ -171,6 +181,12 @@
     height:460px;
     overflow:auto;
 }
+@media only screen and (max-width: 768px){
+    #display-pane{
+        height:460px;
+        overflow:scroll;
+    }
+}
 
 /*****************Login Form Styling****************/
 #login-form-pane{
@@ -321,3 +337,20 @@
 }
 
 /**************** Ends here*******************/
+
+/**************Responsive******************/
+
+@media only screen and (max-width: 768px){
+    .header #h1{
+        font-size: 150%;
+        text-align: center;
+        margin-bottom: 0%;
+    }
+    .header #h3{
+        font-size: 100%;
+        text-align: center;
+        margin-top: 0%;
+        margin-bottom: 0%;
+        /* position: fixed; */
+    }
+}

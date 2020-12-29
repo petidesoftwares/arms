@@ -236,9 +236,10 @@
 }
 .course-list{
     display: inline-block;
-    width: 30%;
-    margin-left: 3%;
+    width: 40%;
+    margin-left: 1%;
     margin-top: 1%;
+    overflow-y: auto;
 }
 
 .uploadFile_style{
@@ -278,17 +279,20 @@
     margin-top: 4%;
     margin-left: 15%;
 }
-#sample-file-pane{
-    width: 100%;
+/* #sample-file-pane{
+    display: inline-block;
+    width: 35%;
     text-align: center;
-    margin-top: 23%;
+    margin-left: 2%;
+    float: right;
+    margin-top: -5%;
     border-radius: 7px;
-    /* position: relative;
-    top: 80%; */
-}
+    position: relative;
+    top: 80%;
+} */
 #form-pane button{
     font-size: 16px;
-    margin-left: 5%;
+    margin-left: 3%;
     margin-top: 5%;
 }
 .upload-response-pane{

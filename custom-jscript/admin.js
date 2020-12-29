@@ -329,12 +329,53 @@ function getCurrentCourses(){
                 var units = obj.units
                 $("#result-batch-upload").show();
                 if(i%2!==0){
-                    document.getElementById("course-table-body").innerHTML+='<tr id="greyed"><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td</tr>';
+                    document.getElementById("course-table-body").innerHTML+='<tr id="greyed"><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td><td id="get-sample-file'+i+'" onclick="downloadResultFile('+i+')">Download Resultsheet File</td></tr>';
                 }else{
-                    document.getElementById("course-table-body").innerHTML+='<tr><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td</tr>';
+                    document.getElementById("course-table-body").innerHTML+='<tr><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td><td id="get-sample-file'+i+'" onclick="downloadResultFile('+i+')">Download Resultsheet File</td></tr>';
                 }
             }
         }
+    })
+}
+
+function getReseatCourses(){
+    var semester = $("input[name='result-semester-upload']:checked").val();
+    var level = $("#upload-result-level").val();
+    var session = $("#academic-session").val();
+    $.post("../backend/get-enrolled-failed-courses.php",{semester:semester, level:level, session:session}, function(data){
+        if(data.indexOf("No")>=0){
+            alert(data);
+        }else{
+            var data = JSON.parse(data);
+            for(var i = 0; i<data.length; i++){
+                var obj = data[i];
+                var code = obj.code;
+                var title = obj.title;
+                var units = obj.units
+                $("#result-batch-upload").show();
+                if(i%2!==0){
+                    document.getElementById("course-table-body").innerHTML+='<tr id="greyed"><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td><td id="get-sample-file'+i+'" onclick="downloadReseatResultFile('+i+')">Download Resultsheet File</td></tr>';
+                }else{
+                    document.getElementById("course-table-body").innerHTML+='<tr><td id = "code'+i+'" onclick = "getResultCourseCode('+i+')">'+code+'</td><td id = "title'+i+'" onclick = "getResultCourseCode('+i+')">'+title+'</td><td id = "units'+i+'" onclick = "getResultCourseCode('+i+')">'+units+'</td><td id="get-sample-file'+i+'" onclick="downloadReseatResultFile('+i+')">Download Resultsheet File</td></tr>';
+                }
+            }
+        }
+    })
+}
+
+function downloadResultFile(a){
+    var code = $("#code"+a+"").html();
+    var session = $("#academic-session").val();
+    $.post("../backend/get-result-sheet.php",{code:code, session:session}, function(data){
+        window.location.href="../downloads/"+data;
+    })
+}
+
+function downloadReseatResultFile(a){
+    var code = $("#code"+a+"").html();
+    var session = $("#academic-session").val();
+    $.post("../backend/get-reseat-result-sheet.php",{code:code, session:session}, function(data){
+        window.location.href="../downloads/"+data;
     })
 }
 
@@ -342,3 +383,28 @@ function getResultCourseCode(a){
     var code = $("#code"+a+"").html();
     $("#course-code").val(code);
 }
+
+function resultBatchUpload(){
+    $("#resultUploadForm").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'post',
+            enctype: 'multipart/form-data',
+            url: '../backend/process-batch-result.php',
+            data : new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function(){
+                $('#submit').attr('disable', 'disable');
+            },
+            success:function(response) {
+                $("#modal").show();
+                    $("#validation-info").css("color","green");
+                    $("#validation-info").html(response);
+                    $('submit').removeAttr('disable');
+            }
+        })
+    })
+}
+

@@ -57,7 +57,7 @@
         <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
         <div class="col-3"></div>
         <div class="col-5" id="validation-info-board">
-            <h3>Error Message</h3>
+            <h3>Message</h3>
             <div id="validation-info"></div>
             <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
         </div>
