@@ -34,11 +34,9 @@
             $sheet->setCellValue('A4',$level_taken.' LEVEL '.strtoupper($semester).' SEMESTER');
             $sheet->mergeCells('A4:I4');
 
-            $sheet->setCellValue('A5',$code.': '.strtoupper($title));
+            $sheet->setCellValue('A5',$code.': '.strtoupper($title)."Carry Overs");
             $sheet->mergeCells('A5:I5');
 
-            $sheet->setCellValue('A6','CarryOver Result');
-            $sheet->mergeCells('A6:I6');
 
             $styleArray = [
                 'font' => [
@@ -58,18 +56,16 @@
             $sheet->getStyle('A4')->getFont()->setSize(18);
             $sheet->getStyle('A5')->applyFromArray($styleArray);
             $sheet->getStyle('A5')->getFont()->setSize(18);
+
+            $sheet->setCellValue('A6', 'S/N:');
+            $sheet->setCellValue('B6', 'Mat NO:');
+            $sheet->setCellValue('C6','Name');
+            $sheet->setCellValue('D6','Score');
+
             $sheet->getStyle('A6')->applyFromArray($styleArray);
-            $sheet->getStyle('A6')->getFont()->setSize(18);
-
-            $sheet->setCellValue('A7', 'S/N:');
-            $sheet->setCellValue('B7', 'Mat NO:');
-            $sheet->setCellValue('C7','Name');
-            $sheet->setCellValue('D7','Score');
-
-            $sheet->getStyle('A7')->applyFromArray($styleArray);
-            $sheet->getStyle('B7')->applyFromArray($styleArray);
-            $sheet->getStyle('C7')->applyFromArray($styleArray);
-            $sheet->getStyle('D7')->applyFromArray($styleArray);
+            $sheet->getStyle('B6')->applyFromArray($styleArray);
+            $sheet->getStyle('C6')->applyFromArray($styleArray);
+            $sheet->getStyle('D6')->applyFromArray($styleArray);
 
             $sheet->getColumnDimension('A')->setAutoSize(true);
             $sheet->getColumnDimension('B')->setAutoSize(true);
@@ -78,7 +74,7 @@
             /******************** Attendace to make up the score sheet ****************/
             $getMatno = mysqli_query($conn, "SELECT matno FROM `course_registration` WHERE session=".$session." AND level>".$level_taken." AND code='".$code."' AND score=-1 ") or die(mysqli_error($conn));
             if(mysqli_num_rows($getMatno)>0){
-                $sheetRow=8;
+                $sheetRow=7;
                 $s_n=1;
                 while($rows = mysqli_fetch_assoc($getMatno)){
                     $queryList = mysqli_query($conn, "SELECT matno, firstname, surname, (SELECT othername FROM student_othernames WHERE student.id = student_othernames.student_id) as othername FROM student WHERE matno = '".$rows['matno']."'") or die(mysqli_error($conn));
