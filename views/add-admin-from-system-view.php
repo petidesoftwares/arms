@@ -7,14 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../custom-css/base-customstyle.css">
+    <!-- <link rel="stylesheet" href="../custom-css/base-customstyle.css"> -->
     <script src="../custom-jscript/jquery-3.5.1.min.js"></script>
     <script src="../custom-jscript/admin.js"></script>
     <title>Add Second Admin</title>
 </head>
 <body>
     <div class="col-12">
-    <div class="col-1 menu-bar" onclick="showMenu()">
+    <div class="menu-bar" onclick="showMenu()">
                 <div class="menu-frame">
                     <div class="menu-icon-bar-1"></div>
                     <div class="menu-icon-bar-2"></div>

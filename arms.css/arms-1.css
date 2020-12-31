@@ -1,39 +1,3 @@
-/***************Page header styling begins here*****************/
-#logo-pane{
-    width: 10%;
-    height: 100%;
-    float: left;
-}
-
-#logo{
-    width:100%;
-    height:100%;
-    padding-top: 2%;
-    float: left;
-}
-
-#main-header{
-    position: fixed;
-    /* border-bottom: solid 0.1em #708090; */
-}
-.header{
-    margin-top: -2%;
-    margin-bottom: -2%;
-}
-.header #h1{
-    font-size: 250%;
-    text-align: center;
-    margin-bottom: 0%;
-}
-.header #h3{
-    font-size: 180%;
-    text-align: center;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    /* position: fixed; */
-}
-/**************Ends here******************/
-
 /******************pre-access styling*****************/
 .pre-display-pane{
     margin-top: 1%;
@@ -91,20 +55,37 @@
 }
 /************************Dashbord styling begins here******************/
 #menu-list{
-    margin-top: 0px;
-    margin-left: 0px;
-    height: 490px;;
+    margin-top: 0%;
+    padding-top: 0%;
+    margin-left: 0%;
+    height: 490px;
     color: white;
     position: fixed;
+    /* top: 22.5%; */
     background-color: #708090; 
 }
 
 #menu_header{
+    display: inline-block;
+    float:right;
+    width: 88%;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
-    height: 15px;
+    height: 7%;
     background-color: #708090;
+}
+.menu-bar{
+    margin-top: 0%;
+    margin-left: 0px;
+    cursor: pointer;
+    position: fixed;
+}
+
+#close-menu{
+    display: inline-block;
+    width: 10%;
+    cursor: pointer;
 }
 .dashboard_ul{
     font-weight: bold;
@@ -115,8 +96,10 @@
 }
 #list_item_pane{
     height: 90%;
+    padding-right: 2%;
     text-align: justify;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .list_items{
@@ -126,10 +109,6 @@
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 3px;
-    /* border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px; */
     cursor: pointer;
 }
 
@@ -167,33 +146,20 @@
     color: #708090;
 }
 /********************Ends here*********************/
-
-.menu-bar{
-    margin-left: 0px;
-    cursor: pointer;
-    position: fixed;
-}
-
-#close-menu{
-    cursor: pointer;
-}
 #display-pane{
+    width: 100%;
+    margin-top: 0%;
     height:460px;
     overflow:auto;
 }
-@media only screen and (max-width: 768px){
-    #display-pane{
-        height:460px;
-        overflow:scroll;
-    }
-}
-
 /*****************Login Form Styling****************/
 #login-form-pane{
     border: solid 0.2em #708090;
     padding: 2%;
-    margin-top: 5%;
+    margin-top: 3%;
     padding-left: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
     border-radius: 10px;
 }
 
@@ -340,17 +306,35 @@
 
 /**************Responsive******************/
 
-@media only screen and (max-width: 768px){
-    .header #h1{
-        font-size: 150%;
-        text-align: center;
-        margin-bottom: 0%;
+@media only screen and (max-width: 600px){
+    #session-selection{
+        margin-left: 75%;
+        font-size: 12px;
     }
-    .header #h3{
-        font-size: 100%;
-        text-align: center;
-        margin-top: 0%;
-        margin-bottom: 0%;
-        /* position: fixed; */
+
+    #session-selection select{
+        font-size: 10px;
+    }
+    #login-form-pane{
+        margin-left: 0%;
+    }
+
+    #menu-list{
+        height: 100%;        
+    }
+
+    #list_item_pane{
+        height: 90%;
+        text-align: justify;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .dashboard_ul{
+        font-size:10px;
+    }
+
+    #menu-header{
+        font-size: 18px;
     }
 }

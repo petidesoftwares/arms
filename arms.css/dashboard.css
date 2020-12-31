@@ -1,8 +1,15 @@
+.card-rows{
+    padding-left: 18%;
+    /* padding-right: -5%; */
+}
 
 .dashboard-item{
+    display: inline-block;
+    width: 25%;
     height: 300px;
     border: solid 1px grey;
     margin-bottom: 1%;
+    margin-right: 1%;
     box-shadow: 5px 5px 3px grey;
 }
 #dashboard-item-pane{
@@ -15,12 +22,32 @@
 }
 
 .icon-holder img{
-    max-width: 100%;
-    margin-left: 5%;
+    max-width: 94%;
+    max-height: 98%;
+    margin: 1%;
 }
 .pane-name-text{
     text-align: center;
     font-size: 20px;
     font-weight: bold;
     color: #708090;
+}
+
+/*************** Implementing mobile view ****************/
+@media only screen and (max-width: 768px){
+    .dashboard-item{
+        height: 150px;
+        border: solid 1px grey;
+        margin-bottom: 1%;
+        box-shadow: 5px 5px 3px grey;
+    }
+
+    .icon-holder{
+        height: 100px;
+        background-color:whitesmoke;
+    }
+
+    .pane-name-text{
+        font-size: 13px;
+    }
 }

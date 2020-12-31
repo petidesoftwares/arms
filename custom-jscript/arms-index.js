@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $.post("dashboard.php",function(data){
         $("#display-pane").html(data);
-        $("#dashboard-item-pane-alter").hide();
         $("#menu-list").hide();
         checkTotalAdmin();
     })
@@ -11,15 +10,13 @@ $(document).ready(function(){
 function hideMenu(){
     $("#menu-list").hide(500);
     $(".menu-frame").show();
-    $("#dashboard-item-pane-alter").hide();
     $("#dashboard-item-pane").show();
 }
 
 function showMenu(){
     $("#menu-list").show(500);
     $(".menu-frame").hide();
-    $("#dashboard-item-pane-alter").show();
-    $("#dashboard-item-pane").hide();
+    $("#dashboard-item-pane").show();
     checkTotalAdmin();
 }
 
