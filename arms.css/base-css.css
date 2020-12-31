@@ -116,7 +116,12 @@ header{
         font-size: 13px;
     }
 }
-
+@media only screen and (max-width: 768px){
+    #content-pane{
+        position: absolute;
+        top: 15%;
+    }
+}
 @media only screen and (max-width: 600px){
     header{
         width: 100%;

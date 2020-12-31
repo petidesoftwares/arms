@@ -306,7 +306,7 @@
 
 /**************Responsive******************/
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 768px){
     #session-selection{
         margin-left: 75%;
         font-size: 12px;
