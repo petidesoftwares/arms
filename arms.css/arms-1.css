@@ -316,7 +316,7 @@
         font-size: 10px;
     }
     #login-form-pane{
-        margin-left: 0%;
+        margin-left: 10%;
     }
 
     #menu-list{
@@ -336,5 +336,11 @@
 
     #menu-header{
         font-size: 18px;
+    }
+
+    @media only screen and (max-width: 600px){
+        #login-form-pane{
+            margin-left: 0%;
+        }
     }
 }

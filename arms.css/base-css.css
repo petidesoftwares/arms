@@ -119,7 +119,7 @@ header{
 @media only screen and (max-width: 768px){
     #content-pane{
         position: absolute;
-        top: 15%;
+        top: 18%;
     }
 }
 @media only screen and (max-width: 600px){
