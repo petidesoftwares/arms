@@ -306,9 +306,9 @@
 
 /**************Responsive******************/
 
-@media only screen and (max-width: 768px){
+@media only screen and (min-width: 600px) and (max-width: 750px){
     #session-selection{
-        margin-left: 75%;
+        margin-left: 56%;
         font-size: 12px;
     }
 
@@ -338,9 +338,122 @@
         font-size: 18px;
     }
 
-    @media only screen and (max-width: 600px){
+    #second_admin option{
+        font-size: 13px;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width: 599px){
+    #session-selection{
+        margin-left: 60%;
+        font-size: 12px;
+    }
+
+    #session-selection select{
+        font-size: 10px;
+    }
+    #login-form-pane{
+        margin-left: 10%;
+    }
+
+    #menu-list{
+        height: 100%;        
+    }
+
+    #list_item_pane{
+        height: 90%;
+        text-align: justify;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .dashboard_ul{
+        font-size:10px;
+    }
+
+    #menu-header{
+        font-size: 18px;
+    }
+
+    #second_admin option{
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 499px){
+    #session-selection{
+        margin-left: 75%;
+        font-size: 12px;
+    }
+
+    #session-selection select{
+        font-size: 10px;
+    }
+    #login-form-pane{
+        margin-left: 0%;
+    }
+
+    #menu-list{
+        height: 100%;        
+    }
+
+    #list_item_pane{
+        height: 90%;
+        text-align: justify;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .dashboard_ul{
+        font-size:10px;
+    }
+
+    #menu-header{
+        font-size: 18px;
+    }
+
+    #second_admin option{
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 399px){
+    #session-selection{
+        margin-left: 68%;
+        font-size: 12px;
+    }
+
+    #session-selection select{
+        font-size: 10px;
+    }
+    #login-form-pane{
+        margin-left:0%;
+    }
+
+    #menu-list{
+        height: 100%;        
+    }
+
+    #list_item_pane{
+        height: 90%;
+        text-align: justify;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .dashboard_ul{
+        font-size:10px;
+    }
+
+    #menu-header{
+        font-size: 18px;
+    }
+
+    #second_admin option{
+        font-size: 13px;
+    }
+}
+@media only screen and (max-width: 600px){
         #login-form-pane{
             margin-left: 0%;
         }
-    }
 }

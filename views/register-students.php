@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../custom-css/base-customstyle.css"> -->
+    <link rel="stylesheet" href="../arms.css/base-css.css">
     <link rel="stylesheet" href="../arms.css/upload-course-student.css">
     <script src="../custom-jscript/jquery-3.5.1.min.js"></script>
     <script src="../custom-jscript/course-student-upload.js"></script>
@@ -21,12 +21,12 @@
                 <div class="menu-icon-bar-2"></div>
                 <div class="menu-icon-bar-3"></div>
             </div>
-        </div><div class="col-10"></div>
-        <div class="col-12">
-            <div class="col-12" id="page-title">REGISTER NEW STUDENTS</div>
-            <div class="student-upload-tabs" id="batch-upload" onclick="batchUpload()">Batch</div><div class="student-upload-tabs" id="single-upload" onclick="singleUpload()">Single</div></div>
-            <div class="col-3"></div>
-            <div class="col-7" id="form-pane">
+        </div>
+        <div class="col-12 col-m-12">
+            <div class="col-12 col-m-12" id="page-title">REGISTER NEW STUDENTS</div>
+            <div class="student-upload-tabs" id="batch-upload" onclick="batchUpload()">Batch</div><div class="student-upload-tabs" id="single-upload" onclick="singleUpload()">Single</div>
+        </div>
+            <div class="col-7 col-m-7" id="form-pane">
                 <form enctype="multipart/form-data"  id="studentRegForm">
                     <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                     <div class="col-spacer"></div>
@@ -37,7 +37,7 @@
                     <button name="get-sample-file" id="get-sample-file" onclick="downloadStudentUploadFile()">Download sample file for data preparation</button>
                 </div>
             </div>
-            <div class="col-7" id ="single-upload-form">
+            <div class="col-7 col-m-7" id ="single-upload-form">
                 <label for="admission-session">Admission Session</label>
                 <select name="admission_session" id="admission_session">
                     <?php
@@ -59,17 +59,13 @@
                 <button name="submit_student" id="submit_student" onclick="submitStudent()">Submit</button>
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
-    <div class="col-12-custom" id = 'modal'>
-        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
-        <div class="col-3"></div>
-        <div class="col-5" id="validation-info-board">
+    <div class="col-12 col-m-12" id = 'modal'>
+        <div class="col-5 col-m-5" id="validation-info-board">
             <h3>Message</h3>
             <div id="validation-info"></div>
             <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
         </div>
-        <div class="col-3"></div>
     </div>
 </body>
 </html>

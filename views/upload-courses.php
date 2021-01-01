@@ -8,36 +8,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../custom-css/base-customstyle.css"> -->
+    <link rel="stylesheet" href="../arms.css/base-css.css">
     <link rel="stylesheet" href="../arms.css/upload-course-student.css">
     <script src="../custom-jscript/jquery-3.5.1.min.js"></script>
     <script src="../custom-jscript/course-student-upload.js"></script>
     <title>Course Upload</title>
 </head>
 <body>
-    <div class="col-12 upload-course-pane">
+    <div class="col-12 col-m-12 upload-course-pane">
         <div class="menu-bar" onclick="showMenu()">
             <div class="menu-frame">
                 <div class="menu-icon-bar-1"></div>
                 <div class="menu-icon-bar-2"></div>
                 <div class="menu-icon-bar-3"></div>
             </div>
-        </div><div class="col-10"></div>
-        <div class="col-12" id="page-title">UPLOAD NEW COURSES</div>
+        </div>
+        <div class="col-12 col-m-12" id="page-title">UPLOAD NEW COURSES</div>
         <div class="student-upload-tabs" id="batch-upload" onclick="batchUpload()">Batch</div><div class="student-upload-tabs" id="single-upload" onclick="singleUpload()">Single</div></div>
-        <div class="col-3"></div>
-        <div class="col-7" id="form-pane">
+        <div class="col-7 col-m-7" id="form-pane">
             <form enctype="multipart/form-data" id="courseRegForm">
                 <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                 <div class="col-spacer"></div>
                 <input type="submit" name="submit" value="Upload New Courses" class="btn-large rounded-corner-btn submit_btn_style" id="uploadCourse_btn" onclick = "courseBatchUpload()"/>
             </form>
-            <div class="col-12 upload-response-pane" id="course-upload-response"></div>
+            <div class="col-12 col-m-12 upload-response-pane" id="course-upload-response"></div>
             <div id="sample-file-pane">
                 <button name="get-sample-file" id="get-sample-file" onclick="downLoadCourseFile()">Download sample file for data preparation</button>
             </div>
         </div>
-        <div class="col-7" id ="single-upload-form">
+        <div class="col-6 col-m-6" id ="single-upload-form">
             <label for="academic-session">Session:</label><select name="academic_session" id="academic_session">
             <?php
                         $secondYear=1;
@@ -75,17 +74,13 @@
             <input type="number" name="min_pass_mark" id="min_pass_mark" placeholder="Minimum Pass Score not less than 45"><br>
             <button name="submit_course" id="submit_course" onclick="submitCourse()">Submit</button>
         </div>
-        <div class="col-2"></div>
     </div>
-    <div class="col-12-custom" id = 'modal'>
-        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
-        <div class="col-3"></div>
-        <div class="col-5" id="validation-info-board">
+    <div class="col-12 col-m-12" id = 'modal'>
+        <div class="col-5 col-m-5" id="validation-info-board">
             <h3>Message</h3>
             <div id="validation-info"></div>
             <button id ="clear-modal" onclick = 'hideModal()'>OK</button>
         </div>
-        <div class="col-3"></div>
     </div>
 </body>
 </html>

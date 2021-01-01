@@ -18,15 +18,15 @@ function batchUpload(){
 }
 /****************** Batch upload samplel file download starts here **************/
 function downLoadCourseFile(){
-    window.location.href="../downloads/Course Registration.xlsx";
+    window.location.href="../downloads/Course Data File.xlsx";
 }
 
 function downloadStudentUploadFile(){
-    window.location.href="../downloads/Student Registration File.xlsx";
+    window.location.href="../downloads/Student Data File.xlsx";
 }
 
 function downloadLecturerRregistrationFile(){
-    window.location.href="../downloads/Lecturers Upload File.xlsx";
+    window.location.href="../downloads/Lecturers Data File.xlsx";
 }
 /**************** Ends here ********************/
 

@@ -93,7 +93,32 @@ header{
     .col-12 {width: 100%;}
 }
 
-@media only screen and (max-width: 414px){
+@media only screen and (max-width: 399px){
+    header{
+        width: 100%;
+    }
+    .header #h1{
+        font-size: 120%;
+    }
+    .header #h3{
+        font-size: 80%;
+        padding-left: 2%;
+        
+    }
+
+    #content-pane{
+        position: absolute;
+        top: 22%;
+    }
+
+    #session-selection{
+        margin-left: 60%;
+        font-size: 13px;
+    }
+
+}
+
+@media only screen and (min-width: 400px) and (max-width: 499px){
     header{
         width: 100%;
     }
@@ -108,7 +133,7 @@ header{
 
     #content-pane{
         position: absolute;
-        top: 25%;
+        top: 23%;
     }
 
     #session-selection{
@@ -116,21 +141,38 @@ header{
         font-size: 13px;
     }
 }
-@media only screen and (max-width: 768px){
-    #content-pane{
-        position: absolute;
-        top: 18%;
-    }
-}
-@media only screen and (max-width: 600px){
+@media only screen and (min-width: 500px) and (max-width: 599px){
     header{
         width: 100%;
     }
     .header #h1{
-        font-size: 150%;
+        font-size: 180%;
     }
     .header #h3{
-        font-size: 100%;
+        font-size: 140%;
+        padding-left: 2%;
+        
+    }
+
+    #content-pane{
+        position: absolute;
+        top: 27%;
+    }
+
+    #session-selection{
+        margin-left: 60%;
+        font-size: 13px;
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 750px){
+    header{
+        width: 100%;
+    }
+    .header #h1{
+        font-size: 200%;
+    }
+    .header #h3{
+        font-size: 160%;
         padding-left: 2%;
     }
     .arrow-left{
@@ -144,7 +186,7 @@ header{
 
     #content-pane{
         position: absolute;
-        top: 23%;
+        top: 26%;
     }
 
     .menu-icon-bar-1{
@@ -163,6 +205,7 @@ header{
     }
     
 }
+
 
 
 
