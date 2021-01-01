@@ -33,7 +33,7 @@
     function getAllOptions(){
         require('db_conn.php');
         if($conn){
-            $getOptions = mysqli_query($conn,"SELECT * FROM option") or die(mysqli_error($conn));
+            $getOptions = mysqli_query($conn,"SELECT * FROM option WHERE 1") or die(mysqli_error($conn));
             if(mysqli_num_rows($getOptions)>0){
                 return $getOptions;
             }
