@@ -24,19 +24,19 @@
                 $s_n = 0;
                 
                 foreach($students as $student){
-                    if(array_key_exists("othername", $student)){
+                    if(array_key_exists('othername', $student)){
                         $s_n++;
                         if($s_n%2==0){
-                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td onclick = "getStudentId('.$s_n.')"></tr>';
+                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
                         }else{
-                            echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td onclick = "getStudentId('.$s_n.')"></tr>';
+                            echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
                         }   
                     }else{
                         $s_n++;
                         if($s_n%2==0){
-                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td onclick = "getStudentId('.$s_n.')"></tr>';
+                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td></tr>';
                         }else{
-                            echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td onclick = "getStudentId('.$s_n.')"></tr>';
+                            echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td></tr>';
                         }   
                     }
                 }
