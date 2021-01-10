@@ -171,13 +171,24 @@
 
 /************** Responsive Styling *************/
 
-@media only screen and (max-width: 768px){
+@media only screen and (min-width: 600px) and (max-width: 750px){
+    #batch-upload{
+        margin-left: 20%;
+    }
+    #form-pane{
+        margin-left: 12%;
+        height: 180px;
+    }
+    #form-pane form{
+        margin-left: 6%;
+    }
     .submit_btn_style{
+        width: 40%;
         font-size: 14px;
     }
     .uploadFile_style{
         height: 20px;
-        width: 160px;
+        width: 150px;
         font-size: 12px;
     }
     #page-title{
@@ -185,7 +196,11 @@
     }
     
 }
-@media only screen and (max-width: 600px){
+@media only screen and (min-width: 500px) and (max-width: 599px){
+    #form-pane{
+        margin-left: 0%;
+        height: 180px;
+    }
     .submit_btn_style{
         font-size: 12px;
     }

@@ -30,7 +30,10 @@ function getStudentId(a){
             var student_matno = biodata.matno;
             var fname = biodata.firstname;
             var surname = biodata.surname;
-            var othername = biodata.othername;
+            var othername = "";
+            if(othername in biodata){
+                othername = biodata.othername;
+            }
             var adm_session = biodata.admission_session;
             var studentLevel;
             if(adm_session>currentSession){
@@ -299,10 +302,10 @@ function getCode(a){
                     var fname = obj_2.firstname;
                     var surname = obj_2.surname;
                     var othername;
-                    if( obj_2.othername==null ||  obj_2.othername==""){
-                        othername = "";
-                    }else{
+                    if(othername in obj_2){
                         othername = obj_2.othername;
+                    }else{
+                        othername = "";
                     }
                     s_n++;
                     document.getElementById("att_list_body").innerHTML+='<tr><td>'+s_n+'</td><td>'+matno+'</td><td>'+fname+' '+surname+' '+othername+'</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>';

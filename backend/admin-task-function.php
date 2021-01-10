@@ -43,9 +43,17 @@
     function getAllStudents(){
         require('db_conn.php');
         if($conn){
-            $queryAllStudents = mysqli_query($conn, "SELECT student.matno, student.surname, student.firstname, (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS othername    FROM student, student_othernames") or die(mysqli_error($conn));
-            if(mysqli_num_rows($queryAllStudents)>0){
-                return $queryAllStudents;
+            $verifyOthername = mysqli_query($conn, "SELECT COUNT(student_id) as all_stundents FROM student_othernames") or die(mysqli_error($conn));
+            if(mysqli_num_rows($verifyOthername)>0){
+                $queryAllStudents = mysqli_query($conn, "SELECT student.matno, student.surname, student.firstname, (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS othername    FROM student, student_othernames") or die(mysqli_error($conn));
+                if(mysqli_num_rows($queryAllStudents)>0){
+                    return $queryAllStudents;
+                }
+            }else{
+                $queryAllStudents = mysqli_query($conn, "SELECT student.matno, student.surname, student.firstname FROM student") or die(mysqli_error($conn));
+                if(mysqli_num_rows($queryAllStudents)>0){
+                    return $queryAllStudents;
+                }
             }
         }
     }
