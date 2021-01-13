@@ -49,6 +49,34 @@ function viewStudents(){
     });
 }
 
+function viewLecturers(){
+    $.post("view-lecturers.php",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
+}
+
+function viewCourses(){
+    $.post("view-courses.php",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
+}
+
+function viewActiveStudents(){
+    $.post("view-active-students.php",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
+}
+
+function viewSuspendedStudents(){
+    $.post("view-deffered-students.php",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
+}
+
 function viewAttendance(){
     $.post("view-attendance.php",function(data){
         $("#display-pane").html(data);
@@ -116,4 +144,12 @@ function addSecondAdmin(){
 
 function updateSession(){
     
+}
+
+function logout(){
+    $.post("../backend/logout.php", function(data){
+        if(data=="Session destroyed"){
+            window.location.href = "../preaccess/login-view.php";
+        }
+    })
 }

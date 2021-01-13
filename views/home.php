@@ -64,6 +64,7 @@
                             </select>
                         </li>
                         <li class="list_items rounded-corner-btn" id="updateAcademicSession" onclick="updateSession()">Update Academic Session</li>
+                        <li class="list_items rounded-corner-btn" id="logout" onclick = "logout()">Log Out</li>
                     </ul>
                 </div>
             </div><div class="col-8"></div>

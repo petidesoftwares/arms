@@ -1,3 +1,11 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $current_sessions = getCurrentSession();
+    $currentSession;
+    foreach($current_sessions as $session){
+        $currentSession = $session['year'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +30,14 @@
                     <div class="col-2 col-m-2"></div>
                     <img src="../images/students.png" alt="students_icon" class="col-12 col-m-12">
                 </div> 
-                <div class="col-12 col-m-12 pane-name-text">Number Of Students<br>0</div>
+                <div class="col-12 col-m-12 pane-name-text">Number Of Students<br><?php echo getTotalNumberOfStudents(); ?><p class = "view-links" onclick="viewStudents()">View Students</p></div>
             </div>
             <div class="dashboard-item" id="t-lecterer">
                 <div class="col-12 col-m-12 icon-holder">
                     <div class="col-2 col-m-2"></div>
                     <img src="../images/lecturer2.png" alt="students_icon" class="col-12 col-m-12">
                 </div> 
-                <div class="col-12 col-m-12 pane-name-text">Number Of Lecturers<br>0</div>
+                <div class="col-12 col-m-12 pane-name-text">Number Of Lecturers<br><?php echo getTotalNumberOfLectures(); ?><p class = "view-links" onclick="viewLecturers()">View Lecturers</p></div>
             </div>
        
             <div class="dashboard-item" id="t-courses"> 
@@ -37,7 +45,7 @@
                     <div class="col-2 col-m-2"></div>
                     <img src="../images/courses.png" alt="students_icon" class="col-12 col-m-12">
                 </div> 
-                <div class="col-12 pane-name-text">Number Of Courses<br>0</div>
+                <div class="col-12 pane-name-text">Number Of Courses<br><?php echo getTotalNumberOfCourses(); ?><p class = "view-links" onclick="viewCourses()">View Courses</p></div>
             </div>
         </div>
         <div class="card-rows">
@@ -46,21 +54,21 @@
                     <div class="col-2 col-m-2"></div>
                     <img src="../images/levels1.png" alt="students_icon" class="col-12 col-m-12">
                 </div> 
-                <div class="col-12 col-m-12 pane-name-text">Available Levels<br>0</div>
+                <div class="col-12 col-m-12 pane-name-text">Available Levels<br><?php echo  getAvailableLevels(); ?><p>Of 5</p></div>
             </div>
             <div class="dashboard-item" id="active-students">
                 <div class="col-12 col-m-12 icon-holder">
                     <div class="col-2 col-m-2"></div>
                     <img src="../images/student2.png" alt="students_icon" class="col-12 col-m-12">
                 </div> 
-                <div class="col-12 col-m-12 pane-name-text">Active Students<br>0</div>
+                <div class="col-12 col-m-12 pane-name-text">Active Students<br><?php echo getActiveStudents($currentSession); ?><p class = "view-links" onclick="viewActiveStudents()">View Active Students</p></div>
             </div>
             <div class="dashboard-item" id="differred-students">
                 <div class="col-12 col-m-12 icon-holder">
                     <div class="col-2 col-m-2"></div>
                     <img src="../images/human.png" alt="students_icon" class="col-12 col-m-12">
                 </div> 
-                <div class="col-12 col-m-12 pane-name-text">Differred Students<br>0</div>
+                <div class="col-12 col-m-12 pane-name-text">Differred Students<br><?php echo suspensionOfStudies($currentSession); ?><p class = "view-links" onclick="viewSuspendedStudents()">View Differed Students</p></div>
             </div>
         </div>
     </div>

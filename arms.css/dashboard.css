@@ -33,6 +33,10 @@
     color: #708090;
 }
 
+.view-links{
+    cursor: pointer;
+}
+
 /*************** Implementing mobile view ****************/
 @media only screen and (max-width: 768px){
     .dashboard-item{
