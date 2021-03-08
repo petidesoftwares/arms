@@ -58,7 +58,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-6" id="att-sheet">
+        <div class="col-6 gen-tables" id="att-sheet">
         <div>
             <form action="../backend/attendance-sheet-pdf.php" method="post" target="_blank">
                 <input type="hidden" name="course_code" id = "course_code">

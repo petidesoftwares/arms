@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../arms.css/admin.css">
+    <script src="../custom-jscript/admin.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -25,6 +26,7 @@
                 <th>TITLE</th>
                 <th>FULL NAME</th>
                 <th>RANK</th>
+                <th>MOBILE PHONE NUMBER</th>
             </thead>
             <tbody>
                 <?php
@@ -33,22 +35,22 @@
                         $s_n++;
                         if(array_key_exists("othername",$lecturer)){
                             if($s_n%2 ==0){
-                                echo '<tr id = "grey-row"><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td>'.$lecturer['surname'].', '.$lecturer['firstname'].' '.$lecturer['othername'].'</td><td>'.$lecturer['rank'].'</td></tr>';
+                                echo '<tr id = "grey-row"><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td  onclick = "getLecturerDetails('.$s_n.')">'.$lecturer['surname'].', '.$lecturer['firstname'].' '.$lecturer['othername'].'</td><td>'.$lecturer['rank'].'</td><td id="lectrer_detail_'.$s_n.'">'.$lecturer['mobile_phone'].'</td></tr>';
                             }else{
-                                echo '<tr><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td>'.$lecturer['surname'].', '.$lecturer['firstname'].' '.$lecturer['othername'].'</td><td>'.$lecturer['rank'].'</td></tr>';
+                                echo '<tr><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td onclick = "getLecturerDetails('.$s_n.')">'.$lecturer['surname'].', '.$lecturer['firstname'].' '.$lecturer['othername'].'</td><td>'.$lecturer['rank'].'</td><td id="lectrer_detail_'.$s_n.'">'.$lecturer['mobile_phone'].'</td></tr>';
                             }
                         }else{
                             if($s_n%2 ==0){
-                                echo '<tr id = "grey-row"><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td>'.$lecturer['surname'].', '.$lecturer['firstname'].'</td><td>'.$lecturer['rank'].'</td></tr>';
+                                echo '<tr id = "grey-row"><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td onclick = "getLecturerDetails('.$s_n.')">'.$lecturer['surname'].', '.$lecturer['firstname'].'</td><td>'.$lecturer['rank'].'</td><td id="lectrer_detail_'.$s_n.'">'.$lecturer['mobile_phone'].'</td></tr>';
                             }else{
-                                echo '<tr><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td>'.$lecturer['surname'].', '.$lecturer['firstname'].'</td><td>'.$lecturer['rank'].'</td></tr>';
+                                echo '<tr><td>'.$s_n.'</td><td>'.$lecturer['title'].'</td><td onclick = "getLecturerDetails('.$s_n.')">'.$lecturer['surname'].', '.$lecturer['firstname'].'</td><td>'.$lecturer['rank'].'</td><td id="lectrer_detail_'.$s_n.'">'.$lecturer['mobile_phone'].'</td></tr>';
                             }
-                        }
-                        
+                        }   
                     }
                 ?>
             </tbody>
         </table>
     </div>
+    <div id = "lecturer_biodata">LECTURER DETAILS</div>
 </body>
 </html>

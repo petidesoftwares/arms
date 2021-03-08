@@ -45,10 +45,10 @@
         if($conn){
             $checkOthername = mysqli_query($conn, "SELECT lecturer_id FROM lecturer_othername") or die(mysqli_error($conn));
             if(mysqli_num_rows($checkOthername)>0){
-                $queryLecturers = mysqli_query($conn, "SELECT title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, rank FROM lecturer, lecturer_othername") or die(mysqli_error($conn));
+                $queryLecturers = mysqli_query($conn, "SELECT title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, rank, mobile_phone FROM lecturer, lecturer_othername") or die(mysqli_error($conn));
                 return $queryLecturers;
             }else{
-                $queryLecturers = mysqli_query($conn, "SELECT title, firstname, surname, rank FROM lecturer") or die(mysqli_error($conn));
+                $queryLecturers = mysqli_query($conn, "SELECT title, firstname, surname, rank, mobile_phone FROM lecturer") or die(mysqli_error($conn));
                 return $queryLecturers;
             }
         }
@@ -61,6 +61,38 @@
             if(mysqli_num_rows($queryCourses)>0){
                 return $queryCourses;
             }
+        }
+    }
+
+    function viewActiveStudents($currentSession){
+        require('db_conn.php');
+        if($conn){
+            $activeStudents = array();            
+            $queryStudents = mysqli_query($conn, "SELECT matno, firstname, surname FROM student") or die(mysqli_error($conn));
+            if(mysqli_num_rows($queryStudents)>0){
+                while($row = mysqli_fetch_assoc($queryStudents)){
+                    $checkSuspension = mysqli_query($conn,"SELECT matno FROM suspension_of_studies WHERE return_session<".$currentSession." AND response ='Granted' AND matno='".$row['matno']."'") or die(mysqli_error($conn));
+                    if(mysqli_num_rows($checkSuspension)>0){
+
+                    }else{
+                        $activeStudents[] = $row;
+                    }
+                }
+            }
+            return $activeStudents;
+        }
+    }
+
+    function viewSuspensions($currentSession){
+        require('db_conn.php');
+        if($conn){
+            $student_studies_suspension = array();
+            $querySuspendedStudents = mysqli_query($conn,"SELECT matno FROM suspension_of_studies WHERE return_session<".$currentSession." AND response ='Granted'") or die(mysqli_error($conn));
+            while($row = mysqli_fetch_assoc($querySuspendedStudents )){
+                $queryStudentDetails = mysqli_query($conn."SELECT matno, surname, firstname FROM student WHERE matno ='".$row['matno']."'") or die(mysqli_error($conn));
+                $student_studies_suspension[] = $queryStudentDetails;
+            }
+            return $student_studies_suspension ;
         }
     }
 
@@ -192,7 +224,7 @@
     function getAttendance($code, $session){
         require('db_conn.php');
         if($conn){
-            $getEnrolledLevel = mysqli_query($conn,"SELECT level FROM course_registration WHERE code = '".$code."' AND session = ".$session."") or die(mysqli_error($conn));
+            $getEnrolledLevel = mysqli_query($conn,"SELECT DISTINCT level FROM course_registration WHERE code = '".$code."' AND session = ".$session."") or die(mysqli_error($conn));
             if(mysqli_num_rows($getEnrolledLevel)>0){
                 $attArray = array();
                 while($rows=mysqli_fetch_assoc($getEnrolledLevel)){
@@ -275,17 +307,21 @@
         if($conn){
             $resultArray=array();
             $semester ="";
-            $courseCodes;
-            $repeatedCourses;
+            $courseCodes=array();
+            $repeatedCoursesArray = array();
+            $repeatedCodesArray = array();
+            $repeatedUnitsArray = array();
             $listOfStudent;
-            $newCourses;
+            $newCoursesArray = array();
+            $newCodesArrray = array();
+            $newUnitsArray = array();
             $courseBasedResult;
 
             $cgp = 0;
             $cumUnits = 0;
             $cgpa=0;
 
-            if($semester_in=="First Semester"){
+            if($semester_in=="First"){
                 $semester = 'First';
             }else{
                 $semester='Second';
@@ -293,19 +329,31 @@
         
             $getCourseCodes = mysqli_query($conn,"SELECT DISTINCT course_registration.code FROM course_registration, course WHERE course_registration.code=course.code AND course_registration.level=".$level." AND course.semester='".$semester_in."'") or die(mysqli_error($conn));
             if(mysqli_num_rows($getCourseCodes)>0){
-                $courseCodes = $getCourseCodes;
+                while($c_code = mysqli_fetch_assoc($getCourseCodes)){
+                    $courseCodes[] = $c_code['code'];
+                }
             }
             $queryNewCourses = mysqli_query($conn,"SELECT DISTINCT course_registration.code, course.units FROM course, course_registration WHERE course.code = course_registration.code AND course_registration.level= course.level_taken AND course.semester='".$semester_in."' AND course_registration.level=".$level." AND course_registration.session=".$session."") or die(mysqi_error($conn));
             if(mysqli_num_rows($queryNewCourses)>0){
-                $newCourses = $queryNewCourses;
+                while($n_course = mysqli_fetch_assoc($queryNewCourses)){
+                    $newCodesArrray[] = $n_course['code'];
+                    $newUnitsArray[] = $n_course['units'];
+                }
+                $newCoursesArray[] = $newCodesArrray;
+                $newCoursesArray[] = $newUnitsArray;
             }
             $queryRepeatedCourse = mysqli_query($conn,"SELECT DISTINCT course_registration.code, course.units FROM course_registration, course, student WHERE course_registration.code= course.code AND student.matno = course_registration.matno AND
                                     course.level_taken<course_registration.level AND course.semester='".$semester_in."' AND course_registration.level=".$level." AND course_registration.session=".$session."") or die(mysqli_error($conn));
             if(mysqli_num_rows($queryRepeatedCourse)>0){
-                $repeatedCourses = $queryRepeatedCourse;
+                while($reptd_course = mysqli_fetch_assoc($queryRepeatedCourse)){
+                    $repeatedCodesArray[] = $reptd_course['code'];
+                    $repeatedUnitsArray[] = $reptd_course['units'];
+                }
+                $repeatedCoursesArray[] = $repeatedCodesArray;
+                $repeatedCoursesArray[] = $repeatedUnitsArray;
             }
             if($level==100){
-                $queryListOfStudents = mysqli_query($conn,"SELECT DISTINCT matno FROM course_registration, course WHERE course_registration.code=course.code AND course.semester=? AND level =".$level." AND course_registration.session=".$session."")or die(mysqli_error($conn));
+                $queryListOfStudents = mysqli_query($conn,"SELECT DISTINCT matno FROM course_registration, course WHERE course_registration.code=course.code AND course.semester='".$semester."' AND level =".$level." AND course_registration.session=".$session."")or die(mysqli_error($conn));
                 // $listOfStudent = $queryListOfStudents;
                 while($student_id = mysqli_fetch_assoc($queryListOfStudents)){
                     $studentResultArray = array();
@@ -319,13 +367,14 @@
                     $remarks ="";
 
                     $studentResultArray[]=$student_id['matno'];
+                    $newCourses = mysqli_query($conn,"SELECT DISTINCT course_registration.code, course.units FROM course, course_registration WHERE course.code = course_registration.code AND course_registration.level= course.level_taken AND course.semester='".$semester_in."' AND course_registration.level=".$level." AND course_registration.session=".$session."") or die(mysqi_error($conn));
                     while($course = mysqli_fetch_assoc($newCourses)){           //points to note
                         $result = mysqli_query($conn,"SELECT score, units FROM course_registration, course WHERE course_registration.code=course.code AND course.semester = '".$semester_in."' AND course_registration.level =".$level." AND course_registration.matno ='".$student_id['matno']."' AND course_registration.code= '".$course['code']."' AND course_registration.session=".$session."")or die(mysqli_error($conn));
                         $courseBasedResult = $result;
                         $scoreGradeString ="";
                         while($s_result = mysqli_fetch_assoc($result)){
                             $totalUnits+=$s_result['units'];
-                            $scoreGradeString=$s_result['score']." ".getStudentGrade($s_result['score'])." ".getGradePoint($s_result['units'], getCourseGrade(getStudentGrade($s_result['score'])));
+                            $scoreGradeString=$s_result['score']."<br>".getStudentGrade($s_result['score'])." <br> ".getGradePoint($s_result['units'], getCourseGrade(getStudentGrade($s_result['score'])));
                             $totalGradePoints+=getGradePoint($s_result['units'], getCourseGrade(getStudentGrade($s_result['score'])));
                         }
                         $studentResultArray[] = $scoreGradeString;
@@ -404,8 +453,16 @@
                     $cgp=0;
                     $cumUnits=0;
                 }
+                $data= array(
+                    "levelCheck"=>"100",
+                    "allRegisteredCourses" => $courseCodes,
+                    "newCourses"=> $newCoursesArray,
+                    "resultArray"=> $resultArray
+                );
+                return json_encode($data);
 
-            }else{
+            }
+            else{
                 $queryListOfStudents = mysqli_query($conn,"SELECT DISTINCT matno FROM course_registration, course WHERE course_registration.code=course.code AND course.semester='".$semester."' AND level =".$level." AND course_registration.session=".$session."") or die(mysqli_error($conn));
                 $listOfStudent = $queryListOfStudents;
                 while($student_id = musqli_fetch_assoc($queryListOfStudents)){
@@ -603,23 +660,27 @@
                     $cumUnits=0;
 
                 }
+
+                $data= array(
+                    "levelCheck"=>"others",
+                    "allRegisteredCourses" => $courseCodes,
+                    "newCourses"=> $newCoursesArray,
+                    "repeatedCourses"=> $repeatedCoursesArray,
+                    "resultArray"=> $resultArray
+                );
+                return json_encode($data);
             }
-            $data=[
-                "allRegisteredCourses" => $courseCodes,
-                "newCourses"=> $newCourses,
-                "repeatedCourses"=> $repeatedCourses,
-                "resultArray"=> $resultArray
-            ];
-            return json_encode($data);
+            
         }
     }
     /************************** General Result Ends Here *****************************/
 
     /*************************** Individual Result ***********************************/
     function individualStudentResult($matno, $session, $level, $semester_in){
+        require('db_conn.php');
         $resultArray = array();
 
-        $headerData;
+        $headerData = array();
         $totalGradePoints = 0;
         $totalUnits=0;
         $gpa = 0;
@@ -630,7 +691,7 @@
         $lowerLevel=0;
         $firstSemesterFailedCourses="";
         $secondSemesterFailedCourses="";
-        if($semester_in=="First Semester"){
+        if($semester_in=="First"){
             $semester = 'First';
         }else{
             $semester='Second';
@@ -640,13 +701,29 @@
         if(mysqli_num_rows($queryMatno)>0){
             $getStudentID = mysqli_query($conn,"SELECT id FROM student WHERE matno ='".$matno."'") or die(mysqli_error($conn));
             while($id = mysqli_fetch_assoc($getStudentID)){
-                $queryStudentDetail = mysqLi_query($conn,"SELECT student.matno, student.surname, student.firstname, (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS
-                othername from student, student_othernames WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
-                $headerData=$queryStudentDetail;
+                $verifyOthername = mysqli_query($conn, "SELECT othername FROM student_othernames WHERE student_othernames.student_id='".$id['id']."'") or die(mysqli_error($conn));
+                if(mysqli_num_rows($verifyOthername)>0){
+                    $queryStudentDetail = mysqLi_query($conn,"SELECT student.matno, student.surname, student.firstname, (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS
+                    othername from student, student_othernames WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
+                    while($rowData = mysqli_fetch_assoc($queryStudentDetail)){
+                        $headerData[]=$rowData['matno'];
+                        $headerData[]=$rowData['firstname'];
+                        $headerData[]=$rowData['surname'];
+                        $headerData[]=$rowData['othername'];
+                    }
+                    
+                }else{
+                    $queryStudentDetail = mysqLi_query($conn,"SELECT student.matno, student.surname, student.firstname FROM student WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
+                    while($rowData = mysqli_fetch_assoc($queryStudentDetail)){
+                        $headerData[]=$rowData['matno'];
+                        $headerData[]=$rowData['firstname'];
+                        $headerData[]=$rowData['surname'];
+                    }
+                }
             }
 
             /**********************Query student result************************ */
-            if($semester_in=="First Semester" && $level==100){
+            if($semester=="First" && $level==100){
                 $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
                 course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = '".$semester."' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
                 if(mysqli_num_rows($queryResult)>0){
@@ -657,7 +734,7 @@
                         $singleCourseResultArray[]=$result['units'];
                         $singleCourseResultArray[]=$result['score'];
                         $singleCourseResultArray[]= getStudentGrade($result['score']);
-                        $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result->score)));
+                        $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                         $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
 
                         $resultArray[]=$singleCourseResultArray;
@@ -687,7 +764,7 @@
                     return "Error! No Result For Selected Semester";
                 }
             }
-            if($semester_in=="Second Semester" && $level==100){
+            if($semester=="Second" && $level==100){
                 $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
                 course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = '".$semester."' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
                 if(mysqli_num_rows($queryResult)>0){
@@ -748,7 +825,7 @@
                 }
             }
 
-            if($semester_in=="First Semester" && $level>100){
+            if($semester=="First" && $level>100){
                 $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
                 course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = '".$semester."' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
                 if(mysqli_num_rows($queryResult)>0){
@@ -880,7 +957,7 @@
                     return "Error! No Result For Selected Semester";
                 }
             }
-            $data=[
+            $data=array(
                 "headerData" => $headerData,
                 "resultArray"=> $resultArray,
                 "totalUnits"=> $totalUnits,
@@ -891,13 +968,87 @@
                 "cgpa"=>$cgpa,
                 "fSemesterFailedCourses"=>$firstSemesterFailedCourses,
                 "sSemesterFailedCourses"=>$secondSemesterFailedCourses
-            ];
+            );
             return json_encode($data);
         }
         else{
             return "Error! Student Registration or Matno does not exist";
         }
 
+    }
+
+    /*************** course allaocation function(s) ***********************/
+    function getFormatedLecturerNames(){
+        require('db_conn.php');
+        if($conn){
+            $checkOthername = mysqli_query($conn, "SELECT lecturer_id FROM lecturer_othername") or die(mysqli_error($conn));
+            if(mysqli_num_rows($checkOthername)>0){
+                $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, gender FROM lecturer, lecturer_othername") or die(mysqli_error($conn));
+                return $queryLecturers;
+            }else{
+                $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, gender FROM lecturer") or die(mysqli_error($conn));
+                return $queryLecturers;
+            }
+        }
+    }
+
+    function getCoursesToAllocate($semester, $level){
+        require('db_conn.php');
+        if($conn){
+            $queryCourses = mysqli_query($conn, "SELECT code, title FROM course WHERE level_taken =".$level." AND semester ='".$semester."'") or die(mysqli_error($conn));
+            if(mysqli_num_rows($queryCourses)>0){
+                return $queryCourses;
+            }
+        }
+    }
+
+    /*************** Ends here *************************************/
+
+    /**************Transcript Functions************************/
+    function getClassOfDegree($cgpa){
+        $classOfDegree = 0.0;
+        if($cgpa>4.49){
+            $classOfDegree = 1.1;
+        }
+        elseif($cgpa>=3.50 && $cgpa<=4.49){
+            $classOfDegree = 2.1;
+        }
+        elseif($cgpa>=2.50 && $cgpa <=3.49){
+            $classOfDegree = 2.2;
+        }
+        elseif($cgpa >=1.50 && $cgpa <=2.49){
+            $classOfDegree = 3.0;
+        }
+        elseif($cgpa >=1.00 && $cgpa <= 1.49){
+            $classOfDegree = 4.0;
+        }else{
+            $classOfDegree =5.0;
+        }
+    }
+    function getTranscriptOnRequest($matno, $session, $level){
+        require('db_conn.php');
+        $transcriptHeaderData = array();
+        $transcriptArray = array();
+        $getStudentID = mysqli_query($conn, "SELECT id FROM student WHERE matno = '".$matno."'") or die(mysqli_error($conn));
+        if(mysqli_num_rows($getStudentID)>0){
+            $studentId = mysqli_fetch_assoc($getStudentID);
+            $verifyOthername = mysqli_query($conn, "SELECT othername FROM student_othernames WHERE student_id =".$studentId['id']."") or die(mysqli_error($conn));
+            if(mysqli_num_rows($verifyOthername)>0){
+                $queryTranscriptHeaderData = mysqli_query($conn,"SELECT student.matno, student.surname, student.firstname, admission_session (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS
+                    othername FROM student, student_othernames WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
+                if(mysqli_num_rows($queryTranscriptHeaderData)>0){
+                    while($rowData = mysqli_fetch_assoc($queryTranscriptHeaderData)){
+                        $transcriptHeaderData[] = $rowData['matno'];
+                        $transcriptHeaderData[] = $rowData['surname'].", ". $rowData['firstname']." ".$rowData['othername'];
+                        $transcriptHeaderData[] = $rowData['matno'];
+                    }
+                }
+            }
+        }
+        $queryTranscriptHeaderData = mysqli_query($conn, "SELECT matno, firstname, surname, admission_session FROM student WHERE matno ='".$matno."'")or die(mysqli_error($conn));
+        if(mysqli_num_rows($queryStdent)>0){
+            echo 'Student found';
+        }
     }
 
 ?>

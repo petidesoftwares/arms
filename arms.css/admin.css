@@ -143,6 +143,10 @@
     display: inline-block;
 }
 
+.result_session{
+    display: inline-block;
+}
+
 #att-sheet{
     overflow-y: auto;
     float: right;
@@ -219,6 +223,42 @@
     margin-bottom: 2%;
 }
 /******************* End****************/
+
+/*******************/
+.gen-tables table{
+    border-collapse: collapse;
+}
+.gen-tables th, td{
+    border: solid 1px #708090;
+    font-family: monospace;
+}
+.gen-tables th{
+    font-size: 14px;
+    height: 20px;
+}
+#result-table-body td{
+    font-size: 12px;
+    text-align: center;
+}
+
+.no-transform{
+    vertical-align: bottom;
+}
+
+.transform-text{
+    -webkit-transform: rotateZ(-90deg); /* Safari */
+    transform: rotateZ(-90deg);
+    text-align: center;
+}
+
+.adjust-alignment{
+    -webkit-transform: rotateZ(-90deg); /* Safari */
+    transform: rotateZ(-90deg);
+    text-align: left;
+    position: relative;
+    /* top: 10px; */
+    
+}
 
 /****************** Upload Result*************/
 .current-repeat-option{

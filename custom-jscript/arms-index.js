@@ -142,8 +142,21 @@ function addSecondAdmin(){
     }
 }
 
+function courseAllocation(){
+    $.post("course-allocation.php",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
+}
+
 function updateSession(){
     
+}
+function LoadTranscriptView(){
+    $.post("transcript-main-view.php",function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    });
 }
 
 function logout(){

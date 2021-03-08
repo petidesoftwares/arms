@@ -54,7 +54,7 @@
                         <li class="list_items rounded-corner-btn" id="upload_result" onclick="uploadResult()">Upload Result</li>
                         <li class="list_items rounded-corner-btn" id="view_gresult" onclick="viewGeneralResult()">View General Result</li>
                         <li class="list_items rounded-corner-btn" id="view_indiv_R" onclick="viewIndividualResult()">View Individual Student Result</li>
-                        <li class="list_items rounded-corner-btn" id="gen_trnscript">Generate Transcript</li>
+                        <li class="list_items rounded-corner-btn" id="gen_trnscript" onclick = "LoadTranscriptView()">Generate Transcript</li>
                         <li class="list_items rounded-corner-btn" id="view_Student_Status">View Student Status</li>
                         <li class="list_items rounded-corner-btn" id="add-second-admin">
                             <select name="second_admin" id="second_admin" onchange="addSecondAdmin()">
@@ -63,6 +63,7 @@
                                 <option value="existing_lecturer">Existing Lecturer</option>
                             </select>
                         </li>
+                        <li class="list_items rounded-corner-btn" id="courseAllocation" onclick="courseAllocation()">Course Allocation</li>
                         <li class="list_items rounded-corner-btn" id="updateAcademicSession" onclick="updateSession()">Update Academic Session</li>
                         <li class="list_items rounded-corner-btn" id="logout" onclick = "logout()">Log Out</li>
                     </ul>

@@ -10,6 +10,7 @@ $(document).ready(function(){
     $("#att-sheet").hide();
     $("#result-batch-upload").hide();
     $("#result-form-upload").hide();
+    $("#transcriptOptionalPane").hide();
 })
 
 function checkAllStudents(){
@@ -315,6 +316,11 @@ function getCode(a){
     })
     
 }
+
+function getLecturerDetails(a){
+    var lecturerID = $("#lectrer_detail_"+a+"").html();
+    alert(lecturerID);
+}
 /*************** Result Upload*******************/
 function getCurrentCourses(){
     var semester = $("input[name='result-semester-upload']:checked").val();
@@ -324,6 +330,7 @@ function getCurrentCourses(){
         if(data.indexOf("No")>=0){
             alert(data);
         }else{
+            alert("yeah");
             var data = JSON.parse(data);
             for(var i = 0; i<data.length; i++){
                 var obj = data[i];
@@ -411,3 +418,103 @@ function resultBatchUpload(){
     })
 }
 
+/*********Course Allocation****************/
+function getCourseByLevel(){
+    var level =  $("#level").val();
+    var semester =  $("#semester").val();
+    if(semester !=""){
+        getCourseToAllocate(semester, level);
+    }
+}
+
+function getCourseBySemester(){
+    var semester =  $("#semester").val();
+    var level =  $("#level").val();
+    if(level !=0){
+        getCourseToAllocate(semester, level);
+    }
+}
+function getCourseToAllocate(semester, level){
+$.post("../backend/course-to-allocate.php", {level:level, semester:semester}, function(data){
+    $("#course-allocation-tbody").html(data);
+})
+}
+
+function submitCourseAllocation(){
+    var size = $("#col-size").val();
+    size++; 
+    var parentArray = [];
+    for(var i=1; i<(size);i++){
+        var currentSession = $("#current_session").val();
+        var courseLect = $("#course_lecturer_"+i+"").val();
+        var code = $("#code_"+i+"").html();
+        var courseAllocation ={
+            "session" : currentSession,
+            "code":code,
+            "courseLecturer":courseLect
+        };
+        parentArray[i-1]=courseAllocation;
+    }
+    
+    $.post("../backend/process-course-allocation.php",{parentArray:JSON.stringify(parentArray)}, function(data){
+        alert(data)
+    })
+}
+function getGeneralResult(){
+    var semester = $("input[name = 'semester']:checked").val();
+    var level = $("#seleect-genresult-level").val();
+    var session = $("#academic_session").val();
+    $.post("../views/general-result-view.php",{semester:semester, level:level, session:session}, function(data){
+        $("#view-result-pane").html(data);
+        // alert(data);
+    })
+}
+function getStudentResult(a){
+    var semester = $("input[name = 'semester']:checked").val();
+    var level = $("#select-student-result-level").val();
+    var session = $("#academic_session").val();
+    var matno = $("#"+a+"").html();
+    $.post("../views/individual-result-view.php",{matno:matno, semester:semester, level:level, session:session}, function(data){
+        $("#view-result-pane").html(data);
+        // alert(data);
+    })
+}
+
+function getResultList(){
+    var semester = $("input[name = 'semester']:checked").val();
+    var level = $("#select-student-result-level").val();
+    var session = $("#academic_session").val();
+    $.post("../backend/get-student-result-list.php",{semester:semester, level:level, session:session}, function(data){
+        var data = JSON.parse(data);
+        var listTable ='<table><thead><th>MATRIC NO.</th><th>FIRST NAME</th><th>SURNAME</th></thead><tbody>';
+        for(var i =0; i<data.length; i++){
+            var resultList = data[i];
+            var matno = resultList.matno;
+            var fname = resultList.firstname;
+            var surname = resultList.surname;
+            listTable+='<tr onclick = "getStudentResult('+i+')"><td id="'+i+'">'+matno+'</td><td>'+fname+'</td><td>'+surname+'</td></tr>';
+        }
+        listTable+='</tbody></table>';
+        $("#result-list-pane").html(listTable);
+        // alert(data);
+    })
+}
+//Transcript
+
+function showOptionalTranscriptPane(){
+    $("#transcriptOptionalPane").show(500);
+}
+
+function getTranscript(){
+    var matno = $("#transcript-search-box").val();
+    var session = $("#transcript-session").val();
+    $.post("../backend/verify-transcript-student.php",{ matno:matno}, function(data){
+        if(data == "Student found"){
+            $("#submit-transcript-request")[0].click(function(){
+            });
+        }else{
+            $("#transcript-response-pane").html("Student not found");
+        }
+    })
+    
+}

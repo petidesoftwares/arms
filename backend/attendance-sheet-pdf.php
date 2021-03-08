@@ -61,10 +61,10 @@ ob_start();
                         <tbody>';
                             $s_n=0;
                             $level = 0;
-                            for($i = 0; $i<count($attendanceSheet);$i++){
+                            foreach($attendanceSheet as $sheet){
                                 $level++;
                                 $html.='<tr><td colspan="9" id="level_row">'.$level.'00 Level </td></tr>';
-                                foreach($attendanceSheet[$i] as $levelSet){
+                                foreach($sheet as $levelSet){
                                     $s_n++;
                                     $html.='<tr id="att_list_body"> <td>'.$s_n.'</td> <td>'.$levelSet['matno'].'</td> <td>'.$levelSet['surname'].' '.$levelSet['firstname'].' '.$levelSet['othername'].'</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>';
                                 }

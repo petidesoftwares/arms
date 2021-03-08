@@ -1,3 +1,7 @@
+<?php
+    require("../backend/admin-task-function.php");
+    $sessions = getSessions();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +26,31 @@
 
         <div class="col-3"></div>
         <div class="col-8">
-            <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="first-semester"> <label for="first-semester">First Semester</label></div>
-            <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="second-semester"> <label for="second-semester">Second Semester</label></div>
-            <div class="att-level"><select name="seleect-att-level" id="seleect-att-level" class="rounded-corner-btn select-level-style">
+            <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="first-semester" value="First"> <label for="first-semester">First Semester</label></div>
+            <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="second-semester" value="Second"> <label for="second-semester">Second Semester</label></div>
+            <div class="att-level"><select name="seleect-att-level" id="select-student-result-level" class="rounded-corner-btn select-level-style">
                 <option>Select Level</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
             </select></div>
-            <button class="rounded-corner-btn gen-att" id="ind-result-btn">Get Students</button>
+            <div class="rounded-corner-btn result_session"> 
+                <select name="academic_session" id="academic_session">
+                    <?php
+                        $secondYear=1;
+                        foreach($sessions as $session){
+                            $secondYear+= $session['year'];
+                            echo '<option value="'.$session['year'].'">'.$session['year'].'/'.$secondYear.'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <button class="rounded-corner-btn gen-att" id="ind-result-btn" onclick = "getResultList()">Get Students</button>
         </div>
     </div>
+    <div id ="result-list-pane"></div>
+    <div id="view-result-pane"></div>
 </body>
 </html>
