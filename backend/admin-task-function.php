@@ -722,7 +722,7 @@
                 }
             }
 
-            /**********************Query student result************************ */
+            /**********************Query student result*************************/
             if($semester=="First" && $level==100){
                 $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
                 course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = '".$semester."' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
@@ -1027,28 +1027,240 @@
     }
     function getTranscriptOnRequest($matno, $session, $level){
         require('db_conn.php');
+
+        $totalGradePoints = 0;
+        $totalUnits=0;
+        $f_gpa = 0.00;
+        $s_gpa = 0.00;
+        $f_cgpa = 0.00;
+        $s_cgpa = 0.00;
+
+        // $gpa = 0.00;
+
+        $cumUnits=0;
+        $cumGradePoint=0;
+        $cgpa=0.00;
+
         $transcriptHeaderData = array();
+        $resultSummaryArray = array();
+        $sessionsArray = array();
         $transcriptArray = array();
+
         $getStudentID = mysqli_query($conn, "SELECT id FROM student WHERE matno = '".$matno."'") or die(mysqli_error($conn));
         if(mysqli_num_rows($getStudentID)>0){
             $studentId = mysqli_fetch_assoc($getStudentID);
             $verifyOthername = mysqli_query($conn, "SELECT othername FROM student_othernames WHERE student_id =".$studentId['id']."") or die(mysqli_error($conn));
             if(mysqli_num_rows($verifyOthername)>0){
                 $queryTranscriptHeaderData = mysqli_query($conn,"SELECT student.matno, student.surname, student.firstname, admission_session (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS
-                    othername FROM student, student_othernames WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
+                    othername FROM student, student_othernames WHERE student.id='".$studentId['id']."'") or die(mysqli_error($conn));
                 if(mysqli_num_rows($queryTranscriptHeaderData)>0){
                     while($rowData = mysqli_fetch_assoc($queryTranscriptHeaderData)){
                         $transcriptHeaderData[] = $rowData['matno'];
                         $transcriptHeaderData[] = $rowData['surname'].", ". $rowData['firstname']." ".$rowData['othername'];
-                        $transcriptHeaderData[] = $rowData['matno'];
+                        $transcriptHeaderData[] = $rowData['admission_session'];
                     }
                 }
             }
+            else{
+                $queryTranscriptHeaderData = mysqli_query($conn, "SELECT matno, firstname, surname, admission_session FROM student WHERE matno ='".$matno."'")or die(mysqli_error($conn));
+                if(mysqli_num_rows($queryTranscriptHeaderData)>0){
+                    while($rowData = mysqli_fetch_assoc($queryTranscriptHeaderData)){
+                        $transcriptHeaderData[] = $rowData['matno'];
+                        $transcriptHeaderData[] = $rowData['surname'].", ". $rowData['firstname'];
+                        $transcriptHeaderData[] = $rowData['admission_session'];
+                    }
+                }
+            }
+            //Query All Sessions
+            $queryAdmissionSessions = mysqli_query($conn, "SELECT admission_session FROM student WHERE id = ".$studentId['id']."")or die(mysqli_error($conn));
+            if(mysqli_num_rows($queryAdmissionSessions)>0){
+                $admSession = mysqli_fetch_assoc($queryAdmissionSessions);
+                $varyLevel = 100;
+                $queryAllSession = mysqli_query($conn, "SELECT year FROM academic_session WHERE year >= ".$admSession['admission_session']." AND year <= ".$session."")or die(mysqli_error($conn));
+                while($session = mysqli_fetch_assoc($queryAllSession)){
+                    $verifyReg_in_Session = mysqli_query($conn, "SELECT DISTINCT matno FROM course_registration WHERE session = ".$session['year']." AND matno = '".$matno."'") or die(mysqli_error($conn));
+                    if(mysqli_num_rows($verifyReg_in_Session)){
+                        if($varyLevel ==100){
+                            $sessionalesultArray = array();
+                            $fs_array = array();
+                            $ss_array = array();
+                            //Query Result
+                            $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                            course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
+                            if(mysqli_num_rows($queryResult)>0){
+                                while($result = mysqli_fetch_assoc($queryResult)){
+                                    $singleCourseResultArray = array();
+                                    $singleCourseResultArray[]=$result['code'];
+                                    $singleCourseResultArray[]=$result['title'];
+                                    $singleCourseResultArray[]=$result['units'];
+                                    // $singleCourseResultArray[]=$result['score'];
+                                    $singleCourseResultArray[]= getStudentGrade($result['score']);
+                                    $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                    // $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
+            
+                                    $fs_array[]=$singleCourseResultArray;
+            
+                                    $totalUnits=$result['units'];
+                                    $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                }
+                                $transcriptArray[]=$fs_array;
+            
+                                /****** Note: For first semester year one, CGPA = GPA, CUMM.UNITS = TOTAL UNITS and CUMM.GRADEPOINT = TOTALGRADEPOINT**********/
+                                $f_gpa = $totalGradePoints/$totalUnits;
+                                $cumUnits=$totalUnits;
+                                $cumGradePoint = $totalGradePoints;
+                                $cgpa =number_format((float)$f_gpa,'2','.','');
+                                $resultSummaryArray[] = $f_gpa;
+                                $resultSummaryArray[] = $cgpa;
+                            }else{
+                                return "Error! No Result For Selected Semester";
+                            }
+
+                            // Second Semester
+
+                            $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                            course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'Second' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
+                            if(mysqli_num_rows($queryResult)>0){
+                                while($result = mysqli_fetch_assoc($queryResult)){
+                                    $singleCourseResultArray = array();
+                                    $singleCourseResultArray[]=$result['code'];
+                                    $singleCourseResultArray[]=$result['title'];
+                                    $singleCourseResultArray[]=$result['units'];
+                                    $singleCourseResultArray[]=$result['score'];
+                                    // $singleCourseResultArray[]= getStudentGrade($result['score']);
+                                    $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                    // $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
+
+                                    $ss_array[]=$singleCourseResultArray;
+
+                                    $totalUnits+=$result['units'];
+                                    $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                }
+                                $transcriptArray[]=$ss_array;
+                                $s_gpa = $totalGradePoints/$totalUnits;
+                                $cumUnits+=$totalUnits;
+                                $cumGradePoint+=$totalGradePoints;
+                                /***********Calculation of cummulaties****************/
+                                $queryFirstSemesterResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                                course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
+                                if(mysqli_num_rows($queryFirstSemesterResult)>0){
+                                    while($fs_result = mysqli_fetch_assoc($queryFirstSemesterResult)){
+                                        $cumUnits+=$fs_result['units'];
+                                        $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_result['score'])));
+                                    }
+                                }
+                                $cum_gpa = $cumGradePoint/$cumUnits;
+                                $cgpa =number_format((float)$cum_gpa,'2','.','');
+                                $resultSummaryArray[] = $s_gpa;
+                                $resultSummaryArray[] = $cgpa;
+                            }else{
+                                return "Error! No Result For Selected Semester";
+                            }
+                        }
+                        if($varyLevel>100 && $varyLevel<=$level){
+                            $sessionalesultArray = array();
+                            $fs_array = array();
+                            $ss_array = array();
+                            //Query Result
+                            $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                            course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
+                            if(mysqli_num_rows($queryResult)>0){
+                                while($result = mysqli_fetch_assoc($queryResult)){
+                                    $singleCourseResultArray = array();
+                                    $singleCourseResultArray[]=$result['code'];
+                                    $singleCourseResultArray[]=$result['title'];
+                                    $singleCourseResultArray[]=$result['units'];
+                                    // $singleCourseResultArray[]=$result['score'];
+                                    $singleCourseResultArray[]= getStudentGrade($result['score']);
+                                    $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                    // $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
+            
+                                    $fs_array[]=$singleCourseResultArray;
+            
+                                    $totalUnits=$result['units'];
+                                    $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                }
+                                $transcriptArray[]=$fs_array;
+            
+                                /****** Note: For first semester year one, CGPA = GPA, CUMM.UNITS = TOTAL UNITS and CUMM.GRADEPOINT = TOTALGRADEPOINT**********/
+                                $f_gpa = $totalGradePoints/$totalUnits;
+                                $cumUnits+=$totalUnits;
+                                $cumGradePoint+= $totalGradePoints;
+                                // $cgpa =number_format((float)$gpa,'2','.','');
+
+                                /***************Query Cummulativ**********************/ 
+                                $queryLowerLevelResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                                course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course_registration.level < ".$level."") or die(mysqli_error($conn));
+                                if(mysqli_num_rows($queryLowerLevelResult)>0){
+                                    while($fs_result = mysqli_fetch_assoc($queryLowerLevelResult)){
+                                        $cumUnits+=$fs_result['units'];
+                                        $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_result['score'])));
+                                    }
+                                }
+                                $cum_gpa = $cumGradePoint/$cumUnits;
+                                $cgpa =number_format((float)$cum_gpa,'2','.','');   
+                                $resultSummaryArray[] = $f_gpa;
+                                $resultSummaryArray[] = $cgpa;                            
+                            }else{
+                                return "Error! No Result For Selected Semester";
+                            }
+
+                            // Second Semester
+
+                            $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                            course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'Second' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
+                            if(mysqli_num_rows($queryResult)>0){
+                                while($result = mysqli_fetch_assoc($queryResult)){
+                                    $singleCourseResultArray = array();
+                                    $singleCourseResultArray[]=$result['code'];
+                                    $singleCourseResultArray[]=$result['title'];
+                                    $singleCourseResultArray[]=$result['units'];
+                                    $singleCourseResultArray[]=$result['score'];
+                                    // $singleCourseResultArray[]= getStudentGrade($result['score']);
+                                    $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                    // $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
+
+                                    $ss_array[]=$singleCourseResultArray;
+
+                                    $totalUnits+=$result['units'];
+                                    $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                                }
+                                $transcriptArray[]=$ss_array;
+                                $s_gpa = $totalGradePoints/$totalUnits;
+                                $cumUnits+=$totalUnits;
+                                $cumGradePoint+=$totalGradePoints;
+                                /***********Calculation of cummulaties****************/
+                                $queryFirstSemesterResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
+                                course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
+                                if(mysqli_num_rows($queryFirstSemesterResult)>0){
+                                    while($fs_result = mysqli_fetch_assoc($queryFirstSemesterResult)){
+                                        $cumUnits+=$fs_result['units'];
+                                        $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_result['score'])));
+                                    }
+                                }
+                                $cum_gpa = $cumGradePoint/$cumUnits;
+                                $cgpa =number_format((float)$cum_gpa,'2','.','');
+                                $resultSummaryArray[] = $s_gpa;
+                                $resultSummaryArray[] = $cgpa;
+                                $transcriptHeaderData[]=getClassOfDegree($cgpa);
+                            }else{
+                                return "Error! No Result For Selected Semester";
+                            }
+                        }
+                        $sessionsArray[] = $session['year'];
+                    }
+                }
+            }
+            // Result Summary
+
         }
-        $queryTranscriptHeaderData = mysqli_query($conn, "SELECT matno, firstname, surname, admission_session FROM student WHERE matno ='".$matno."'")or die(mysqli_error($conn));
-        if(mysqli_num_rows($queryStdent)>0){
-            echo 'Student found';
-        }
+        $data = array(
+            "header"=>$transcriptHeaderData,
+            "sessionArray"=>$sessionsArray,
+            "resultSummary"=>$resultSummaryArray,
+            "transcriptBody"=>$transcriptArray
+        );
+        return json_encode($data);
     }
 
 ?>
