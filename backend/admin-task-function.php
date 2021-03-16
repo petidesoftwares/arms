@@ -1024,6 +1024,7 @@
         }else{
             $classOfDegree =5.0;
         }
+        return $classOfDegree;
     }
     function getTranscriptOnRequest($matno, $session, $level){
         require('db_conn.php');
@@ -1079,7 +1080,9 @@
                 $queryAllSession = mysqli_query($conn, "SELECT year FROM academic_session WHERE year >= ".$admSession['admission_session']." AND year <= ".$session."")or die(mysqli_error($conn));
                 while($session = mysqli_fetch_assoc($queryAllSession)){
                     $verifyReg_in_Session = mysqli_query($conn, "SELECT DISTINCT matno FROM course_registration WHERE session = ".$session['year']." AND matno = '".$matno."'") or die(mysqli_error($conn));
-                    if(mysqli_num_rows($verifyReg_in_Session)){
+                    if(mysqli_num_rows($verifyReg_in_Session)>0){
+                        $gpasSummary = array();
+                        $sessionBasedResult = array();
                         if($varyLevel ==100){
                             $sessionalesultArray = array();
                             $fs_array = array();
@@ -1100,18 +1103,20 @@
             
                                     $fs_array[]=$singleCourseResultArray;
             
-                                    $totalUnits=$result['units'];
+                                    $totalUnits+=$result['units'];
                                     $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                                 }
-                                $transcriptArray[]=$fs_array;
+                                $sessionBasedResult []=$fs_array;
             
                                 /****** Note: For first semester year one, CGPA = GPA, CUMM.UNITS = TOTAL UNITS and CUMM.GRADEPOINT = TOTALGRADEPOINT**********/
                                 $f_gpa = $totalGradePoints/$totalUnits;
                                 $cumUnits=$totalUnits;
                                 $cumGradePoint = $totalGradePoints;
                                 $cgpa =number_format((float)$f_gpa,'2','.','');
-                                $resultSummaryArray[] = $f_gpa;
-                                $resultSummaryArray[] = $cgpa;
+                                $gpasSummary[] = $f_gpa;
+                                $gpasSummary[] = $cgpa;
+                                // $resultSummaryArray[] = $f_gpa;
+                                // $resultSummaryArray[] = $cgpa;
                             }else{
                                 return "Error! No Result For Selected Semester";
                             }
@@ -1126,8 +1131,8 @@
                                     $singleCourseResultArray[]=$result['code'];
                                     $singleCourseResultArray[]=$result['title'];
                                     $singleCourseResultArray[]=$result['units'];
-                                    $singleCourseResultArray[]=$result['score'];
-                                    // $singleCourseResultArray[]= getStudentGrade($result['score']);
+                                    // $singleCourseResultArray[]=$result['score'];
+                                    $singleCourseResultArray[]= getStudentGrade($result['score']);
                                     $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                                     // $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
 
@@ -1136,7 +1141,7 @@
                                     $totalUnits+=$result['units'];
                                     $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                                 }
-                                $transcriptArray[]=$ss_array;
+                                $sessionBasedResult []=$ss_array;
                                 $s_gpa = $totalGradePoints/$totalUnits;
                                 $cumUnits+=$totalUnits;
                                 $cumGradePoint+=$totalGradePoints;
@@ -1151,8 +1156,11 @@
                                 }
                                 $cum_gpa = $cumGradePoint/$cumUnits;
                                 $cgpa =number_format((float)$cum_gpa,'2','.','');
-                                $resultSummaryArray[] = $s_gpa;
-                                $resultSummaryArray[] = $cgpa;
+                                $gpasSummary[] = $s_gpa;
+                                $gpasSummary[] = $cgpa;
+                                // $resultSummaryArray[] = $s_gpa;
+                                // $resultSummaryArray[] = $cgpa;
+                                $transcriptHeaderData[]=getClassOfDegree($cgpa);
                             }else{
                                 return "Error! No Result For Selected Semester";
                             }
@@ -1180,7 +1188,7 @@
                                     $totalUnits=$result['units'];
                                     $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                                 }
-                                $transcriptArray[]=$fs_array;
+                                $sessionBasedResult []=$fs_array;
             
                                 /****** Note: For first semester year one, CGPA = GPA, CUMM.UNITS = TOTAL UNITS and CUMM.GRADEPOINT = TOTALGRADEPOINT**********/
                                 $f_gpa = $totalGradePoints/$totalUnits;
@@ -1198,9 +1206,11 @@
                                     }
                                 }
                                 $cum_gpa = $cumGradePoint/$cumUnits;
-                                $cgpa =number_format((float)$cum_gpa,'2','.','');   
-                                $resultSummaryArray[] = $f_gpa;
-                                $resultSummaryArray[] = $cgpa;                            
+                                $cgpa =number_format((float)$cum_gpa,'2','.',''); 
+                                $gpasSummary[] = $f_gpa;
+                                $gpasSummary[] = $cgpa;  
+                                // $resultSummaryArray[] = $f_gpa;
+                                // $resultSummaryArray[] = $cgpa;                            
                             }else{
                                 return "Error! No Result For Selected Semester";
                             }
@@ -1215,8 +1225,8 @@
                                     $singleCourseResultArray[]=$result['code'];
                                     $singleCourseResultArray[]=$result['title'];
                                     $singleCourseResultArray[]=$result['units'];
-                                    $singleCourseResultArray[]=$result['score'];
-                                    // $singleCourseResultArray[]= getStudentGrade($result['score']);
+                                    // $singleCourseResultArray[]=$result['score'];
+                                    $singleCourseResultArray[]= getStudentGrade($result['score']);
                                     $singleCourseResultArray[]= getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                                     // $singleCourseResultArray[]= getIndividualResultRemarks($result['score']);
 
@@ -1225,7 +1235,7 @@
                                     $totalUnits+=$result['units'];
                                     $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
                                 }
-                                $transcriptArray[]=$ss_array;
+                                $sessionBasedResult[]=$ss_array;
                                 $s_gpa = $totalGradePoints/$totalUnits;
                                 $cumUnits+=$totalUnits;
                                 $cumGradePoint+=$totalGradePoints;
@@ -1240,14 +1250,18 @@
                                 }
                                 $cum_gpa = $cumGradePoint/$cumUnits;
                                 $cgpa =number_format((float)$cum_gpa,'2','.','');
-                                $resultSummaryArray[] = $s_gpa;
-                                $resultSummaryArray[] = $cgpa;
+                                $gpasSummary[] = $s_gpa;
+                                $gpasSummary[] = $cgpa;
+                                // $resultSummaryArray[] = $s_gpa;
+                                // $resultSummaryArray[] = $cgpa;
                                 $transcriptHeaderData[]=getClassOfDegree($cgpa);
                             }else{
                                 return "Error! No Result For Selected Semester";
                             }
                         }
                         $sessionsArray[] = $session['year'];
+                        $resultSummaryArray[] = $gpasSummary;
+                        $transcriptArray[] = $sessionBasedResult;
                     }
                 }
             }
