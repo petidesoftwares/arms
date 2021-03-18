@@ -74,7 +74,18 @@
                                 $addedString.= '<h3>YEAR '.$yearsArray[$i].' </h3>';
                                 $addedString.= '<h5> FIRST SEMESTER '.$sessionArray[$i].'</h5>';
                                 $s_n = 0;
-                                $resultTable = '<table><thead><th>S/N</th><th>COURSE CODE</th><th>COURSE TITLE</th><th>CREDIT UNIT</th><th>LETER GRADE</th><th>GRADE POINT</th></thead><tbody>';
+                                $resultTable = '<table> 
+                                                    <thead>
+                                                       <tr>
+                                                            <th>S/N</th>
+                                                            <th>COURSE CODE</th>
+                                                            <th>COURSE TITLE</th>
+                                                            <th>CREDIT UNIT</th>
+                                                            <th>LETER GRADE</th>
+                                                            <th>GRADE POINT</th>
+                                                        </tr>
+                                                    </thead> 
+                                                    <tbody>';
                                 $f_s_Array = $transcriptBody[$i][0];
                                 for ($j=0; $j < count($f_s_Array); $j++) { 
                                     $s_n++;
@@ -90,7 +101,18 @@
                                 $addedString.='<h3>YEAR '.$yearsArray[$i].' </h3>';
                                 $addedString.='<h5> SECOND SEMESTER '.$sessionArray[$i].'</h5>';
                                 $s_n = 0;
-                                $addedString.= '<table><thead><th>S/N</th><th>COURSE CODE</th><th>COURSE TITLE</th><th>CREDIT UNIT</th><th>LETER GRADE</th><th>GRADE POINT</th></thead><tbody>';
+                                $addedString.= '<table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/N</th>
+                                                            <th>COURSE CODE</th>
+                                                            <th>COURSE TITLE</th>
+                                                            <th>CREDIT UNIT</th>
+                                                            <th>LETER GRADE</th>
+                                                            <th>GRADE POINT</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>';
                                 $f_s_Array = $transcriptBody[$i][1];
                                 for ($j=0; $j < count($f_s_Array); $j++) { 
                                     $s_n++;
