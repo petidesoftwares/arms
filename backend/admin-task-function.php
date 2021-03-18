@@ -1087,7 +1087,7 @@
                             $sessionalesultArray = array();
                             $fs_array = array();
                             $ss_array = array();
-                            //Query Result
+                            //Query First semester Result
                             $queryResult = mysqli_query($conn,"SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
                             course.code = course_registration.code AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$varyLevel."") or die(mysqli_error($conn));
                             if(mysqli_num_rows($queryResult)>0){
@@ -1113,10 +1113,11 @@
                                 $cumUnits=$totalUnits;
                                 $cumGradePoint = $totalGradePoints;
                                 $cgpa =number_format((float)$f_gpa,'2','.','');
-                                $gpasSummary[] = $f_gpa;
+                                $gpasSummary[] = number_format((float)$f_gpa,'2','.','');;
                                 $gpasSummary[] = $cgpa;
                                 // $resultSummaryArray[] = $f_gpa;
                                 // $resultSummaryArray[] = $cgpa;
+                                $totalGradePoints=0;
                             }else{
                                 return "Error! No Result For Selected Semester";
                             }
@@ -1158,9 +1159,8 @@
                                 $cgpa =number_format((float)$cum_gpa,'2','.','');
                                 $gpasSummary[] = $s_gpa;
                                 $gpasSummary[] = $cgpa;
-                                // $resultSummaryArray[] = $s_gpa;
-                                // $resultSummaryArray[] = $cgpa;
                                 $transcriptHeaderData[]=getClassOfDegree($cgpa);
+                                $totalGradePoints=0;
                             }else{
                                 return "Error! No Result For Selected Semester";
                             }

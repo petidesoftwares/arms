@@ -1,0 +1,75 @@
+.page-header{
+    /* border: 1px solid black; */
+    text-align: center;
+    padding-bottom: 2px;
+    width: 99%;
+    position: fixed;
+}
+.page-header h1{
+    margin-bottom: 2px;
+}
+.page-header p{
+    margin-top: 0px;
+    font-style: italic;
+}
+.content{
+    /* border: 1px solid green; */
+    position: relative;
+    top: 100px;
+    padding-left: 5px;
+}
+#addressing-pane{
+    width: 100%;
+}
+#addressing-pane p{
+    width: 15%;
+    margin-left: 85%;
+    margin-top: 0px;
+    /* border: 1px solid black; */
+}
+
+#address-date{
+    margin-left: 85%;
+}
+
+.underline_italice{
+    border-bottom: dotted;
+}
+#your-ref{
+    font-size: large;
+    font-weight: bold;
+}
+
+.body{
+    text-align: center;
+}
+
+#main-transcript-address{
+    max-width: 170px;
+}
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#header-last-col{
+    max-width: 80px;
+}
+
+#class-of-degree-list{
+    display: inline-block;
+    margin-left: 50%;
+    margin-top: -10%;
+}
+
+#cert-officer{
+    text-align: left;
+    width: 250px;
+}
+
+#abbr-key{
+    text-align: left;
+    border: 1px solid black;
+    width: 500px;
+}

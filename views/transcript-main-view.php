@@ -18,7 +18,7 @@
             <button>Graduated Student</button> <button onclick = "showOptionalTranscriptPane()">On Request</button>
         </fieldset>
         <div id="transcriptOptionalPane">
-            <form action="transcriptOnRequest.php" method="post">
+            <form action="../backend/transcriptOnRequest.php" method="post" target="_blank">
                 <input type="search" name="t_matno" id="transcript-search-box" placeholder ="Enter Matric Number"> 
                 <select name="transcript_session" id="transcript-session">
                     <?php
