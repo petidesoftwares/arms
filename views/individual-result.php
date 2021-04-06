@@ -25,7 +25,7 @@
         <div class="col-12 all-page-title" id="ind-result-page-title">INDIVIDUAL RESULT</div>
 
         <div class="col-3"></div>
-        <div class="col-8">
+        <div class="col-8" id="individual-result-form">
             <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="first-semester" value="First"> <label for="first-semester">First Semester</label></div>
             <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="second-semester" value="Second"> <label for="second-semester">Second Semester</label></div>
             <div class="att-level"><select name="seleect-att-level" id="select-student-result-level" class="rounded-corner-btn select-level-style">

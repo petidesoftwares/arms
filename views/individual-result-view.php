@@ -36,9 +36,9 @@
             } echo "<br>"?></span>
             <span>MAT. NUMBER: <?php echo $headerData[0];?></span>
         </div>
-        <table>
+        <table id="individual-result-table">
             <thead>
-                <th>S/N</th>
+                <th>S/N<sup id="s-n-underline">o</sup></th>
                 <th>COURSE CODE</th>
                 <th>COURSE TITLE</th>
                 <th>UNIT</th>
@@ -63,6 +63,25 @@
             </tbody>
         </table>
     </div>
-    
+    <div id ="individual-cumm-result-data">
+        <table>
+            <tr><td>TOTAL GRADE POINT</td><td><?php echo $totalGradePoint; ?></td></tr>
+            <tr><td>TOTAL REGISTERED UNITS</td><td><?php echo $totalUnits ?></td></tr>
+            <tr><td>G.P.A</td><td><?php echo $gpa; ?></td></tr>
+            <tr><td>CUMMULATIVE GRADE POINT</td><td><?php echo $cumm_gp; ?></td></tr>
+            <tr><td>CUMMULATIVE UNIT</td><td><?php echo $cumm_units; ?></td></tr>
+            <tr><td>C.G.P.A</td><td><?php echo $cgpa; ?></td></tr>
+            <tr><td>TOTAL UNITS PASSED</td><td></td></tr>
+        </table>
+    </div>
+    <div>
+        <form action="../backend/individual-result-PDF.php" method="post" target="_blank">
+            <input type="hidden" name="matno" value="<?php echo $matno?>" id="ind-student-matno">
+            <input type="hidden" name="semester" value="<?php echo $semester?>" id="ind-student-semester">
+            <input type="hidden" name="session" value="<?php echo $session?>" id="ind-student-session">
+            <input type="hidden" name="level" value="<?php echo $level?>" id="ind-student-level">
+            <input type="submit" name="ind-pdf-result" value="Generate PDF" id="individual-result-pdf-btn">
+        </form>
+    </div>
 </body>
 </html>

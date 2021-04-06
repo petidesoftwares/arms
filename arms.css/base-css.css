@@ -235,11 +235,13 @@ border-radius: 10px;
 
 .menu-bar{
     margin-top: 0%;
+    background-color: white;
 }
 .menu-frame{ 
     width: 40px;
     border: solid 0.3em #708090;
     border-radius: 4px;
+    background-color: white;
 }
 
 .menu-icon-bar-1{

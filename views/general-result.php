@@ -25,7 +25,7 @@
         <div class="col-12 all-page-title" id="gen-result-page-title">GENERAL RESULT</div>
 
         <div class="col-3"></div>
-        <div class="col-8">
+        <div class="col-8" id="individual-result-form">
             <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="first-semester" value="First"> <label for="first-semester">First Semester</label></div>
             <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="second-semester" value="Second"> <label for="second-semester">Second Semester</label></div>
             <div class="att-level"><select name="seleect-att-level" id="seleect-genresult-level" class="rounded-corner-btn select-level-style">
@@ -50,6 +50,6 @@
             <button class="rounded-corner-btn gen-att" id="gen-result-btn" onclick = "getGeneralResult()">View Result</button>
         </div>
     </div>
-    <div id="view-result-pane"></div>
+    <div id="view-gen-result-pane"></div>
 </body>
 </html>

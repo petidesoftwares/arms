@@ -1,0 +1,107 @@
+#file-header{
+    text-align: center;
+    position: fixed;
+    left: 0px;
+    top:-30px;
+    height: 170px;
+}
+
+#logo{
+    text-align: justify;
+width:80px;
+height: 80px;
+    position: fixed;
+left:-15px;
+    top: -28px;
+}
+#header-titles{
+    text-align: center;
+}
+
+#header-titles div{
+    font-weight:bold;
+    margin-bottom: 0px;
+    margin-bottom:0px;
+    padding-bottom:0px;
+}
+
+#header-titles h1{
+    margin: 0px;
+}
+
+#header-titles p{
+    font-size:18px;
+    margin-top:1px;
+    margin-bottom:2px;
+}
+
+#header-titles h5{
+    font-weight: 28px;
+    font-style: italic;
+    margin: 0px;
+}
+
+#content{
+    position: relative;
+    top: 130px;
+}
+
+#name-plate{
+    margin-bottom: 10px;
+}
+
+#watermark{
+    font-size: 50px;
+    font-weight: bold;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+#watermark_2{
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+#watermark-pane{
+    font-family: "Times New Roman", serif;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 35px;
+    left: 5px;
+    color: #989898;
+}
+
+#individual-cumm-result-data{
+    margin-top: 50px;
+}
+
+td{
+    font-family: "Courier New",monospace;
+	font-size: 13px;
+}
+#individual-result-table th{
+    font-family: sans-serif;
+	font-size: 13px;
+}
+
+#other-data-table td{
+    width: 300px;
+    
+}
+
+#s-n-underline{
+    border-bottom: solid 1px black;
+    margin: 0px;
+}
+
+#s_n{
+    max-width: 150px;
+}
+
+#warning-pane{
+    font-family: "Courier New",monospace;
+	font-size: 15px;
+}

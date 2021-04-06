@@ -224,7 +224,7 @@
 }
 /******************* End****************/
 
-/*******************/
+/******************* General result styling *****************/
 .gen-tables table{
     border-collapse: collapse;
 }
@@ -342,6 +342,86 @@
     font-size: 14px;
 }
 
+/*****************individual result styling**********************/
+#individual-result-form{
+    margin-left: 15%;
+}
+
+#result-list-pane{
+    margin-left: 5%;
+    overflow-y: auto;
+}
+
+#view-result-pane{
+    display: inline-block;
+    float: right;
+    margin-right: 4%;
+    margin-top: -10%;
+}
+
+#result-list-pane table{
+    margin-left: 2%;
+    border-collapse: collapse;
+}
+
+#result-list-pane td, th{
+    font-size: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#individual-result-table{
+    border-collapse: collapse;
+    margin-top: 3%;
+}
+
+#individual-result-table th{
+    font-size: 16px;
+}
+
+#individual-result-table td{
+    border: 1px solid black;
+    font-size: 14px;
+}
+
+#s-n-underline{
+    border-bottom: solid;
+}
+
+#individual-cumm-result-data{
+    margin-top: 3%;
+}
+
+#individual-cumm-result-data table, td{
+    border: 0px none;
+    font-size: 14px;
+}
+
+/**********General Reesult Styling*******************/
+#result-sheet td{
+    border: 1px solid #708090;
+}
+
+#gen-result-header-pane h3{
+    width: 98%;
+    text-align: center;
+}
+#gen-result-header-pane h5{
+    display: inline-block;
+    margin-top: 1px;
+    margin-bottom: 0px;
+}
+
+#gen-result-header-sesssion{
+    float: right;
+}
+
+#gen-result-header-program{
+    float: right;
+}
+
+/*********************Ends Here****************************/
+
 @media only screen and (max-width: 600px){
     #viewstudent-title{
         font-size: 23px;
@@ -360,6 +440,87 @@
     #list-view{
         width: 100%;
     }
+
+    #individual-result-form{
+        margin-left: 0%;
+        max-width: 100%;
+        margin-top: 5%;
+    }
+
+    /**************radio buttons****************/
+
+    .att-semester{
+        width: 45%;
+        height: 18px;
+        display: inline-block;
+        border: solid 0px #708090;
+        background-color: #708090;
+        color: azure;
+        font-size: 16px;
+        margin: 1%;
+        margin-top: 5%;
+        cursor: pointer;
+    }
+    
+    .att-level select{
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    #ind-result-btn{
+        font-size: 16px;
+    }
+
+    #result-list-pane{
+        max-width: 100%;
+        margin-top: 3%;
+        padding: 1px;
+    }
+
+    #result-list-pane table{
+        margin-left: 1%;
+    }
+
+    #result-list-pane td, th{
+        font-size: 16px;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+    #view-result-pane{
+        display: block;
+        float: none;
+        margin-right: 1px;
+        margin-top: 5%;
+        max-width: 100%;
+        font-size: 14px;
+    }
+
+    #view-result-pane th{
+        font-size: 14px;
+    }
+    #view-result-pane td{
+        font-size: 12px;
+    }
+
+    /*************General Result****************/
+    .gen-att{
+        font-size: 16px;
+        
+    }
+
+    #gen-result-header-pane h5{
+        display: block;
+    }
+
+    /* #gen-result-header-sesssion{
+        float: none;
+    }
+    
+    #gen-result-header-program{
+        float: none;
+    } */
+    
 }
 
 

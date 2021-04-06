@@ -42,7 +42,7 @@
                     <table>
                         <tr><td rowspan="4" id ="main-transcript-address">AMASSOMA OFFICE;<br> Niger Delta University, Wilberforce Island  Amassoma, Bayelsa State, Tel: 089.490899.490900. '. date("M,d,Y").'</td>
                         <td rowspan="2">'.$headerData[1].'</td><td>FACULTY</td><td>YEAR OF ADMISSION</td><td id="header-last-col">DEGREE(S) CONFERRED</td></tr>
-                        <tr><td>ENGINEERING</td><td>'.$headerData[2].'</td><td>B.Eng.<br> ELECTTRICAL/</br>ELECTRONICS<br> ENGINEERING</td></tr>
+                        <tr><td>ENGINEERING</td><td>'.$headerData[2].'</td><td>B.Eng.<br> ELECTTRICAL/<br>ELECTRONICS<br> ENGINEERING</td></tr>
                         <tr><td>REG. NUMBER</td><td>DEPARTMENT</td><td>YEAR OF GRADUATION</td><td>CLASS OF DEGREE</td></tr>
                         <tr><td>'.$headerData[0].'</td><td>ELECTRIC/ELECTRONICS</td><td>NIL</td><td>'.$headerData[3].'</td></tr>
                     </table>

@@ -19,6 +19,20 @@
         }
     }
 
+    function getTranscriptSession(){
+        require('db_conn.php');
+        if($conn){
+        $arrayOfSessions = array();
+            $querySessions = mysqli_query($conn, "SELECT year FROM academic_session ORDER BY year DESC") or die(mysqli_error($conn));
+            if(mysqli_num_rows($querySessions)>0){
+                while($row = mysqli_fetch_assoc($querySessions)){
+                    $arrayOfSessions[]=$row['year'];
+                }
+            }
+            return $arrayOfSessions;
+        }
+    }
+
     function getCurrentSession(){
         require('db_conn.php');
         if($conn){

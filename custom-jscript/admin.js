@@ -465,7 +465,7 @@ function getGeneralResult(){
     var level = $("#seleect-genresult-level").val();
     var session = $("#academic_session").val();
     $.post("../views/general-result-view.php",{semester:semester, level:level, session:session}, function(data){
-        $("#view-result-pane").html(data);
+        $("#view-gen-result-pane").html(data);
         // alert(data);
     })
 }
@@ -480,19 +480,27 @@ function getStudentResult(a){
     })
 }
 
+function getIndResultPDF(){
+    
+}
+
 function getResultList(){
     var semester = $("input[name = 'semester']:checked").val();
     var level = $("#select-student-result-level").val();
     var session = $("#academic_session").val();
     $.post("../backend/get-student-result-list.php",{semester:semester, level:level, session:session}, function(data){
         var data = JSON.parse(data);
-        var listTable ='<table><thead><th>MATRIC NO.</th><th>FIRST NAME</th><th>SURNAME</th></thead><tbody>';
+        var listTable ='<table id ="studentList-singleResult"><thead><th>MATRIC NO.</th><th>FIRST NAME</th><th>SURNAME</th></thead><tbody>';
         for(var i =0; i<data.length; i++){
             var resultList = data[i];
             var matno = resultList.matno;
             var fname = resultList.firstname;
             var surname = resultList.surname;
-            listTable+='<tr onclick = "getStudentResult('+i+')"><td id="'+i+'">'+matno+'</td><td>'+fname+'</td><td>'+surname+'</td></tr>';
+            if(i%2==0){
+                listTable+='<tr id="greyed" onclick = "getStudentResult('+i+')"><td id="'+i+'">'+matno+'</td><td>'+fname+'</td><td>'+surname+'</td></tr>';
+            }else{
+                listTable+='<tr onclick = "getStudentResult('+i+')"><td id="'+i+'">'+matno+'</td><td>'+fname+'</td><td>'+surname+'</td></tr>';
+            }
         }
         listTable+='</tbody></table>';
         $("#result-list-pane").html(listTable);
@@ -502,19 +510,28 @@ function getResultList(){
 //Transcript
 
 function showOptionalTranscriptPane(){
+    $("#submit-transcript-request").hide();
     $("#transcriptOptionalPane").show(500);
 }
 
 function getTranscript(){
     var matno = $("#transcript-search-box").val();
     var session = $("#transcript-session").val();
-    $.post("../backend/verify-transcript-student.php",{ matno:matno}, function(data){
-        if(data == "Student found"){
-            $("#submit-transcript-request")[0].click(function(){
-            });
-        }else{
-            $("#transcript-response-pane").html("Student not found");
-        }
-    })
-    
+    if(matno==""){
+        $("#transcript-response-pane").html("Error! Mat. number field cannot be empty");
+    }
+    else if(matno.length<10){
+        $("#transcript-response-pane").html("Error! Mat. number field must not be less than 10 characters");
+    }
+    else{
+        $("#transcript-response-pane").html("");
+        $.post("../backend/verify-transcript-student.php",{ matno:matno}, function(data){
+            if(data == "Student found"){
+                $("#submit-transcript-request")[0].click(function(){
+                });
+            }else{
+                $("#transcript-response-pane").html("Student not found");
+            }
+        })
+    }    
 }

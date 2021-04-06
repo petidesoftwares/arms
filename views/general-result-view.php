@@ -31,13 +31,13 @@
 </head>
 <body>
     <div>
-        <div>
+        <div id = "gen-result-header-pane">
             <h3><?php echo strtoupper($semester);?> SEMESTER EXAMINATION RESULT APPENDIX (SHEET)</h3>
             <h3>5-POINT SYSTEM</h3>
-            <h5>FACULTY: ENGINEERING</h5>
-            <h5>SESSION:<?php echo $session."/".$secondYear; ?></h5>
-            <h5>DEPARTMENT: ELECTRICAL/ELECTRONICS ENGINEERING</h5>
-            <h5>PROGRAM/YEAR: B.ENG. ELECTRICAL/ELECTRONICS ENGINEERING/<?php echo $level;?> LEVEL (REGULAR)</h5>
+            <h5 id="gen-result-header-faculty">FACULTY: ENGINEERING</h5>
+            <h5 id="gen-result-header-sesssion">SESSION:<?php echo $session."/".$secondYear; ?></h5><br>
+            <h5 id="gen-result-header-dept">DEPARTMENT: ELECTRICAL/ELECTRONICS ENGINEERING</h5>
+            <h5 id="gen-result-header-program">PROGRAM/YEAR: B.ENG. ELECTRICAL/ELECTRONICS ENGINEERING/<?php echo $level;?> LEVEL (REGULAR)</h5>
         </div>
         <div class = "gen-tables" id="result-sheet">
             <table>
