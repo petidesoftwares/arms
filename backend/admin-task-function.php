@@ -702,6 +702,8 @@
         $cumGradePoint=0;
         $cgpa=0;
 
+        $totalUnitsPassed = 0;
+
         $lowerLevel=0;
         $firstSemesterFailedCourses="";
         $secondSemesterFailedCourses="";
@@ -755,6 +757,9 @@
 
                         $totalUnits+=$result['units'];
                         $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                        if($result['score']>45){
+                            $totalUnitsPassed+=$result['units'];
+                        }
                     }
 
                     /****** Note: For first semester year one, CGPA = GPA, CUMM.UNITS = TOTAL UNITS and CUMM.GRADEPOINT = TOTALGRADEPOINT**********/
@@ -765,7 +770,7 @@
 
                     /***********************Query first semester failed courses**************************/
                     $queryFailedCourses = mysqli_query($conn,"SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '".$matno."' AND course.semester = '".$semester."' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
                     if(mysqli_num_rows($queryFailedCourses)>0){
                         while($failedCourse= mysqli_fetch_assoc($queryFailedCourses)){
                             $firstSemesterFailedCourses.=$failedCourse['code']." ";
@@ -796,6 +801,10 @@
 
                         $totalUnits+=$result['units'];
                         $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+                        
+                        if($result['score']>45){
+                            $totalUnitsPassed+=$result['units'];
+                        }
                     }
 
                     $gpa = $totalGradePoints/$totalUnits;
@@ -808,6 +817,10 @@
                         while($fs_result = mysqli_fetch_assoc($queryFirstSemesterResult)){
                             $cumUnits+=$fs_result['units'];
                             $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_result['score'])));
+                            
+                            if($fs_result['score']>45){
+                                $totalUnitsPassed+=$fs_result['units'];
+                            }
                         }
                     }
                     $cum_gpa = $cumGradePoint/$cumUnits;
@@ -857,6 +870,10 @@
 
                         $totalUnits+=$result['units'];
                         $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+
+                        if($result['score']>45){
+                            $totalUnitsPassed+=$result['units'];
+                        }
                     }
 
                     $gpa = $totalGradePoints/$totalUnits;
@@ -870,6 +887,10 @@
                         while($fs_result = mysqli_fetch_assoc($queryFirstSemesterResult)){
                             $cumUnits+=$fs_result['units'];
                             $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_result['score'])));
+
+                            if($fs_result['score']>45){
+                                $totalUnitsPassed+=$fs_result['units'];
+                            }
                         }
                     }
                     $cum_gpa = $cumGradePoint/$cumUnits;
@@ -920,6 +941,10 @@
 
                         $totalUnits+=$result['units'];
                         $totalGradePoints+=getGradePoint($result['units'], getCourseGrade(getStudentGrade($result['score'])));
+
+                        if($result['score']>45){
+                            $totalUnitsPassed+=$result['units'];
+                        }
                     }
 
                     $gpa = $totalGradePoints/$totalUnits;
@@ -932,6 +957,10 @@
                         while( $fs_result = mysqli_fetch_assoc($queryFirstSemesterResult)){
                             $cumUnits+=$fs_result['units'];
                             $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_resu['score'])));
+
+                            if($fs_result['score']>45){
+                                $totalUnitsPassed+=$fs_result['units'];
+                            }
                         }
                     }
                     $queryCummResult = mysqli_query($conn, "SELECT course.code, course.title, course_registration.score, course.units FROM course_registration, student, course WHERE student.matno = course_registration.matno AND
@@ -940,6 +969,10 @@
                         while($fs_result = mysqli_fetch_assoc($queryCummResult)){
                             $cumUnits+=$fs_result['units'];
                             $cumGradePoint+=getGradePoint($fs_result['units'], getCourseGrade(getStudentGrade($fs_result['score'])));
+
+                            if($fs_result['score']>45){
+                                $totalUnitsPassed+=$fs_result['units'];
+                            }
                         }
                     }
                     $cum_gpa = $cumGradePoint/$cumUnits;
@@ -949,7 +982,7 @@
                     //Query First Semester Failed Courses.
                     $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
                     course_registration.score<45 AND course_registration.matno = '".$matno."' AND course.semester = 'First' AND course_registration.level = ".$level."") or die(mysqli_error($conn));
-                    if(mysqli_num_rows($queryFailedCourses)>0){
+                    if(mysqli_num_rows($queryFailedCourses)>0){ 
                         while($failedCourse = mysqli_fetch_assoc($queryFailedCourses)){
                             $firstSemesterFailedCourses.=$failedCourse['code']." ";
                         }
@@ -981,7 +1014,8 @@
                 "cumm_gp"=>$cumGradePoint,
                 "cgpa"=>$cgpa,
                 "fSemesterFailedCourses"=>$firstSemesterFailedCourses,
-                "sSemesterFailedCourses"=>$secondSemesterFailedCourses
+                "sSemesterFailedCourses"=>$secondSemesterFailedCourses,
+                "totalUnitsPassed"=>$totalUnitsPassed
             );
             return json_encode($data);
         }

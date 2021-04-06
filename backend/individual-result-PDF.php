@@ -31,6 +31,7 @@ ob_start();
         $cumm_units = $resultData->cumm_units;
         $cumm_gp = $resultData->cumm_gp;
         $cgpa = $resultData->cgpa;
+        $totalUnitsPassed = $resultData->totalUnitsPassed;
         $fSemesterFailedCourses;
         $sSemesterFailedCourses;
         if($resultData->fSemesterFailedCourses == "" || $resultData->fSemesterFailedCourses == null){
@@ -117,12 +118,12 @@ ob_start();
                     <tr><td>CUMMULATIVE GRADE POINT</td><td>'.$cumm_gp.'</td></tr>
                     <tr><td>CUMMULATIVE UNIT</td><td>'.$cumm_units.'</td></tr>
                     <tr><td>C.G.P.A</td><td>'.$cgpa.'</td></tr>
-                    <tr><td>TOTAL UNITS PASSED</td><td></td></tr>
+                    <tr><td>TOTAL UNITS PASSED</td><td>'.$totalUnitsPassed.'</td></tr>
                 </table>
             </div> 
             <div>
                 <p>OUTSTANDING COURSES</P>
-                <p><span>1ST SEMESTER:  </span'.$fSemesterFailedCourses.'<br><span> 2ND SEMESTER: </span>'.$sSemesterFailedCourses.'</p>
+                <p><span>1ST SEMESTER:  </span>'.$fSemesterFailedCourses.'<br><span> 2ND SEMESTER: </span>'.$sSemesterFailedCourses.'</p>
             </div>
             <div id="warning-pane">
                 <b>Warning !!!</b><br>Should a student fail to register failed and carry-over course(s), such course(s)
