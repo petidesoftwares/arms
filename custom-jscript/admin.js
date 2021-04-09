@@ -390,6 +390,8 @@ function downloadReseatResultFile(a){
 
 function getResultCourseCode(a){
     var code = $("#code"+a+"").html();
+    $("#code"+a+"").css("color","green");
+    alert(code);
     $("#course-code").val(code);
 }
 

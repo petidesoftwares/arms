@@ -269,6 +269,9 @@
 }
 
 /****************** Upload Result*************/
+#result-upload-param{
+    margin-left: 30%;
+}
 .current-repeat-option{
     display: block;
     margin-top: 2%;
@@ -287,6 +290,7 @@
 .course-list{
     display: inline-block;
     width: 40%;
+    max-height: 300px;
     margin-left: 1%;
     margin-top: 1%;
     overflow-y: auto;
@@ -329,17 +333,7 @@
     margin-top: 4%;
     margin-left: 15%;
 }
-/* #sample-file-pane{
-    display: inline-block;
-    width: 35%;
-    text-align: center;
-    margin-left: 2%;
-    float: right;
-    margin-top: -5%;
-    border-radius: 7px;
-    position: relative;
-    top: 80%;
-} */
+
 #form-pane button{
     font-size: 16px;
     margin-left: 3%;
@@ -455,6 +449,8 @@
         margin-top: 5%;
     }
 
+    
+
     /**************radio buttons****************/
 
     .att-semester{
@@ -510,6 +506,67 @@
     #view-result-pane td{
         font-size: 12px;
     }
+
+    /*****************Result upload *****************/
+    #result-upload-param{
+        margin-left: 0%;
+    }
+
+    .course-list{
+        width: 98%;
+        max-height: 200px;
+    }
+
+    #result-course-table{
+        width: 96%;
+    }
+
+    .course-list th{
+        font-size: 11px;
+    }
+
+    #course-table-body td{
+        font-size: 11px;
+    }
+
+    .upload-form-pane{
+        width: 94%;
+        margin-right: 4%;
+    }
+
+    #form-pane{
+        width: 100%;
+        height: 120px;
+    }
+
+    .uploadFile_style{
+        height: 20px;
+        width: 180px;
+        font-size: 11px;
+        border: solid 2px #708090;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .submit_btn_style{
+        background-color: #708090;
+        height: 20px;
+        width: 30%;
+        /* border: 0px;
+        color: white; */
+        font-size: 11px;
+        /* font-weight: bold;
+        cursor: pointer; */
+    }
+
+    #form-pane form{
+        margin-top: 4%;
+        margin-left: 5%;
+    }
+
+    /****************Ends here**********************/
 
     /*************General Result****************/
     .gen-att{

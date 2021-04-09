@@ -20,7 +20,7 @@
         </div>
         <div class="col-12 col-m-12 all-page-title" id="">UPLOAD STUDENT RESULT</div>
         <div class="col-3"></div>
-        <div class="col-8">
+        <div class="col-8" id = "result-upload-param">
             <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="fs-result-upload" value="First"><label for="fs-result-upload">First Semester</label></div>
             <div class="rounded-corner-btn att-semester"><input type="radio" name="result-semester-upload" id="ss-result-upload" value = "Second"><label for="ss-result-upload">Second Semester</label></div>
             <div class="att-level">
