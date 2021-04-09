@@ -8,10 +8,10 @@
 
 #logo{
     text-align: justify;
-width:80px;
-height: 80px;
+    width:80px;
+    height: 80px;
     position: fixed;
-left:-15px;
+    left:-15px;
     top: -28px;
 }
 #header-titles{

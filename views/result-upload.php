@@ -35,7 +35,7 @@
             </div>
             
             <div class="current-repeat-option" id="current-repeat-option">
-                <input type="radio" name="curent-repeat" id="current" value="current" ><label for="current" onclick = "getCurrentCourses()">Current</label>
+                <input type="radio" name="curent-repeat" id="current" value="current" onclick = "getCurrentCourses()"><label for="current" onclick = "getCurrentCourses()">Current</label>
                 <input type="radio" name="curent-repeat" id="reseat" value ="reseat" ><label for="reseat" onclick = "getReseatCourses()">Reseat</label>
             </div>
         </div>

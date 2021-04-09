@@ -260,6 +260,14 @@
     
 }
 
+#key-pane{
+    margin-top: 10px;
+}
+
+#key-pane th{
+    border: 0px;
+}
+
 /****************** Upload Result*************/
 .current-repeat-option{
     display: block;

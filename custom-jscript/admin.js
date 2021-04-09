@@ -330,7 +330,6 @@ function getCurrentCourses(){
         if(data.indexOf("No")>=0){
             alert(data);
         }else{
-            alert("yeah");
             var data = JSON.parse(data);
             for(var i = 0; i<data.length; i++){
                 var obj = data[i];

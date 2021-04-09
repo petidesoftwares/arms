@@ -1,0 +1,112 @@
+#logo{
+    text-align: justify;
+    width:80px;
+    height: 80px;
+    position: fixed;
+    left:-15px;
+    top: -28px;
+}
+
+#gen-result-header-pane{
+    position: fixed;
+}
+
+#gen-result-header-pane h3{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+
+h5:first-child{
+    text-align: center;
+    font-size: 10px;
+    font-weight: none;
+}
+
+#gen-result-header-faculty{
+    /* margin-left: 60%; */
+    font-size: 9px;
+    margin-bottom: 0px;
+    font-weight: none;
+}
+
+#gen-result-header-sesssion{
+    margin-left: 90%;
+    font-size: 9px;
+    margin-top: -40px;
+    font-weight: none;
+}
+
+#gen-result-header-dept{
+    /* margin-left: 60%; */
+    font-size: 9px;
+    margin-top: -35px;
+    margin-bottom: -20px;
+    font-weight: none;
+}
+
+#gen-result-header-program{
+    margin-left: 46%;
+    font-size: 9px;
+    font-weight: none;
+    position: absolute;
+    top: 90px;
+}
+
+.gen-tables{
+    margin-top: 11%;
+}
+
+.gen-tables table{
+    border-collapse: collapse;
+}
+.gen-tables th, td{
+    border: solid 1px #708090;
+    font-family: monospace;
+}
+.gen-tables th{
+    font-size: 9px;
+    height: 20px;
+    text-align: center;
+    vertical-align: bottom;
+}
+#result-table-body td{
+    font-size: 9px;
+    text-align: center;
+}
+
+.no-transform{
+    vertical-align: bottom;
+} 
+
+.transform-text{
+    -webkit-transform: rotate(-90deg); /* Safari */
+    transform: rotate(-90deg);
+    position: relative;
+    top: -15px;
+}
+
+.adjust-alignment{
+    /* -webkit-transform: rotate(-90deg);  */
+    transform: rotate(-90deg);
+    width: 30px;
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    position: relative;
+    top: -12px;    
+}
+
+#key-pane{
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+#key-pane th{
+    border: 0px;
+}
+
+#key-pane td{
+    border: 0px;
+}

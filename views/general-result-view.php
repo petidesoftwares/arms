@@ -5,6 +5,7 @@
         $semester = $_POST['semester'];
         $session = $_POST['session'];
         $level  = $_POST['level'];
+        $courseKeys = getCourses();
         $resultArray = generateResultAppendix($session, $level, $semester);
         $resultArray = json_decode($resultArray, false);
         $allCourse = $resultArray->allRegisteredCourses;
@@ -95,6 +96,37 @@
                     ?>
                 </tbody>
             </table>
+        </div>
+        <div id="key-pane">
+            <table>
+                <thead>
+                    <tr>
+                        <th>S/N</th><th>COURSE CODE</th><th>COURSE TITLE</th><th>UNIT</th><th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $serialNum=0;
+                        foreach($courseKeys as $keys){
+                            $serialNum++;
+                            echo '<tr><td>'.$serialNum.'</td><td>'.$keys['code'].'</td><td>'.$keys['title'].'</td><td>'.$keys['units'].'</td><td>'.$keys['status'].'</td></tr>';
+                        }
+                    ?>
+                </tbody>
+            </table><br>
+            GRAD: Graduating.
+        </div>
+        <div>
+            <p>SIGN/DATE:........................................................./..................................</p>
+            <p>DEPARTMENT COORDINATOR</p>
+        </div>
+        <div>
+            <form action="../backend/general-result-PDF.php" method="post" target="_blank">
+                <input type="hidden" name="semester", id="semester" value = "<?php echo $semester?>">
+                <input type="hidden" name="session", id="session" value = "<?php echo $session?>">
+                <input type="hidden" name="level", id="level" value = "<?php echo $level?>">
+                <input type="submit" value="Generte PDF" id="getGenealResultSubmitBtn">
+            </form>
         </div>
     </div>
     
