@@ -7,6 +7,7 @@
         $matno = $_POST['t_matno'];
         $session = $_POST['transcript_session'];
         $level = $_POST['transcript-level'];
+        $screenWidth = $_POST['sreen-width'];
         $transcriptData = getTranscriptOnRequest($matno, $session, $level);
         $transcript = json_decode($transcriptData, false);
         $headerData = $transcript->header;
@@ -181,6 +182,11 @@
     $canvas->page_text(272,770,"Page: {PAGE_NUM} of {PAGE_COUNT}",
                     "",12,array(0,0,0));
     $dompdf->render();
-    $dompdf->stream("hello.pdf", array("Attachment"=>false));
+    if($screenWidth<=600){
+        $output=$dompdf->output();
+        file_put_contents("C:/Users/Dell/Documents/".$level."/".$session." General Result.pdf",$output);
+    }else {
+        $dompdf->stream("".$level."/".$session." General Result.pdf", array("Attachment"=>false));
+    }
     exit(0);
 ?>

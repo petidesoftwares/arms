@@ -21,42 +21,40 @@
         </div>
     </div>
     <div>
-        <h3>Course Allocation</h3>
-        <div>
-            <label for="current_session">Select Current Session: </label><select name="current_session" id="current_session">
+        <div class="all-page-title" id = "course_allocation-title"> Course Allocation</div>
+        <div id = "course-allocation-data-input">
+            <label for="current_session">Select Current Session: </label><select name="current_session" id="current_session" class="rounded-corner-btn course-allocation-select">
                 <?php
                     foreach($currentSession as $session){
                         echo '<option value="'.$session['year'].'">'.$session['year'].'</option>';
                     }
                 ?>
-            </select><br>
+            </select>
             <label for="level">Level:</label>
-            <select name="level" id="level" onchange = "getCourseByLevel()">
+            <select name="level" id="level" class="rounded-corner-btn course-allocation-select" onchange = "getCourseByLevel()">
                 <option value="">Select Level</option>
                 <option value="100">100</option>
                 <option value="200">200</option>
                 <option value="300">300</option>
                 <option value="400">400</option>
                 <option value="500">500</option>
-            </select><br>
+            </select>
             <label for="semester">Semester:</label>
-            <select name="semester" id="semester" onchange = "getCourseBySemester()">
+            <select name="semester" id="semester" class="rounded-corner-btn course-allocation-select" onchange = "getCourseBySemester()">
                 <option value="">Select Semester</option>
                 <option value="First">First Semester</option>
                 <option value="Second">Second Semester</option>
             </select>
         </div>
         <div id="course-alloction-spread">
-            <table>
+            <table id="course-allocation-table">
                 <thead>
                     <th>S/N</th>
                     <th>COURSE CODE</th>
                     <th>COURSE TITLE</th>
                     <th>ALLOCATED TO</th>
                 </thead>
-                <tbody id="course-allocation-tbody">
-                        
-                </tbody>
+                <tbody id="course-allocation-tbody"></tbody>
             </table>
         </div>
         <div>

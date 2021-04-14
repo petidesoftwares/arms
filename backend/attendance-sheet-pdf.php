@@ -10,6 +10,7 @@ ob_start();
         $semester = $_POST["semester"];
         $session = $_POST["session"];//method signature
         $title = $_POST["title"];
+        $screenWidth = $_POST['screen-width'];
         $attendanceSheet = getAttendance($code, $session);
         $partSession = $session+1;
         $current_session = $session."/".$partSession;
@@ -131,6 +132,11 @@ ob_start();
     $canvas->page_text(272,770,"Page: {PAGE_NUM} of {PAGE_COUNT}",
                     "",12,array(0,0,0));
     $dompdf->render();
-    $dompdf->stream("hello.pdf", array("Attachment"=>false));
+    if($screenWidth<=600){
+        $output=$dompdf->output();
+        file_put_contents("C:/Users/Dell/Documents/".$current_session." ".$code." Attendance.pdf",$output);
+    }else {
+        $dompdf->stream("".$current_session." ".$code." Attendance.pdf", array("Attachment"=>false));
+    }
     exit(0);
 ?>

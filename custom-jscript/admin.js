@@ -22,7 +22,7 @@ function checkAllStudents(){
 
 function getStudentId(a){
     $("#biodata-table").html("");
-    var matno = $("#getStudent_id_"+a).html();
+    var matno = $("#getStudent_id_"+a+"").html();
     var currentSession = $("#academic-session").val();
     $.post("../backend/get-students-biodata.php",{matno:matno},function(data){
         data = JSON.parse(data);
@@ -52,6 +52,7 @@ function getStudentId(a){
             '<tr><td>Firt Name:</td><td>'+fname+'</td></tr>'+
             '<tr><td>Othername:</td><td>'+othername+'</td></tr>'+
             '<tr><td>Level:</td><td>'+studentLevel+'</td></tr>';
+            $("#student_photo").css("border", "solid 1px #708090");
         }
     });
 }
@@ -104,7 +105,7 @@ function getSelectedStudents(){
             output+='</tbody></table>';
             // alert(output);
             document.getElementById("list-view").innerHTML=output;
-            $("#list-view").css("border","solid 0.2em #708090");
+            // $("#list-view").css("border","solid 0.2em #708090");
         }
     })
 }
@@ -317,6 +318,11 @@ function getCode(a){
     
 }
 
+function detectScreenForAttendancePDF(){
+    var screenwidth = screen.width;
+    $("#screen-width").val(screenwidth);
+}
+
 function getLecturerDetails(a){
     var lecturerID = $("#lectrer_detail_"+a+"").html();
     alert(lecturerID);
@@ -526,8 +532,13 @@ function getTranscript(){
     }
     else{
         $("#transcript-response-pane").html("");
+        var screenSize = screen.width;
         $.post("../backend/verify-transcript-student.php",{ matno:matno}, function(data){
             if(data == "Student found"){
+                if(screenSize <=600){
+                    alert("THIS FILE WILL BE DOWNOADED DIRECTLY. DO U WANT TO DOWNLOAD IT?");
+                    $("#sreen-width").val(screenSize);
+                }
                 $("#submit-transcript-request")[0].click(function(){
                 });
             }else{

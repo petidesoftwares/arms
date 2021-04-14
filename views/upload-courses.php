@@ -23,9 +23,9 @@
                 <div class="menu-icon-bar-3"></div>
             </div>
         </div>
-        <div class="col-12 col-m-12" id="page-title">UPLOAD NEW COURSES</div>
+        <div id="page-title">UPLOAD NEW COURSES</div>
         <div class="student-upload-tabs" id="batch-upload" onclick="batchUpload()">Batch</div><div class="student-upload-tabs" id="single-upload" onclick="singleUpload()">Single</div></div>
-        <div class="col-7 col-m-8" id="form-pane">
+        <div id="form-pane">
             <form enctype="multipart/form-data" id="courseRegForm">
                 <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                 <div class="col-spacer"></div>

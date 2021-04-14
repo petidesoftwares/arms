@@ -63,6 +63,10 @@ header{
 }
 
 @media only screen and (min-width: 600px) {
+    /* body{
+        width: 98%;
+        margin: 0px;
+    } */
     /* For tablets: */
     .col-m-1 {width: 8.33%;}
     .col-m-2 {width: 16.66%;}

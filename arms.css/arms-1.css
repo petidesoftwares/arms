@@ -343,6 +343,10 @@
     }
 }
 @media only screen and (min-width: 500px) and (max-width: 599px){
+    /* #main-header{
+        width: 98%;
+    } */
+
     #session-selection{
         margin-left: 60%;
         font-size: 12px;

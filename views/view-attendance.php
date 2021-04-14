@@ -14,7 +14,7 @@
     <title>View Attendance</title>
 </head>
 <body>
-    <div class="col-12-custom">
+    <div class="col-12-custom" id = "attendance-main-pane">
         <div class="menu-bar" onclick="showMenu()">
             <div class="menu-frame">
                 <div class="menu-icon-bar-1"></div>
@@ -22,9 +22,9 @@
                 <div class="menu-icon-bar-3"></div>
             </div>
         </div><div class="col-10"></div>
-        <div class="col-12 all-page-title" id="att-page-title">ATTENDANCE SHEET</div>
+        <div class="all-page-title" >ATTENDANCE SHEET</div>
         <div class="col-3"></div>
-        <div class="col-8">
+        <div id = "attendance-header-data">
             <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="first-semester" value ="First"> <label for="first-semester" onclick = "activateLevel()">First Semester</label></div>
             <div class="rounded-corner-btn att-semester"><input type="radio" name="semester" id="second-semester" value="Second"> <label for="second-semester" onclick = "activateLevel()">Second Semester</label></div>
             <div class="att-level"><select name="select-att-level" id="select-att-level" class="rounded-corner-btn select-level-style" onchange ="getAttendanceCourseList()" disabled>
@@ -59,16 +59,17 @@
             </table>
         </div>
         <div class="col-6 gen-tables" id="att-sheet">
-        <div>
-            <form action="../backend/attendance-sheet-pdf.php" method="post" target="_blank">
-                <input type="hidden" name="course_code" id = "course_code">
-                <input type="hidden" name="units" id = "units">
-                <input type="hidden" name="semester" id = "semester">
-                <input type="hidden" name="session" id = "session">
-                <input type="hidden" name="title" id = "title">
-                <input type="submit" name="submit" value="Generate PDF">
-            </form>
-        </div>
+            <div id = "att-sheet-pane">
+                <form action="../backend/attendance-sheet-pdf.php" method="post" target="_blank">
+                    <input type="hidden" name="course_code" id = "course_code">
+                    <input type="hidden" name="units" id = "units">
+                    <input type="hidden" name="semester" id = "semester">
+                    <input type="hidden" name="session" id = "session">
+                    <input type="hidden" name="title" id = "title">
+                    <input type="hidden" name="screen-width" id = "screen-width">
+                    <input type="submit" name="submit" value="Generate PDF" id="att-sheet-PDF-btn" onclick = "detectScreenForAttendancePDF()">
+                </form>
+            </div>
             <table>
                 <thead>
                     <th class="no-transform">S/n</th>

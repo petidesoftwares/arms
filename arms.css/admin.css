@@ -24,8 +24,7 @@
 }
 
 #student-view-option-pane{
-    padding-left: 30%;
-    border: solid 1px #708090;
+    text-align: center;
 }
 
 .student-view-option{
@@ -42,7 +41,7 @@
 
 #selected-student-form{
     display: inline-block;
-    margin-left: 0%;
+    margin-left: 30%;
 }
 
 #all-student-pane label{
@@ -53,7 +52,6 @@
     width: 45%;
     display: inline-block;
     margin-left: 2%;
-    border-bottom: solid 0.2em  #708090;
 }
 
 #by-status-session, #by-level-session{
@@ -74,11 +72,17 @@
 
 #list-view{
     margin-top: 2%;
+    margin-left: 8%;
     height: 300px;
     overflow-y: auto;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
-#list-view td, th{
+#list-view td{
+    font-size: 20px;
+    border: solid 0.1em white;
+}
+
+#list-view th{
     font-size: 20px;
     border: solid 0.1em white;
 }
@@ -90,9 +94,17 @@
 #list-view td{
     cursor: pointer;
 }
+
+#student-viewport{
+width: 98%;
+}
+
 #bio-data-view{
-    margin-top: 2%;
-    float: right;
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    
 }
 
 #grey-row{
@@ -100,15 +112,14 @@
     color: white;
 }
 #student_photo{
-    float: left;
-    max-width: 35%;
-    max-height: 45%;
-    border: solid 1px #708090;
+    text-align: center;
+    width: 28%;
+    max-height: 180px;
     border-radius: 5%;
-    margin-right: 10px;
+    margin: 5px;
 }
 #student_photo img{
-    width: 140px;
+    width: 95%;
     height: 140px;
 }
 
@@ -121,10 +132,13 @@
 /******************** Ends here *******************/
 
 /****************** View attendance styling***************/
+#attendance-header-data{
+    margin-left: 30%;
+}
 
 .all-page-title{
     text-align: center;
-    font-size: 25px;
+    font-size: 18px;
     margin-bottom: 1%;
 }
 .att-semester{
@@ -147,16 +161,21 @@
     display: inline-block;
 }
 
-#att-sheet{
+/* #att-sheet{
     overflow-y: auto;
     float: right;
-}
+} */
 
 #course-table-display-pane{
+    margin-top: 15px;
+    margin-left: 20px;
+    height: 300px;
+    width: 40%;
     overflow-y: auto;
 }
 
 #course-table{
+    max-width: 96%;
     border-collapse: collapse;
 }
 #result-course-table{
@@ -182,9 +201,23 @@
     border: solid 1px white;
 }
 
-/* #att-sheet{
-    float: right;
-} */
+#att-sheet{
+    display: inline-block;
+    margin-top: -290px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+#att-sheet-pane{
+    margin-bottom: 10px;
+}
+
+#att-sheet-PDF-btn{
+    color: white;
+    font-size: 16px;
+    background-color: #708090;
+    border: 0px solid #708090;
+}
 
 #att-sheet table{
     border-collapse: collapse;
@@ -423,21 +456,98 @@
 }
 
 /*********************Ends Here****************************/
+#course_allocation-title{
+margin-top: 2%;
+font-size: 30px;
+}
+#course-allocation-data-input{
+    width: 70%;
+    margin-left: 28%;
+    margin-bottom: 5%;
+    font-size: 18px;
+}
+#course-allocation-data-input select{
+    font-size: 18px;
+    margin-right: 2%;
+}
+
+#course-allocation-data-input label{
+    font-size: 22px;
+}
+.course-allocation-select{
+    background-color: #708090;
+    border: none;
+    color: white;
+}
+
+#course-alloction-spread{
+    margin-left: 25%;
+}
+
+#course-allocation-table th{
+    border-collapse: collapse;
+    border: 1px solid #708090;
+}
+
+#course-allocation-tbody td{
+    /* border-collapse: collapse; */
+    border: solid 1px #708090;
+}
+#submit_course_allocation{
+    margin-top: 1%;
+    margin-left: 25%;
+    font-size: 18px;
+    background-color: #708090;
+    border: 1px solid #708090;
+    color: white;
+}
 
 @media only screen and (max-width: 600px){
     #viewstudent-title{
         font-size: 23px;
     }
     #student-view-option-pane{
+        width: 90%;
         margin-top: 3%;
-        padding-left: 15%;
     }
     
     .student-view-option{
-        width: 30%;
+        width: 25%;
         height: 25px;
         font-size: 20px;
+        text-align: left;
     }
+    #all-student-pane label{
+        padding-right: 10px;
+    }
+
+    #selected-student-form{
+        width: 83%;
+        margin-left: 15%;
+    }
+    #selected-student-form2{
+        display: block;
+        width: 90%;
+        text-align: left;
+        margin-left: 5%;
+    }
+
+    #by-status-session, #by-level-session{
+        display: inline-block;
+        width: 85%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 5%;
+    }
+
+    #select-level, #select-status{
+        display: inline-block;
+        width: 85%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 5%;
+    }
+    
 
     #list-view{
         width: 100%;
@@ -506,6 +616,76 @@
     #view-result-pane td{
         font-size: 12px;
     }
+
+    /**************View Students**************/
+
+    #list-view{
+        display: inline-block;
+        width: 95%;
+        margin-top: 2%;
+        margin-left: 2%;
+        height: 300px;
+    }
+    #list-view td{
+        font-size: 11px;
+        border: solid 0.1em white;
+    }
+    
+    #list-view th{
+        font-size: 12px;
+        border: solid 0.1em white;
+    }
+    
+    
+    #student-viewport{
+        display: inline-block;
+        width: 95%;
+    }
+    
+    #bio-data-view{
+        display: inline-block;
+        width: 98%;
+        
+    }
+    
+    #student_photo{
+        text-align: center;
+        width: 30%;
+        max-height: 200px;
+        border-radius: 5%;
+        margin: 5px;
+    }
+    
+    #biodata-table{
+        border-collapse: collapse;
+    }
+    #biodata-table td{
+        font-size: 12px;
+    }
+
+    /*****************Ends Here***************/
+
+    /***********Attendance sheet**************/
+    #bio-data-view{
+        display: inline-block;
+        width: 98%;
+        position: relative;
+        left: 1%;
+        
+    }
+    #student_photo{
+        width: 49%;
+        margin-left: 2%;
+    }
+    #student_photo img{
+        width: 98%;
+        height: 160px;
+    }
+
+    #attendance-header-data{
+        margin-left:2%;
+    }
+    /************Ends Here*******************/
 
     /*****************Result upload *****************/
     #result-upload-param{

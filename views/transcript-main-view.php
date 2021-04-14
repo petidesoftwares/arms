@@ -46,9 +46,11 @@
                         <option value="300">300</option>
                         <option value="400">400</option>
                     </select>
+                    <input type="hidden" name="screen-width" id="sreen-width">
                     <input type="submit" value="Submit" id="submit-transcript-request">
                 </form>
-            <button id="getTranscriptBtn" onclick ="getTranscript()">Generate Transcript</button></div>
+                <button id="getTranscriptBtn" onclick ="getTranscript()">Generate Transcript</button>
+            </div>
         </div>  
         <div id="transcript-response-pane"></div>  
     </div>

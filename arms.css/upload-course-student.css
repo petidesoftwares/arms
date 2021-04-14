@@ -175,12 +175,18 @@
     #batch-upload{
         margin-left: 20%;
     }
+    #upload-mother-pane{
+        width: 96%;
+        border: solid 1px red;
+    }
+
     #form-pane{
-        margin-left: 12%;
+        width: 90%;
+        margin: 1%;
         height: 180px;
     }
     #form-pane form{
-        margin-left: 6%;
+        margin-left: 3%;
     }
     .submit_btn_style{
         width: 40%;
