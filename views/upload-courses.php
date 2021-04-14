@@ -23,7 +23,7 @@
                 <div class="menu-icon-bar-3"></div>
             </div>
         </div>
-        <div id="page-title">UPLOAD NEW COURSES</div>
+        <div id="page-title">UPLOAD NEW COURSES </div>
         <div class="student-upload-tabs" id="batch-upload" onclick="batchUpload()">Batch</div><div class="student-upload-tabs" id="single-upload" onclick="singleUpload()">Single</div></div>
         <div id="form-pane">
             <form enctype="multipart/form-data" id="courseRegForm">
