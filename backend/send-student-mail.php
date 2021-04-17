@@ -1,13 +1,13 @@
 <?php
-    require '../vendor/autoload.php';
+    require 'vendor/autoload.php';
     use Mailgun\Mailgun;
     
     # Instantiate the client.
-    $mgClient = Mailgun::create('f32d1da273cc4f432f64bd39f24bfe72-a09d6718-78aaefe5', 'https://app.mailgun.com');
-    $domain = "www.myschool-arms.herokuapp.com";
+    $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+    $domain = "sandbox85f471c909ed486f830a17926adada56.mailgun.org";
     $params = array(
-      'from'    => 'Excited User <ARMS@myschool-arms>',
-      'to'      => 'idepeter68@gmail.com',
+      'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
+      'to'      => 'bob@example.com',
       'subject' => 'Hello',
       'text'    => 'Testing some Mailgun awesomness!'
     );
