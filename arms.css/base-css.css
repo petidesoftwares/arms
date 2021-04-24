@@ -6,7 +6,9 @@ body{
     width: 98%;
     margin-top: -2%;
     padding-right: 2%;
+    background-color: white;
     position:fixed;
+    z-index: 100;
 }
 
 header{
@@ -15,7 +17,7 @@ header{
     margin-bottom: -2%;
 }
 .header #h1{
-    font-size: 250%;
+    font-size: 200%;
     text-align: center;
     padding: 0%;
     margin-bottom: 0%;

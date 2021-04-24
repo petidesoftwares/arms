@@ -1,11 +1,12 @@
 <?php
-session_start();
-    if(isset($_POST)){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+echo "json";
+// session_start();
+    // if(isset($_POST)){
+    //     $username = $_POST["username"];
+    //     $password = $_POST["password"];
 
-        $algorithm = "sha512";
-        echo $username;
+    //     $algorithm = "sha512";
+    //     echo $username;
         // require("db_conn.php");
         // if($conn){
         //     /***************authenticate user credentials**************/
@@ -22,5 +23,5 @@ session_start();
         //         echo "Error! User not found. Username or Password does not exist.";
         //     }
         // }
-    }
+    // }
 ?>

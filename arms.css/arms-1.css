@@ -1,7 +1,4 @@
 /******************pre-access styling*****************/
-.pre-display-pane{
-    margin-top: 1%;
-}
 
 #prelog-form-pane{
     border: solid 0.2em #708090;
@@ -9,6 +6,8 @@
     font-size: 18px;
     padding: 2%;
     padding-left: 10%;
+    margin-left: 15%;
+    margin-bottom: 5%;
 }
 
 #prelog-form-pane span{
