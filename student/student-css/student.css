@@ -1,0 +1,65 @@
+/**************Login Form **************************/
+/* .double-input-form{
+    padding-left: 35%;
+} */
+.double-input-form input[type="text"], input[type="password"]{
+    display: inline-block;
+    margin: 2%;
+    width: 80%;
+    font-size: 24px;
+    border-radius: 10px;
+    border: none;
+}
+
+.double-input-btn{
+    display: inline-block;
+    margin-left: 62%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 20%;
+    font-size: 22px;
+    border-radius: 10px;
+    background-color: #000033;
+    color: white;
+    border: none;
+}
+
+/*****************End******************************/
+
+/**************Password update form *************/
+#login-form-pane legend{
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+
+}
+
+#login-form-pane fieldset{
+    border-radius: 10px;
+}
+/***************Ends here ***********************/
+
+@media only screen and (max-width: 600px){
+
+    /**************Login Form **************************/
+    /* #login-form{
+        padding-left: 0%;
+    } */
+
+    .double-input-form input[type="text"], input[type="password"]{
+        display: inline-block;
+        margin: 2%;
+        width: 96%;
+        height: 30px;
+        padding-left: 2px;
+        font-size: 18px;
+    }
+
+    .double-input-btn{
+        display: inline-block;
+        margin-left: 56%;
+        width: 40%;
+    }
+    /*****************End******************************/
+}
