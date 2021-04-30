@@ -3,7 +3,6 @@ session_start();
     if(isset($_POST)){
         $username = $_POST["username"];
         $password = $_POST["password"];
-
         $algorithm = "sha512";
         require("db_conn.php");
         if($conn){
@@ -13,9 +12,9 @@ session_start();
                 $id = mysqli_fetch_assoc($queryUserCredentials);
                 $_SESSION['id'] = $id['id'];
                 if($username == $password){
-                    header('Location:../student/views/update-student-password.php');
+                    echo true;
                 }else{
-                    header('Location:../views/home.php');
+                    echo false;
                 }
             }else{
                 echo "Error! User not found. Username or Password does not exist.";

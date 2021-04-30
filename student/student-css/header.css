@@ -1,0 +1,56 @@
+img{
+    width: 160px;
+    height: 100px;
+}
+
+#page-header{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    background-color: #000066;
+    color: white;
+}
+
+#page-header p{
+    display: inline-block;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 17%;
+}
+
+#page-header span{
+    font-size: 30px;
+    font-style: italic;
+    margin: 0px;
+    
+}
+
+@media only screen and (max-width: 600px){
+    /******************Header mobile**************/
+    img{
+        padding-top: 4px;
+        margin: 0px;
+        width: 60px;
+        height: 60px;
+    }
+
+    #page-header p{
+        font-size: 20px;
+        margin-left: 0%;
+    }
+
+    #page-header span{
+        font-size: 18px;        
+    }
+
+    #index-bg-spacer{
+        height: 100px;
+    }
+}

@@ -40,6 +40,181 @@
 }
 /***************Ends here ***********************/
 
+/****************Home styling *******************/
+#student-profile-name span{
+    padding-top: 50px;
+    font-size: 16px;
+    /* font-weight: normal; */
+    color: green;
+}
+
+a{
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 5px;
+    background-color: #0584be;
+    color: white;
+    border-radius: 10px;
+}
+/**************** Ends Here *********************/
+/*************Student Profile styling ***********/
+#activity-title{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#profile-photo-pane{
+    margin-right: 0%;
+    padding-right: 5px;
+}
+
+#profile-photo{
+    margin-top: 4%;
+    /* align-content: center; */
+    border: 1px solid #707070;
+    padding: 0px;
+    background-size: cover;
+    background-position: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+}
+
+#profile-photo-default{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+#profile-details{
+    margin-top: 2%;
+    border-top: 4%;
+    font-size: 18px;
+    padding-left: 0px;
+    background-color: lightgrey;
+}
+
+.profile-table td,tr{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.profiles{
+    font-weight: lighter;
+    font-family:monospace;
+}
+
+/**************ENDS Here ***********************/
+
+/*************Course Enrollment****************/
+#profile-photo-other-pane{
+
+}
+#profile-photo-others{
+    margin-top: 1%;
+    /* align-content: center; */
+    border: 1px solid #707070;
+    padding: 0px;
+    background-size: cover;
+    background-position: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+#student-profile-name{
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-top: 4%;
+    font-size: 20px;
+    font-weight: bold;
+    height: 150px;
+}
+
+#units-pane{
+    padding-top: 6%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#units-pane input{
+    width: 50px;
+    font-size: 18px;
+    border: solid 2px #707070;
+    border-radius: 4px;
+}
+
+#units-pane input:hover{
+    cursor:not-allowed
+}
+
+#units-pane span{
+    display: inline-block;
+}
+
+#image-header-row{
+    border-bottom: 1px solid #707070;
+}
+.table-pane{
+    background-color: lightgrey;
+    overflow-x: auto;
+}
+
+.table-format{
+    width: 80%;
+    margin-left: 5%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+.table-format th, td{
+    border: 1px solid green;
+}
+#aplly-for-extra-unit-btn{
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 60%;
+    border: none 0px #000033;
+    color: white;
+    background-color: green;
+}
+
+#submit-course-enrollment-form{
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    border: none 0px #000033;
+    color: white;
+    background-color: #000033;
+}
+
+/************Ends Here ************************/
+
+/*************Student Result ******************/
+/* #student-result-table{
+    width: 80%;
+    margin-left: 5%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+#student-result-table th, td{
+    border: 1px solid green;
+} */
+
+/****************Ends Here ********************/
+
 @media only screen and (max-width: 600px){
 
     /**************Login Form **************************/
@@ -62,4 +237,127 @@
         width: 40%;
     }
     /*****************End******************************/
+
+    /*************Student Profile styling ***********/
+    #activity-title{
+        padding-top: 2%;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    /* #profile-photo-pane{
+        margin-top: 0%;
+        background-color: rgb(161, 161, 161);;
+        box-shadow: 5px 5px 3px rgb(161, 161, 161);
+    } */
+    #profile-photo{
+        margin-top: 5%;
+        margin-left: 16%;
+        margin-bottom: 10%;
+        align-content: center;
+        border: 1px solid #707070;
+        padding: 0px;
+        background-size: cover;
+        background-position: cover;
+        background-repeat: no-repeat;
+        width: 60%;
+        height: 195px;
+        border-radius: 50%;
+    }
+
+    #profile-photo-default{
+        height: 50%;
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    /**************ENDS Here ***********************/
+
+    /*************Course Enrollment****************/
+    /* #profile-photo-other-pane{
+        padding-left: 30%;
+    } */
+    #profile-photo-others{
+        margin-top: 1%;
+        margin-left: 20%;
+        /* align-content: center; */
+        border: 1px solid #707070;
+        padding: 0px;
+        background-size: cover;
+        background-position: cover;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        width: 50%;
+        height: 150px;
+    }
+
+    #student-profile-name{
+        padding-top: 1%;
+        text-align: center;
+        font-size: 18px;
+        height: auto;
+    }
+
+    #units-pane{
+        padding-top: 6%;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #units-pane input{
+        width: 40px;
+        font-size: 16px;
+        border: solid 2px #707070;
+        border-radius: 4px;
+    }
+
+    #units-pane input:hover{
+        cursor:not-allowed
+    }
+
+    #units-pane span{
+        width: 100%;
+        margin-top: 0%;
+        margin-bottom: 0px;
+        padding-top: 1px;
+    }
+
+    #image-header-row{
+        border-bottom: 1px solid #707070;
+    }
+
+    .table-format{
+        width: 600px;
+        margin-left: 1px;
+        font-size: 16px;
+    }
+    .table-format th{
+        font-size: 14px;
+    }
+
+    .table-format td{
+        font-size: 14px;
+    }
+
+    #aplly-for-extra-unit-btn{
+        font-size: 14px;
+        margin-left: 10%;
+    }
+    
+    #submit-course-enrollment-form{
+        font-size: 14px;
+        margin-left: 5%;
+    }
+    /************Ends Here ************************/
+
+    /*************Student Result ******************/
+    /* #student-result-table{
+        width: 99%;
+        margin-left: 1px;
+        font-size: 14px;
+    }
+    #student-result-table th, td{
+        border: 1px solid green;
+    } */
 }
+    

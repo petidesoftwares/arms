@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if(!isset($_SESSION['id'])){
+        header("Location:../index.php");
+    }else {
+        $id = $_SESSION['id'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +14,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../student-css/student-base-style.css">
+    <link rel="stylesheet" href="../student-css/header.css">
     <link rel="stylesheet" href="../student-css/banner.css">
     <link rel="stylesheet" href="../student-css/student.css">
+    <link rel="stylesheet" href="../student-css/modal.css">
     <script src="../student-jscripts/jquery-3.5.1.min.js"></script>
     <script src="../student-jscripts/students.js"></script>
     <title>Password Update</title>
@@ -25,15 +32,18 @@
             <div class="col-12" id="login-form-pane">
                 <div class = "col-3"></div>
                 <fieldset class = "col-6 double-input-form"> 
-                    <legend>Update Password Form</legend>
+                    <legend>Update Password Form </legend>
                     <input type="password" name="new_password" id="new-password" placeholder = "Enter New Password"><br>
                     <input type="password" name="confirm_password" id="confirm-password" placeholder = "Confirm Password"><br>
-                    <button class = "double-input-btn" id = "update-password-btn" onclick = "studentLogin();">Login</button>
+                    <button class = "double-input-btn" id = "update-password-btn" onclick = "UpdateStudentPassword();">Login</button>
                 </fieldset>
                 <div class = "col-3"></div>
             </div>
         </div>
-        
+    </div>
+    <div class="row" id = "modal" >
+        <div id="close-modal-btn" onclick = "closeModal();">X</div>
+        <div id = "modal-content"></div>
     </div>
 </body>
 </html>

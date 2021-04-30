@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="student-css/student-base-style.css">
+    <link rel="stylesheet" href="student-css/header.css">
     <link rel="stylesheet" href="student-css/banner.css">
     <link rel="stylesheet" href="student-css/student.css">
+    <link rel="stylesheet" href="student-css/modal.css">
     <script src="student-jscripts/jquery-3.5.1.min.js"></script>
     <script src="student-jscripts/students.js"></script>
     <title>Login</title>
