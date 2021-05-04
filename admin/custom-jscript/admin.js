@@ -93,7 +93,13 @@ function getSelectedStudents(){
                 var matno = b_data.matno;
                 var fname = b_data.firstname;
                 var surname = b_data.surname;
-                var othername = b_data.othername;
+                var othername;
+                if(othername in data){
+                    othername = b_data.othername;
+                }else{
+                    othername = "";
+                }
+                
                 s_n++;
                 if(s_n%2==0){
                     output+='<tr id = "grey-row"><td>'+s_n+'</td><td id = "getStudent_id_'+s_n+'" onclick = "getStudentId('+s_n+')">'+matno+'</td><td onclick = "getStudentId('+s_n+')">'+surname+', '+fname+' '+othername+'</td></tr>';
@@ -170,7 +176,6 @@ function addSecondAdminBtn(){
     $("#second_admin_form").submit(function(e){
         e.preventDefault();
         if(validate()){
-            alert("validated");
             $.ajax({
                 type: 'post',
                 enctype: 'multipart/form-data',

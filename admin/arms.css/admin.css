@@ -204,6 +204,7 @@ width: 98%;
 #att-sheet{
     display: inline-block;
     margin-top: -290px;
+    margin-left: 40%;
     height: 300px;
     overflow-y: auto;
 }
@@ -231,6 +232,7 @@ width: 98%;
 }
 #att_list_body td{
     text-align: center;
+    border: solid 1px #708090;
 }
 
 .no-transform{

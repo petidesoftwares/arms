@@ -108,7 +108,6 @@ function enrolCourse(a){
         $("#modal-content").html('<p style="color:red">Maximum units cannot be exceeded</p>');
     }else{
         $("#total-units").val(newVal);
-        // alert(totalcourses);
     }
 }
 
@@ -128,6 +127,12 @@ function submitCourseEnrollment(){
         enrolledArray[index] = arrayRows;    
     }
     $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(enrolledArray)}, function(data){
-        alert(data);
+        if(data == "success"){
+            $("#modal").show();
+            $("#modal-content").html('<p style="color:green, font-weight:bold, margin:5%">Course enrollment successful.</p>');
+        }else{
+            $("#modal").show();
+            $("#modal-content").html('<p style="color:green, font-weight:bold, margin:5%">'+data+'</p>');
+        }
     })
 }

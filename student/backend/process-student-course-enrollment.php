@@ -19,7 +19,7 @@
                 }
             }
             if($flag==true){
-                echo "Course enrollment successful.";
+                echo "success";
             }else {
                 echo "Network Error! Try again later.";
             }
