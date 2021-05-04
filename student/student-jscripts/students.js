@@ -1,7 +1,9 @@
 $(document).ready(function(){
     $("#modal").hide();
-    var courseEnrollmentArray = [];
+    
 })
+
+var courseEnrollmentArray = [];
 
 function closeModal(){
     $("#modal").hide();
@@ -89,11 +91,13 @@ function enrolCourse(a){
     var totalcourses = $("#total-courses").val();
     var value = $("#course_"+a+"").html();
     var totalUnits = $("#total-units").val();
-    var maxUnits = $("#max-units").val();    
+    var maxUnits = $("#max-units").val();
+    var code = $("#checkbox_"+a+"").val();    
     if(checker == true){
         newVal= Number(totalUnits) + Number(value);
         newNum = Number(totalcourses) + 1;
         $("#total-courses").val(newNum);
+        courseEnrollmentArray.push(code);
     }else{
         newVal= Number(totalUnits) - Number(value);
         newNum = Number(totalcourses)-1;
@@ -109,24 +113,26 @@ function enrolCourse(a){
 }
 
 function submitCourseEnrollment(){
-    var totalcourses = $("#total-courses").val();
-    var arrayLent = totalcourses;
-    var  matnum = $("#matnum").val();
-    var session = $("#session").val();
-    var level = $("#level").val();
-    // alert(matnum);
-    var allEnrolledCourses = [];
-    for (let index = 1; index <= arraylent; index++) {
-        var code = $("#checkbox_"+index+"").val();
-        var arrayRows ={
-            'matnum': matnum,
-            'code': code,
-            'session': session,
-            'level': level
-        }    
-        allEnrolledCourses[index - 1] = arrayRows;    
-    }
-    $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(allEnrolledCourses)}, function(data){
-        alert(data);
-    })
+    alert(courseEnrollmentArray[0]);
+    // var totalcourses = $("#total-courses").val();
+    // var arrayLent = Number(totalcourses);
+    // var  matnum = $("#matnum").val();
+    // var session = $("#session").val();
+    // var level = $("#level").val();
+    // // alert(arrayLent);
+    // var allEnrolledCourses = [];
+    // for (var index = 1; index <= arrayLent; index++) {
+    //     var code = $("#checkbox_"+index+"").val();
+    //     // alert(code);
+    //     var arrayRows ={
+    //         'matnum': matnum,
+    //         'code': code,
+    //         'session': session,
+    //         'level': level
+    //     }    
+    //     allEnrolledCourses[index-1] = arrayRows;    
+    // }
+    // $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(allEnrolledCourses)}, function(data){
+    //     alert(data);
+    // })
 }
