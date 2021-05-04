@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#modal").hide();
+    var courseEnrollmentArray = [];
 })
 
 function closeModal(){
@@ -75,8 +76,57 @@ function UpdateStudentPassword(){
                 window.location.href="../index.php";
             }else{
                 $("#modal").show();
-            $("#modal-content").html(data);
+                $("#modal-content").html(data);
             }
         })
     }
+}
+
+function enrolCourse(a){
+    var checker = $("#checkbox_"+a+"").is(':checked');
+    var newVal =0;
+    var newNum = 0;
+    var totalcourses = $("#total-courses").val();
+    var value = $("#course_"+a+"").html();
+    var totalUnits = $("#total-units").val();
+    var maxUnits = $("#max-units").val();    
+    if(checker == true){
+        newVal= Number(totalUnits) + Number(value);
+        newNum = Number(totalcourses) + 1;
+        $("#total-courses").val(newNum);
+    }else{
+        newVal= Number(totalUnits) - Number(value);
+        newNum = Number(totalcourses)-1;
+        $("#total-courses").val(newNum);
+    }
+    if(newVal > maxUnits){
+        $("#modal").show();
+        $("#modal-content").html('<p style="color:red">Maximum units cannot be exceeded</p>');
+    }else{
+        $("#total-units").val(newVal);
+        // alert(totalcourses);
+    }
+}
+
+function submitCourseEnrollment(){
+    var totalcourses = $("#total-courses").val();
+    var arrayLent = totalcourses;
+    var  matnum = $("#matnum").val();
+    var session = $("#session").val();
+    var level = $("#level").val();
+    // alert(matnum);
+    var allEnrolledCourses = [];
+    for (let index = 1; index <= arraylent; index++) {
+        var code = $("#checkbox_"+index+"").val();
+        var arrayRows ={
+            'matnum': matnum,
+            'code': code,
+            'session': session,
+            'level': level
+        }    
+        allEnrolledCourses[index - 1] = arrayRows;    
+    }
+    $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(allEnrolledCourses)}, function(data){
+        alert(data);
+    })
 }
