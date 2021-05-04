@@ -62,7 +62,6 @@
             <div class = "col-8" id ="units-pane"><span class="col-4"><label for="total-units">Total Units:</label><input type="number" value="<?php echo $totalUnits;?>" id="total-units" disabled>Units.</span> <span class="col-4"><label for="min-units">Min. Units:</label><input type="text" value="<?php echo $minUnits; ?>" id="min-units" disabled>Units.</span> <span class="col-4"><label for="max-units">Max. Units:</label><input type="number" value="<?php echo $maxUnits; ?>" id="max-units" disabled>Units.</span></div>
         </div>
         <div class = "row table-pane" id = "course-enrollment-table-pane">
-            <input type="hidden" name="total-courses" value = "0" id = "total-courses">
             <input type="hidden" name="matnum" value ="<?php echo $matno; ?>" id = "matnum">
             <input type="hidden" name="session" value ="<?php echo $currentSession; ?>" id = "session">
             <input type="hidden" name="level" value ="<?php echo $currentLevel; ?>" id = "level">

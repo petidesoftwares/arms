@@ -3,7 +3,7 @@ $(document).ready(function(){
     
 })
 
-var courseEnrollmentArray = [];
+var enrolledCourses = [];
 
 function closeModal(){
     $("#modal").hide();
@@ -97,7 +97,7 @@ function enrolCourse(a){
         newVal= Number(totalUnits) + Number(value);
         newNum = Number(totalcourses) + 1;
         $("#total-courses").val(newNum);
-        courseEnrollmentArray.push(code);
+        enrolledCourses.push(code);
     }else{
         newVal= Number(totalUnits) - Number(value);
         newNum = Number(totalcourses)-1;
@@ -113,26 +113,21 @@ function enrolCourse(a){
 }
 
 function submitCourseEnrollment(){
-    alert(courseEnrollmentArray[0]);
-    // var totalcourses = $("#total-courses").val();
-    // var arrayLent = Number(totalcourses);
-    // var  matnum = $("#matnum").val();
-    // var session = $("#session").val();
-    // var level = $("#level").val();
-    // // alert(arrayLent);
-    // var allEnrolledCourses = [];
-    // for (var index = 1; index <= arrayLent; index++) {
-    //     var code = $("#checkbox_"+index+"").val();
-    //     // alert(code);
-    //     var arrayRows ={
-    //         'matnum': matnum,
-    //         'code': code,
-    //         'session': session,
-    //         'level': level
-    //     }    
-    //     allEnrolledCourses[index-1] = arrayRows;    
-    // }
-    // $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(allEnrolledCourses)}, function(data){
-    //     alert(data);
-    // })
+    var  matnum = $("#matnum").val();
+    var session = $("#session").val();
+    var level = $("#level").val();
+    
+    var enrolledArray = [];
+    for (var index = 0; index <enrolledCourses.length; index++) {
+        var arrayRows ={
+            'matnum': matnum,
+            'code': enrolledCourses[index],
+            'session': session,
+            'level': level
+        }    
+        enrolledArray[index] = arrayRows;    
+    }
+    $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(enrolledArray)}, function(data){
+        alert(data);
+    })
 }

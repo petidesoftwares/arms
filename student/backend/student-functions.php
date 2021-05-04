@@ -79,9 +79,11 @@
 
     function getCurrentCourses($level){
         require('db_conn.php');
-        $queryNewCourse = mysqli_query($conn, "SELECT code, title, units, semester, status FROM course WHERE level_taken =".$level."") or die(mysqli_error($conn));
-        if(mysqli_num_rows($queryNewCourse)>0){
-            return $queryNewCourse;
+        if($conn){
+            $queryNewCourse = mysqli_query($conn, "SELECT code, title, units, semester, status FROM course WHERE level_taken =".$level."") or die(mysqli_error($conn));
+            if(mysqli_num_rows($queryNewCourse)>0){
+                return $queryNewCourse;
+            }
         }
     }
 
