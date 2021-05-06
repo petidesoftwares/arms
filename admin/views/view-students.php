@@ -63,6 +63,10 @@
                 <table id="biodata-table">
 
                 </table>
+                <div id = "edit_btn_pane"></div>
+                <div id = "edit-reg-num-form">
+        
+                </div>
             </div>
         </div>
     </div>

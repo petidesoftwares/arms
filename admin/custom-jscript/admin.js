@@ -47,14 +47,39 @@ function getStudentId(a){
             }else{
                 document.getElementById("student_photo").innerHTML = '<img src="'+verifyStudentPhoto(student_matno)+'"/>';
             }
-            document.getElementById("biodata-table").innerHTML+='<tr><td>Mat Number:</td><td>'+student_matno+'</td></tr>'+
+            document.getElementById("biodata-table").innerHTML+='<tr><td>Mat Number:</td><td id = "biodata_matnum">'+student_matno+'</td></tr>'+
             '<tr><td>Surname:</td><td>'+surname+'</td></tr>'+
             '<tr><td>Firt Name:</td><td>'+fname+'</td></tr>'+
             '<tr><td>Othername:</td><td>'+othername+'</td></tr>'+
             '<tr><td>Level:</td><td>'+studentLevel+'</td></tr>';
             $("#student_photo").css("border", "solid 1px #708090");
+            if(studentLevel == 100){
+                $("#edit_btn_pane").html('<button id = "edit"reg-num" onclick = "getRegNumEditor()">Edit Reg. Number</btn>');
+            }else{
+                $("#edit_btn_pane").remove();
+            }
         }
+        
     });
+}
+
+function getRegNumEditor(){
+    var matnum= $("#biodata_matnum").html();
+    $("#edit-reg-num-form").html('<input type="text" name="reg_num_editor" value = "'+matnum+'" id="reg-num-editor"><button id = "update-reg-num" onclick = "updateRegnumber()">Update</button>');
+    $("#reg-num-editor").focus();
+}
+
+function updateRegnumber(){
+    var matnum= $("#biodata_matnum").html();
+    var regNum = $("#reg-num-editor").val();
+    $,post("../backend/update-regnumber.php",{regNum:regNum}, function(data){
+        if(data == "success"){
+            $("#biodata_matnum").html(regNum);
+        }else{
+            alert(data);
+        }
+    })
+    
 }
 
 function verifyStudentPhoto(imageName){
