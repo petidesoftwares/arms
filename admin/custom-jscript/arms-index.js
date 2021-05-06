@@ -63,6 +63,25 @@ function viewCourses(){
     });
 }
 
+function getEditorPane(a){
+    var code = $("#code_"+a+"").html();
+    var title = $("#title_"+a+"").html();
+    var units = $("#units_"+a+"").html();
+    var level = $("#level_"+a+"").html();
+    var semester = $("#semester_"+a+"").html();
+    var takenby = $("#takenby_"+a+"").html();
+    var status = $("#status_"+a+"").html();
+
+    $("#course-code").val(code);
+    $("#course-title").val(title);
+    $("#course-units").val(units);
+    $("#course-level_taken").val(level);
+    $("#course-semester").val(semester);
+    $("#course-takenby").val(takenby);
+    $("#course-status").val(status);
+    
+}
+
 function viewActiveStudents(){
     $.post("view-active-students.php",function(data){
         $("#display-pane").html(data);
