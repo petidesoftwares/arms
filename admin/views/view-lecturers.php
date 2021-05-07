@@ -19,14 +19,14 @@
             <div class="menu-icon-bar-3"></div>
         </div>
     </div>
-    <div>
+    <div id ="view-lecturer-pane">
         <table>
             <thead id = "grey-row">
                 <th>S/N</th>
                 <th>TITLE</th>
                 <th>FULL NAME</th>
                 <th>RANK</th>
-                <th>MOBILE PHONE NUMBER</th>
+                <th>PHONE NUMBER</th>
             </thead>
             <tbody>
                 <?php

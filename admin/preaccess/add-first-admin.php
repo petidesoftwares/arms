@@ -39,7 +39,7 @@
                 <option value="Lecturer ll">Lecturer ll</option>
                 <option value="Assistant Lecturer">Assistant Lecturer</option>
             </select><br>
-            <input type="tel" name="moble" id="mobile" placeholder="Enter phone number">
+            <input type="tel" name="mobile" id="mobile" placeholder="Enter phone number">
             <input type="email" name="email" id="email" placeholder="Enter email address"><br>
             <label>Position:</label> 
             <input type="radio" name="position" value="EO" id="eo" checked> <label for="eo">Exam Officer</label>

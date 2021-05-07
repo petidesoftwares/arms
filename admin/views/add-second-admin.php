@@ -23,10 +23,10 @@
                     <div class="menu-icon-bar-3"></div>
                 </div>
         </div>
-        <div class="col-10"></div>
-        <div class=col-12>
-            <div class="col-3"></div>
-            <div class="col-8" id="second-admin-form-pane">
+        <!-- <div class="col-10"></div> -->
+        <div>
+            <!-- <div class="col-3"></div> -->
+            <div id="second-admin-form-pane">
                 <form id="second_admin_form">
                     <span>REGISTER SECOND ADMIN</span><br>
                     <label for="title">Title:</label><select name="title" id="title">
@@ -52,7 +52,7 @@
                         <option value="Lecturer ll">Lecturer ll</option>
                         <option value="Assistant Lecturer">Assistant Lecturer</option>
                     </select><br>
-                    <input type="tel" name="moble" id="mobile" placeholder="Enter phone number">
+                    <input type="tel" name="mobile" id="mobile" placeholder="Enter phone number">
                     <input type="email" name="email" id="email" placeholder="Enter email address"><br>
                     <label>Position:</label> 
                     <input type="radio" name="position" value="EO" id="eo" checked> <label for="eo">Exam Officer</label>

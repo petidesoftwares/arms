@@ -265,11 +265,12 @@
 
 /****************** Second admin form *****************/
 #second-admin-form-pane{
+    width: 70%;
     border: solid 0.2em #708090;
     border-radius: 10px;
     font-size: 18px;
     padding: 2%;
-    /* padding-left: 10%; */
+    margin-left: 10%; 
 }
 
 #second-admin-form-pane span{

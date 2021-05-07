@@ -60,10 +60,13 @@ function viewCourses(){
     $.post("view-courses.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
+        $("#course-edito-pane").hide();
     });
 }
 
 function getEditorPane(a){
+    $("#course-edito-pane").show();
+    var courseID = $("#course-num_"+a+"").html();
     var code = $("#code_"+a+"").html();
     var title = $("#title_"+a+"").html();
     var units = $("#units_"+a+"").html();
@@ -72,14 +75,40 @@ function getEditorPane(a){
     var takenby = $("#takenby_"+a+"").html();
     var status = $("#status_"+a+"").html();
 
+    $("#course-num").val(courseID);
     $("#course-code").val(code);
     $("#course-title").val(title);
     $("#course-units").val(units);
-    $("#course-level_taken").val(level);
+    $("#course-level-taken").val(level);
     $("#course-semester").val(semester);
     $("#course-takenby").val(takenby);
     $("#course-status").val(status);
     
+}
+
+function updateCourseDetails(){
+    var courseID = $("#course-num").val();
+    var code = $("#course-code").val();
+    var title = $("#course-title").val();
+    var units = $("#course-units").val();
+    var level = $("#course-level-taken").val();
+    var semester = $("#course-semester").val();
+    var takenby = $("#course-takenby").val();
+    var status = $("#course-status").val();
+    $.post("../backend/update-course-details.php",{courseID:courseID, code:code, title:title, units:units, level:level, semester:semester, takenby:takenby, status:status}, function(data){
+        if(data == "success"){
+            $("#edit-course-response-pane").html('<p style="color:green;">Update successful.</p><br><button onclick = "closeEditor()">OK</button>');
+
+        }else{
+            $("#edit-course-response-pane").html('<p style="color:red;">'+data+'</p>');
+        }
+    })
+    
+}
+
+function closeEditor(){
+    $("#course-edito-pane").hide();
+    viewCourses();
 }
 
 function viewActiveStudents(){

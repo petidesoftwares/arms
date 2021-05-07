@@ -71,7 +71,7 @@
     function getCourses(){
         require('db_conn.php');
         if($conn){
-            $queryCourses = mysqli_query($conn, "SELECT code, title, units, level_taken, semester, taken_by, status FROM course") or die(mysqli_error($conn));
+            $queryCourses = mysqli_query($conn, "SELECT id, code, title, units, level_taken, semester, taken_by, status FROM course") or die(mysqli_error($conn));
             if(mysqli_num_rows($queryCourses)>0){
                 return $queryCourses;
             }
