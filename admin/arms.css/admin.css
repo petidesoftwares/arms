@@ -314,13 +314,52 @@ width: 98%;
     font-size: 16px;
 }
 
+#result-type-option{
+    display: inline-block;
+    /* margin-left: 55%; */
+    position: relative;
+    left: 20%;
+    top: -290px;
+}
+
+#result-type-option button{
+    font-size: 18px;
+    border-radius: 5px;
+    border: 0px solid #708090;
+    background-color: #708090;
+    color: white;
+}
+
 .upload-form-pane{
     border: solid 2px #708090;
     display: inline-block;
-    width: 40%;
-    margin-right: 5%;
+    width: 35%;
+    position: relative;
+    left: -10%;
+    top: -220px;
+}
+
+#individual-result-upload-form{
+    border: solid 2px #708090;
+    display: inline-block;
+    width: 35%;
+    position: relative;
+    left: -10%;
+    top: -180px;
     margin-top: 1%;
-    float: right;
+    padding: 1%;
+}
+
+#individual-result-upload-form input{
+    display: inline-block;
+    width: 80%;
+    font-size: 14px;
+    margin-bottom: 1%;
+}
+#individual-result-upload-form button{
+    /* width: 10%; */
+    font-size: 16px;
+    margin: 1%;
 }
 .course-list{
     display: inline-block;
@@ -366,7 +405,7 @@ width: 98%;
 
 #form-pane form{
     margin-top: 4%;
-    margin-left: 15%;
+    margin-left: 5%;
 }
 
 #form-pane button{
@@ -509,7 +548,7 @@ font-size: 30px;
     margin-left: 8%;
 }
 
-#course-edito-pane{
+.course-editor-pane{
     background-color: rgba(0,0,0,0.8);
     height: 560px;
     position: fixed;
@@ -517,7 +556,7 @@ font-size: 30px;
     top: 16%;
 }
 
-#editor-form{
+.editor-form{
     width: 60%;
     margin-left: 20%;
     margin-top: 5%;
@@ -528,12 +567,12 @@ font-size: 30px;
     border-radius: 10px;
 }
 
-#editor-form span{
+.editor-form span{
     display: inline-block;
     margin: 1%;
 }
 
-#editor-form label{
+.editor-form label{
     font-size: 16px;
 }
 
@@ -541,12 +580,20 @@ font-size: 30px;
     width: 100px;
     font-size: 16px;
 }
+#title{
+    width: 100px;
+    font-size: 16px;
+}
+#surname, #firstname, #othername, #rank, #phone-number{
+    width: 280px;
+    font-size: 16px;
+}
 #course-title{
     width: 380px;
     font-size: 16px;
 }
 
-#update-course-btn{
+.update-btn{
     font-size: 18px;
     padding-left: 10px;
     padding-right: 10px;
@@ -845,40 +892,65 @@ font-size: 30px;
     } */
 
     /*****************Edit Course style****************/
-#course-view-pane{
-    margin-left: 0%;
-}
+    #course-view-pane{
+        margin-top: 10%;
+        margin-left: 0%;
+        overflow-x: auto;
+    }
+    #view-course-table th{
+        font-size: 14px;
+    }
 
-#course-edito-pane{
-    background-color: rgba(0,0,0,0.8);
-    height: 560px;
-    position: fixed;
-    z-index: 10;
-    top: 16%;
-}
+    #view-lecturer-pane{
+        margin-top: 10%;
+    }
+    
+    #view-lecturer-pane{
+        overflow-x: auto;
+    }
 
-#editor-form{
-    width: 100%;
-    margin-left: 0%;
-    margin-top: 10%;
-    border-radius: 0px;
-}
+    .course-editor-pane{
+        background-color: rgba(0,0,0,0.8);
+        height: 560px;
+        position: fixed;
+        z-index: 10;
+        top: 16%;
+    }
 
-#editor-form span{
-    width: 98%;
-}
+    .editor-form{
+        width: 100%;
+        margin-left: 0%;
+        margin-top: 10%;
+        border-radius: 0px;
+    }
 
-#editor-form input{
-    width: 70%;
-}
+    .editor-form span{
+        width: 98%;
+    }
 
-#update-course-btn{
-    font-size: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
+    .editor-form input{
+        width: 70%;
+    }
 
-/******************Ends Here **********************/
+    .update-btn{
+        font-size: 18px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #editor-close-btn{
+        width: 20px;
+        height: 20px;
+        margin-left: 85%;
+        margin-top: -40px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    #view-lecturer-table th{
+        font-size: 14px;
+    }
+
+    /******************Ends Here **********************/
     
 }
 

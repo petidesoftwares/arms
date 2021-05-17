@@ -19,7 +19,7 @@
         </div>
     </div>
     <div id = "course-view-pane">
-        <table>
+        <table id = "view-course-table">
             <thead id = "grey-row">
                 <th>S/N</th>
                 <th>COURSE NO.</th>
@@ -47,8 +47,8 @@
             </tbody>
         </table>
     </div>
-    <div id = "course-edito-pane">
-        <div id = "editor-form">
+    <div class = "course-editor-pane" id = "course-editor-pane">
+        <div class ="editor-form" id = "editor-form">
             <h3>EDIT COURSE DETAILS</h3><p id = "editor-close-btn" onclick = "closeEditor()">X</p>
             <input type="hidden" name="" id = "course-num">
             <span><label for="course-code">Course Code:</label><input type="text" name="" id="course-code"></span>

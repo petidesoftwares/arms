@@ -353,12 +353,51 @@ function detectScreenForAttendancePDF(){
     $("#screen-width").val(screenwidth);
 }
 
-function getLecturerDetails(a){
-    var lecturerID = $("#lectrer_detail_"+a+"").html();
-    alert(lecturerID);
+function getLecturerEditor(a){
+    $("#lecturer-editor"). show();
+    var id = $("#id_"+a+"").html();
+    var title = $("#title_"+a+"").html();
+    var surname = $("#surname_"+a+"").html();
+    var firstname = $("#firstname_"+a+"").html();
+    var othername = $("#othername_"+a+"").html();
+    var rank = $("#rank_"+a+"").html();
+    var mobile = $("#mobile_"+a+"").html();
+    
+    $("#lectID").val(id);
+    $("#title").val(title);
+    $("#surname").val(surname);
+    $("#firstname").val(firstname);
+    $("#othername").val(othername);
+    $("#rank").val(rank);
+    $("#phone-number").val(mobile);
+}
+
+function updateLecturerDetails(){
+    const newLectuereDetails ={
+        id: $("#lectID").val(),
+        title: $("#title").val(),
+        surname: $("#surname").val(),
+        firstname: $("#firstname").val(),
+        othername: $("#othername").val(),
+        rank: $("#rank").val(),
+        mobile: $("#phone-number").val()
+    };
+
+    $.post("../backend/update-lecturer-details.php",{details:JSON.stringify(newLectuereDetails)},function(data){
+        if(data == "success"){
+            $("#edit-lecturer-response-pane").html('<p style = "color:green; text-align:center; width: 100%;">Details successfully updasted.</p><br><button onclick = "closeLecturerEditor();">OK</button>')
+        }else{
+            $("#edit-lecturer-response-pane").html(data);
+        }
+    });
+
+
 }
 /*************** Result Upload*******************/
 function getCurrentCourses(){
+    $("#result-type-option").hide();
+    $(".upload-form-pane").hide();
+    $("#individual-result-upload-form").hide();
     var semester = $("input[name='result-semester-upload']:checked").val();
     var level = $("#upload-result-level").val();
     var session = $("#academic-session").val();
@@ -427,8 +466,38 @@ function downloadReseatResultFile(a){
 function getResultCourseCode(a){
     var code = $("#code"+a+"").html();
     $("#code"+a+"").css("color","green");
-    alert(code);
-    $("#course-code").val(code);
+    $(".course-code").val(code);
+    $("#result-type-option").show();
+}
+
+function getBatchUploadPane(){
+    $(".upload-form-pane").show();
+    $("#individual-result-upload-form").hide();
+}
+
+function getIndividualUploadPane(){
+    $("#individual-result-upload-form").show();
+    $(".upload-form-pane").hide();
+}
+
+function uploadSingleScore(){
+    const resultDetails = {
+        matno:$("#matno").val().toUpperCase(),
+        code:$("#single-course-code").val(),
+        score:$("#score").val()
+    };
+    $.post("../backend/proccess-single-student-result-upload.php",{result:JSON.stringify(resultDetails)}, function(data){
+        if(data =="success"){
+            $("#modal").show();
+            $("#validation-info").css("color","green");
+            $("#validation-info").html("Result Successfully Updated");
+        }else{
+            $("#modal").show();
+            $("#validation-info").css("color","red");
+            $("#validation-info").html(data);
+        }
+        
+    })
 }
 
 function resultBatchUpload(){
@@ -577,3 +646,5 @@ function getTranscript(){
         })
     }    
 }
+
+

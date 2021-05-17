@@ -59,10 +59,10 @@
         if($conn){
             $checkOthername = mysqli_query($conn, "SELECT lecturer_id FROM lecturer_othername") or die(mysqli_error($conn));
             if(mysqli_num_rows($checkOthername)>0){
-                $queryLecturers = mysqli_query($conn, "SELECT title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, rank, mobile_phone FROM lecturer, lecturer_othername") or die(mysqli_error($conn));
+                $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, rank, mobile_phone FROM lecturer, lecturer_othername") or die(mysqli_error($conn));
                 return $queryLecturers;
             }else{
-                $queryLecturers = mysqli_query($conn, "SELECT title, firstname, surname, rank, mobile_phone FROM lecturer") or die(mysqli_error($conn));
+                $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, rank, mobile_phone FROM lecturer") or die(mysqli_error($conn));
                 return $queryLecturers;
             }
         }

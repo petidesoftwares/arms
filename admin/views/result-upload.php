@@ -52,6 +52,9 @@
                     </tbody>
                 </table>
             </div>
+            <div id = "result-type-option">
+                <button onclick = "getBatchUploadPane();">Batch Upload</button> <button onclick ="getIndividualUploadPane();">Individual Upload</button>
+            </div>
             <div class="upload-form-pane">
                 <div id="form-pane">
                     <form enctype="multipart/form-data" id="resultUploadForm">
@@ -63,19 +66,23 @@
                     <div class="col-12 upload-response-pane" id="result-upload-response"></div>
                 </div> 
             </div> 
-            <div class="col-1"></div>
+            <div id = "individual-result-upload-form">
+                <input type="text" id="matno" placeholder = "Enter Student Matric Number">
+                <input type="text" class = "course-code" id="single-course-code" disabled>
+                <input type="number" id="score" placeholder ="Enter Score">
+                <button id = "upload-single-student-score-btn" onclick ="uploadSingleScore()">Upload</button>
+                <div id ="single-upload-response-pane">
+                    
+                </div>
+            </div>
         </div>
-        <div class = "col-12-custom" id="result-form-upload">
-            <!-- <div class="col-1"></div>
-            <div class="col-1"></div>
-            <div class="course-list">Course List</div>
-            <div class="upload-form-pane">Form</div> 
-            <div class="col-1"></div> -->
-        </div>
+        <!-- <div class = "col-12-custom" id="result-form-upload">
+            
+        </div> -->
         
     </div>
-    <div class="col-12-custom" id = 'modal'>
-        <!-- <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' /> -->
+    <div id = "modal">
+        <input type = 'button' value = 'X' onclick = 'hideModal()' id = 'closeModal' />
         <div class="col-3"></div>
         <div class="col-5" id="validation-info-board">
             <h3>Message</h3>

@@ -53,6 +53,7 @@ function viewLecturers(){
     $.post("view-lecturers.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
+        $("#lecturer-editor").hide();
     });
 }
 
@@ -60,7 +61,7 @@ function viewCourses(){
     $.post("view-courses.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
-        $("#course-edito-pane").hide();
+        $("#course-editor-pane").hide();
     });
 }
 
@@ -107,8 +108,13 @@ function updateCourseDetails(){
 }
 
 function closeEditor(){
-    $("#course-edito-pane").hide();
+    $("#course-editor-pane").hide();
     viewCourses();
+}
+
+function closeLecturerEditor(){
+    $("#lecturer-editor").hide();
+    viewLecturers();
 }
 
 function viewActiveStudents(){
