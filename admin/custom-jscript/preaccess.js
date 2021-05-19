@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    $.post("backend/prelogin-checker.php", function(data){
+    $.post("../backend/prelogin-checker.php", function(data){
         if(data == "Content present"){
-            window.location.href="preaccess/login-view.php";
+            window.location.href="../preaccess/login-view.php";
         }else{
-            $.post("preaccess/add-first-admin.php", function(data){
+            $.post("../preaccess/add-first-admin.php", function(data){
                 $(".pre-display-pane").html(data);
                 hideModal();
             })

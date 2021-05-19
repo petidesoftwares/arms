@@ -13,8 +13,8 @@
     $cleardb_password = $cleardb_url["pass"];
     $cleardb_db       = substr($cleardb_url["path"],1);
 
-    $active_group = 'default';
-    $query_builder = FALSE;
+    // $active_group = 'default';
+    // $query_builder = FALSE;
 
     $conn = mysqli_connect($cleardb_server,$cleardb_username,$cleardb_password,$cleardb_db) or die('No Connection Established');
 
