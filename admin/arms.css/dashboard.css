@@ -1,6 +1,5 @@
 .card-rows{
     padding-left: 18%;
-    /* padding-right: -5%; */
 }
 
 .dashboard-item{
@@ -38,16 +37,26 @@
 }
 
 /*************** Implementing mobile view ****************/
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 600px){
+    .card-rows{
+        width: 100%;
+        padding-left: 0px;
+    }
+    #card-row-1{
+        margin-top: 12%;
+    }
+
     .dashboard-item{
-        height: 150px;
+        width: 80%;
+        height: 240px;
         border: solid 1px grey;
-        margin-bottom: 1%;
+        margin-left: 8%;
+        margin-bottom: 5%;
         box-shadow: 5px 5px 3px grey;
     }
 
     .icon-holder{
-        height: 100px;
+        height: 160px;
         background-color:whitesmoke;
     }
 

@@ -61,12 +61,12 @@ function viewCourses(){
     $.post("view-courses.php",function(data){
         $("#display-pane").html(data);
         hideMenu();
-        $("#course-editor-pane").hide();
+        $("#course-editor-pane").hide(); 
     });
 }
 
 function getEditorPane(a){
-    $("#course-edito-pane").show();
+    $("#course-editor-pane").show();
     var courseID = $("#course-num_"+a+"").html();
     var code = $("#code_"+a+"").html();
     var title = $("#title_"+a+"").html();
@@ -148,6 +148,13 @@ function uploadResult(){
         $("#result-form-upload").hide();
         hideMenu();
     });
+}
+
+function editResultView(){
+    $.post("edit-student-result.php", function(data){
+        $("#display-pane").html(data);
+        hideMenu();
+    })
 }
 
 function viewGeneralResult(){

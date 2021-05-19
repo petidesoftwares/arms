@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="arms.css/base-css.css">
+    <!-- <link rel="stylesheet" href="arms.css/base-css.css"> -->
     <link rel="stylesheet" href="arms.css/dashboard.css">
     <title>Dashboard</title>
 </head>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="col-12 col-m-12" id="dashboard-item-pane">
-        <div class="card-rows">
+        <div class="card-rows" id = "card-row-1">
             <div class="dashboard-item" id="t-student">
                 <div class="col-12 col-m-12 icon-holder">
                     <div class="col-2 col-m-2"></div>

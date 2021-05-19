@@ -486,18 +486,31 @@ function uploadSingleScore(){
         code:$("#single-course-code").val(),
         score:$("#score").val()
     };
-    $.post("../backend/proccess-single-student-result-upload.php",{result:JSON.stringify(resultDetails)}, function(data){
-        if(data =="success"){
-            $("#modal").show();
-            $("#validation-info").css("color","green");
-            $("#validation-info").html("Result Successfully Updated");
-        }else{
-            $("#modal").show();
+    if(resultDetails.matno.length<10){
+        $("#modal").show();
+        $("#validation-info").css("color","red");
+        $("#validation-info").html("Error! Matric number must be 10 characterrs.");
+    }else if(resultDetails.matno.length>10){
+        $("#modal").show();
+        $("#validation-info").css("color","red");
+        $("#validation-info").html("Error! Matric number must be 10 characterrs.");
+    }else if(resultDetails.score <0){
+        $("#modal").show();
             $("#validation-info").css("color","red");
-            $("#validation-info").html(data);
-        }
-        
-    })
+            $("#validation-info").html("Error! Score cannot be negative.");
+    }else{
+        $.post("../backend/proccess-single-student-result-upload.php",{result:JSON.stringify(resultDetails)}, function(data){
+            if(data =="success"){
+                $("#modal").show();
+                $("#validation-info").css("color","green");
+                $("#validation-info").html("Result Successfully Updated");
+            }else{
+                $("#modal").show();
+                $("#validation-info").css("color","red");
+                $("#validation-info").html(data);
+            }
+        })
+    }
 }
 
 function resultBatchUpload(){
@@ -584,6 +597,59 @@ function getStudentResult(a){
         $("#view-result-pane").html(data);
         // alert(data);
     })
+}
+
+function getCourseCode(){
+    const level = $("#course-level").val();
+    $.post("../backend/get-level-course-code.php",{level:level}, function(data){
+        if(data != "failed"){
+            var courseList = "<option>Select Course</option>";
+            const codesArray = JSON.parse(data);
+            for (let index = 0; index < codesArray.length; index++) {
+                const code = codesArray[index].code;
+                courseList += '<option value = "'+code+'">'+code+'</option>';
+            }
+            $("#course-code").html(courseList);
+        }else{
+            $("#course-code").html("");
+            alert("No course found for "+level+" Level");
+        }
+    })
+}
+
+function getScore(){
+    var code = $("#course-code").val();
+    var level = $("#course-level").val();
+    var matnum = $("#edit-matnum").val();
+    var session = $("#session").val();
+    $.post("../backend/get-editable-score.php",{code:code, level:level, matnum: matnum, session:session}, function(data){
+        $("#score").val(data);
+    })
+}
+
+function updateScore(){
+    var code = $("#course-code").val();
+    var level = $("#course-level").val();
+    var matnum = $("#edit-matnum").val();
+    var session = $("#session").val();
+    var score = $("#score").val();
+    if(matnum.length<10){
+        $("#edit-student-result-response-pane").html("Error! Matric number must be 10 characters.");
+    }else if(matnum.length>10){
+        $("#edit-student-result-response-pane").html("Error! Matric number must be 10 characters.");
+    }else if(level ==""){
+        $("#edit-student-result-response-pane").html("Error! Level cannot be empty.");
+    }else if(code == ""){
+        $("#edit-student-result-response-pane").html("Error! Select a valid course code.");
+    }else if(session == ""){
+        $("#edit-student-result-response-pane").html("Error! Select a valid academic session.");
+    }else if(score == 0){
+        $("#edit-student-result-response-pane").html("Error! Score cannot be 0.");
+    }else{
+        $.post("../backend/update-student-score.php",{code:code, level:level, matnum: matnum, session:session, score:score}, function(data){
+            $("#edit-student-result-response-pane").html('<p style ="color:green">'+data+'</p>');
+        })
+    }
 }
 
 function getIndResultPDF(){

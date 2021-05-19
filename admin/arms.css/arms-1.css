@@ -244,13 +244,13 @@
     position: absolute;
 }
 
-#validation-info-board{
+/* #validation-info-board{
     background-color: white;
     margin-top: 19%;
     border-radius: 10px;
     height: 25%;
     text-align: center;
-}
+} */
 
 #validation-info{
     color: red;
@@ -307,7 +307,7 @@
 
 /**************Responsive******************/
 
-@media only screen and (min-width: 600px) and (max-width: 750px){
+@media only screen and (max-width: 600px){
     #session-selection{
         margin-left: 56%;
         font-size: 12px;
@@ -342,123 +342,14 @@
     #second_admin option{
         font-size: 13px;
     }
-}
-@media only screen and (min-width: 500px) and (max-width: 599px){
-    /* #main-header{
-        width: 98%;
-    } */
 
-    #session-selection{
-        margin-left: 60%;
-        font-size: 12px;
-    }
-
-    #session-selection select{
-        font-size: 10px;
-    }
-    #login-form-pane{
-        margin-left: 5%;
-    }
-
-    #menu-list{
-        height: 100%;        
-    }
-
-    #list_item_pane{
-        height: 90%;
-        text-align: justify;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .dashboard_ul{
-        font-size:10px;
-    }
-
-    #menu-header{
-        font-size: 18px;
-    }
-
-    #second_admin option{
-        font-size: 13px;
-    }
-}
-
-@media only screen and (min-width: 400px) and (max-width: 499px){
-    #session-selection{
-        margin-left: 75%;
-        font-size: 12px;
-    }
-
-    #session-selection select{
-        font-size: 10px;
-    }
-    #login-form-pane{
+    #validation-info-board{
+        background-color: white;
+        height: 25%;
+        margin-top: 50%;
         margin-left: 0%;
+        border-radius: 10px;
+        text-align: center;
     }
-
-    #menu-list{
-        height: 100%;        
-    }
-
-    #list_item_pane{
-        height: 90%;
-        text-align: justify;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .dashboard_ul{
-        font-size:10px;
-    }
-
-    #menu-header{
-        font-size: 18px;
-    }
-
-    #second_admin option{
-        font-size: 13px;
-    }
-}
-
-@media only screen and (max-width: 399px){
-    #session-selection{
-        margin-left: 68%;
-        font-size: 12px;
-    }
-
-    #session-selection select{
-        font-size: 10px;
-    }
-    #login-form-pane{
-        margin-left:0%;
-    }
-
-    #menu-list{
-        height: 100%;        
-    }
-
-    #list_item_pane{
-        height: 90%;
-        text-align: justify;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .dashboard_ul{
-        font-size:10px;
-    }
-
-    #menu-header{
-        font-size: 18px;
-    }
-
-    #second_admin option{
-        font-size: 13px;
-    }
-}
-@media only screen and (max-width: 600px){
-        #login-form-pane{
-            margin-left: 0%;
-        }
+    
 }

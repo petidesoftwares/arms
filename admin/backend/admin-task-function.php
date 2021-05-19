@@ -78,6 +78,16 @@
         }
     }
 
+    function getLevelCourseCodes($level){
+        require('db_conn.php');
+        if($conn){
+            $queryCourseCode = mysqli_query($conn, "SELECT code FROM course WHERE level_taken =".$level."") or die(mysqli_error($conn));
+            if(mysqli_num_rows($queryCourseCode)>0){
+                return $queryCourseCode;
+            }
+        }
+    }
+
     function viewActiveStudents($currentSession){
         require('db_conn.php');
         if($conn){

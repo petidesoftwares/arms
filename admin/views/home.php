@@ -52,8 +52,9 @@
                         <li class="list_items rounded-corner-btn" id="view_st" onclick="viewStudents()">View Students</li>
                         <li class="list_items rounded-corner-btn" id="gen_attendance" onclick="viewAttendance()">Attendance Sheet</li>
                         <li class="list_items rounded-corner-btn" id="upload_result" onclick="uploadResult()">Upload Result</li>
-                        <li class="list_items rounded-corner-btn" id="view_gresult" onclick="viewGeneralResult()">View General Result</li>
                         <li class="list_items rounded-corner-btn" id="view_indiv_R" onclick="viewIndividualResult()">View Individual Student Result</li>
+                        <li class="list_items rounded-corner-btn" id="edit_indiv_R" onclick="editResultView()">Edit Student Result</li>
+                        <li class="list_items rounded-corner-btn" id="view_gresult" onclick="viewGeneralResult()">View General Result</li>
                         <li class="list_items rounded-corner-btn" id="gen_trnscript" onclick = "LoadTranscriptView()">Generate Transcript</li>
                         <li class="list_items rounded-corner-btn" id="view_Student_Status">View Student Status</li>
                         <li class="list_items rounded-corner-btn" id="add-second-admin">
