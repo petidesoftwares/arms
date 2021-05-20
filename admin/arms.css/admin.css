@@ -129,6 +129,14 @@ width: 98%;
 #biodata-table td{
     font-size: 22px;
 }
+
+.student-list-view{
+    margin-left: 25%;
+}
+
+#active-students-pane{
+    margin-left: 25%;
+}
 /******************** Ends here *******************/
 
 /****************** View attendance styling***************/
@@ -672,6 +680,10 @@ font-size: 30px;
     margin-left: 10%;
 }
 
+#add-new-existing-lecturer-pane{
+    margin-left: 25%;
+}
+
 /*********************Ends Here *******************/
 
 @media only screen and (max-width: 600px){
@@ -833,6 +845,15 @@ font-size: 30px;
     }
     #biodata-table td{
         font-size: 12px;
+    }
+
+    .student-list-view{
+        margin-left: 0%;
+    }
+
+    #active-students-pane{
+        margin-top: 15%;
+        margin-left: 0%;
     }
 
     /*****************Ends Here***************/

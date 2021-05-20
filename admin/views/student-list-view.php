@@ -13,35 +13,37 @@
     <title>StudentList</title>
 </head>
 <body>
-    <table>
-        <thead id = "grey-row">
-            <th>S/N</th>
-            <th>Mat. Number</th>
-            <th>Student Full Name</th>
-        </thead>
-        <tbody>
-            <?php
-                $s_n = 0;
-                
-                foreach($students as $student){
-                    if(array_key_exists('othername', $student)){
-                        $s_n++;
-                        if($s_n%2==0){
-                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+    <div id = "student-list-view">
+        <table>
+            <thead id = "grey-row">
+                <th>S/N</th>
+                <th>Mat. Number</th>
+                <th>Student Full Name</th>
+            </thead>
+            <tbody>
+                <?php
+                    $s_n = 0;
+                    
+                    foreach($students as $student){
+                        if(array_key_exists('othername', $student)){
+                            $s_n++;
+                            if($s_n%2==0){
+                                echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+                            }else{
+                                echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
+                            }   
                         }else{
-                            echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].' '.$student['othername'].'</td></tr>';
-                        }   
-                    }else{
-                        $s_n++;
-                        if($s_n%2==0){
-                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td></tr>';
-                        }else{
-                            echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td></tr>';
-                        }   
+                            $s_n++;
+                            if($s_n%2==0){
+                                echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td></tr>';
+                            }else{
+                                echo '<tr><td>'.$s_n.'</td><td id = "getStudent_id_'.$s_n.'" onclick = "getStudentId('.$s_n.')">'.$student['matno'].'</td><td onclick = "getStudentId('.$s_n.')">'.$student['surname'].', '.$student['firstname'].'</td></tr>';
+                            }   
+                        }
                     }
-                }
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

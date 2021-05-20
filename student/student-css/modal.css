@@ -35,4 +35,18 @@
 }
 
 @media only screen and (max-width: 600px){
+
+    #modal-content{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+
+    #close-modal-btn{
+        width: 8%;
+        font-size: 22px;
+        margin-left: 2%;
+        margin-top: 45%;
+    }
+    
 }

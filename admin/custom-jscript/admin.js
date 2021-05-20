@@ -382,10 +382,9 @@ function updateLecturerDetails(){
         rank: $("#rank").val(),
         mobile: $("#phone-number").val()
     };
-
     $.post("../backend/update-lecturer-details.php",{details:JSON.stringify(newLectuereDetails)},function(data){
         if(data == "success"){
-            $("#edit-lecturer-response-pane").html('<p style = "color:green; text-align:center; width: 100%;">Details successfully updasted.</p><br><button onclick = "closeLecturerEditor();">OK</button>')
+            $("#edit-lecturer-response-pane").html('<p style = "color:green; text-align:center; width: 100%;">Details successfully updated.</p><br><button onclick = "closeLecturerEditor();">OK</button>')
         }else{
             $("#edit-lecturer-response-pane").html(data);
         }

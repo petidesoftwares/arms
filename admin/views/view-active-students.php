@@ -23,7 +23,7 @@
             <div class="menu-icon-bar-3"></div>
         </div>
     </div>
-    <div>
+    <div id = "active-students-pane">
         <table>
             <thead id = "grey-row">
                 <th>S/N</th>
