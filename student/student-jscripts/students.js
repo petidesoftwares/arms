@@ -38,7 +38,7 @@ function studentLogin(){
            if(data == true){
                window.location.href="views/update-student-password.php";
            }else if(data == false){
-                window.location.href="views/Home.php";
+                window.location.href="views/home.php";
            }else{
                 $("#modal").show();
                 $("#modal-content").html(data);
