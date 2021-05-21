@@ -100,7 +100,7 @@
             <button id ="submit-course-enrollment-form" onclick = "submitCourseEnrollment();">Submit</button>
         </div>
         <div class="row" id = "modal" >
-            <div id="close-modal-btn" onclick = "closeModal();">X</div>
+            <div id="close-modal-btn" onclick = "closeModal();">&#215</div>
             <div id = "modal-content"></div>
         </div>            
     </body>

@@ -22,13 +22,14 @@
 }
 
 #close-modal-btn{
-    width: 3%;
+    width: 2.5%;
     text-align: center;
-    font-size: 26px;
+    font-size: 50px;
     font-weight: bold;
     color:red;
+    background-color: white;
     border: 1px solid white;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     margin-left: 26%;
     margin-top: 15%;
@@ -47,6 +48,7 @@
         font-size: 22px;
         margin-left: 2%;
         margin-top: 45%;
+        border-radius: 15px;
     }
     
 }

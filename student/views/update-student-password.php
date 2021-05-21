@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="row" id = "modal" >
-        <div id="close-modal-btn" onclick = "closeModal();">X</div>
+        <div id="close-modal-btn" onclick = "closeModal();">&#215</div>
         <div id = "modal-content"></div>
     </div>
 </body>

@@ -20,6 +20,7 @@
         </div>
     </div>
     <div id ="view-lecturer-pane">
+        <?php echo count($lecturers); ?>
         <table id = "view-lecturer-table">
             <thead id = "grey-row">
                 <th>S/N</th>
