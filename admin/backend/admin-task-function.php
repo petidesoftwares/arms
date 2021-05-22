@@ -59,7 +59,7 @@
         if($conn){
             $checkOthername = mysqli_query($conn, "SELECT lecturer_id FROM lecturer_othername") or die(mysqli_error($conn));
             if(mysqli_num_rows($checkOthername)>0){
-                $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, rank, mobile_phone FROM lecturer, lecturer_othername") or die(mysqli_error($conn));
+                $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, (SELECT othername FROM lecturer_othername WHERE lecturer.id = lecturer_othername.lecturer_id) as othername, rank, mobile_phone FROM lecturer") or die(mysqli_error($conn));
                 return $queryLecturers;
             }else{
                 $queryLecturers = mysqli_query($conn, "SELECT id, title, firstname, surname, rank, mobile_phone FROM lecturer") or die(mysqli_error($conn));
@@ -730,7 +730,7 @@
                 $verifyOthername = mysqli_query($conn, "SELECT othername FROM student_othernames WHERE student_othernames.student_id='".$id['id']."'") or die(mysqli_error($conn));
                 if(mysqli_num_rows($verifyOthername)>0){
                     $queryStudentDetail = mysqLi_query($conn,"SELECT student.matno, student.surname, student.firstname, (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS
-                    othername from student, student_othernames WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
+                    othername from student WHERE student.id='".$id['id']."'") or die(mysqli_error($conn));
                     while($rowData = mysqli_fetch_assoc($queryStudentDetail)){
                         $headerData[]=$rowData['matno'];
                         $headerData[]=$rowData['firstname'];
@@ -1111,7 +1111,7 @@
             $verifyOthername = mysqli_query($conn, "SELECT othername FROM student_othernames WHERE student_id =".$studentId['id']."") or die(mysqli_error($conn));
             if(mysqli_num_rows($verifyOthername)>0){
                 $queryTranscriptHeaderData = mysqli_query($conn,"SELECT student.matno, student.surname, student.firstname, admission_session (SELECT student_othernames.othername FROM student_othernames WHERE student_othernames.student_id=student.id) AS
-                    othername FROM student, student_othernames WHERE student.id='".$studentId['id']."'") or die(mysqli_error($conn));
+                    othername FROM student WHERE student.id='".$studentId['id']."'") or die(mysqli_error($conn));
                 if(mysqli_num_rows($queryTranscriptHeaderData)>0){
                     while($rowData = mysqli_fetch_assoc($queryTranscriptHeaderData)){
                         $transcriptHeaderData[] = $rowData['matno'];
