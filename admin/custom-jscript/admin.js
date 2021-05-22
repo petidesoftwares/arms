@@ -55,6 +55,7 @@ function getStudentId(a){
             '<tr><td>Level:</td><td>'+studentLevel+'</td></tr>';
             $("#student_photo").css("border", "solid 1px #708090");
             $("#hidden-student-id").val(id);
+            $("#hidden-s_n").val(a);
             if(studentLevel == 100){
                 $("#edit_btn_pane").html('<button id = "edit"reg-num" onclick = "getRegNumEditor()">Edit Reg. Number</btn>');
             }else{
@@ -75,9 +76,12 @@ function updateRegnumber(){
     var matnum= $("#biodata_matnum").html();
     var id = $("#hidden-student-id").val();
     var regNum = $("#reg-num-editor").val();
-    $,post("../backend/update-regnumber.php",{id:id,regNum:regNum}, function(data){
+    $.post("../backend/update-regnumber.php",{id:id, regNum:regNum}, function(data){
         if(data == "success"){
             $("#biodata_matnum").html(regNum);
+            $("#getStudent_id_"+ $("#hidden-s_n").val()).html(regNum);
+            $("#reg-num-editor").remove();
+            $("#update-reg-num").remove();
         }else{
             alert(data);// to be updated;
         }

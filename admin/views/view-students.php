@@ -64,6 +64,7 @@
 
                 </table>
                 <input type="hidden" id = "hidden-student-id">
+                <input type="hidden" id = "hidden-s_n">
                 <div id = "edit_btn_pane"></div>
                 <div id = "edit-reg-num-form">
         
