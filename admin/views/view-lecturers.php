@@ -20,7 +20,6 @@
         </div>
     </div>
     <div id ="view-lecturer-pane">
-        <?php echo count($lecturers); ?>
         <table id = "view-lecturer-table">
             <thead id = "grey-row">
                 <th>S/N</th>
@@ -44,11 +43,12 @@
                         }else{
                             $othername = "";
                         }  
-                        if($s_n%2 ==0){
-                            echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "id_'.$s_n.'">'.$lecturer['id'].'</td><td id = "title_'.$s_n.'">'.$lecturer['title'].'</td><td id = "surname_'.$s_n.'" >'.$lecturer['surname'].'</td><td id = "firstname_'.$s_n.'" > '.$lecturer['firstname'].'</td><td id = "othername_'.$s_n.'">'.$othername.'</td><td id = "rank_'.$s_n.'">'.$lecturer['rank'].'</td><td id="mobile_'.$s_n.'">'.$lecturer['mobile_phone'].'</td><td><button onclick = "getLecturerEditor('.$s_n.')">Edit Details</button></td></tr>';
-                        }else{
-                            echo '<tr><td>'.$s_n.'</td><td id = "id_'.$s_n.'">'.$lecturer['id'].'</td><td id = "title_'.$s_n.'">'.$lecturer['title'].'</td><td id = "surname_'.$s_n.'" >'.$lecturer['surname'].'<td id = "firstname_'.$s_n.'" > '.$lecturer['firstname'].'</td> <td id = "othername_'.$s_n.'" >'.$othername.'</td><td id = "rank_'.$s_n.'">'.$lecturer['rank'].'</td><td id="mobile_'.$s_n.'">'.$lecturer['mobile_phone'].'</td><td><button onclick = "getLecturerEditor('.$s_n.')">Edit Details</button></td></tr>';
-                        } 
+                        // if($s_n%2 ==0){
+                        //     echo '<tr id = "grey-row"><td>'.$s_n.'</td><td id = "id_'.$s_n.'">'.$lecturer['id'].'</td><td id = "title_'.$s_n.'">'.$lecturer['title'].'</td><td id = "surname_'.$s_n.'" >'.$lecturer['surname'].'</td><td id = "firstname_'.$s_n.'" > '.$lecturer['firstname'].'</td><td id = "othername_'.$s_n.'">'.$othername.'</td><td id = "rank_'.$s_n.'">'.$lecturer['rank'].'</td><td id="mobile_'.$s_n.'">'.$lecturer['mobile_phone'].'</td><td><button onclick = "getLecturerEditor('.$s_n.')">Edit Details</button></td></tr>';
+                        // }else{
+                        //     echo '<tr><td>'.$s_n.'</td><td id = "id_'.$s_n.'">'.$lecturer['id'].'</td><td id = "title_'.$s_n.'">'.$lecturer['title'].'</td><td id = "surname_'.$s_n.'" >'.$lecturer['surname'].'<td id = "firstname_'.$s_n.'" > '.$lecturer['firstname'].'</td> <td id = "othername_'.$s_n.'" >'.$othername.'</td><td id = "rank_'.$s_n.'">'.$lecturer['rank'].'</td><td id="mobile_'.$s_n.'">'.$lecturer['mobile_phone'].'</td><td><button onclick = "getLecturerEditor('.$s_n.')">Edit Details</button></td></tr>';
+                        // } 
+                        echo '<tr><td>'.$s_n.'</td><td id = "id_'.$s_n.'">'.$lecturer['id'].'</td><td id = "title_'.$s_n.'">'.$lecturer['title'].'</td><td id = "surname_'.$s_n.'" >'.$lecturer['surname'].'<td id = "firstname_'.$s_n.'" > '.$lecturer['firstname'].'</td> <td id = "othername_'.$s_n.'" >'.$othername.'</td><td id = "rank_'.$s_n.'">'.$lecturer['rank'].'</td><td id="mobile_'.$s_n.'">'.$lecturer['mobile_phone'].'</td><td><button onclick = "getLecturerEditor('.$s_n.')">Edit Details</button></td></tr>';
                     }
                 ?>
             </tbody>
