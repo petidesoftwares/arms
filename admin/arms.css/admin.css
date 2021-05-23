@@ -878,6 +878,29 @@ font-size: 30px;
     #attendance-header-data{
         margin-left:2%;
     }
+
+    #course-table-display-pane{
+        width: 96%;
+        height: 300px;
+        overflow-y: auto;
+    }
+
+    #course-table td{
+        font-size: 24px;
+    }
+    
+    #course-table th{
+        /* background-color: #708090;
+        color: white; */
+        font-size: 18px;
+    }
+
+    #att-sheet{
+        margin-top: -150px;
+        margin-left: 1%;
+        height: 300px;
+        overflow-y: auto;
+    }
     /************Ends Here*******************/
 
     /*****************Result upload *****************/
@@ -1107,5 +1130,7 @@ font-size: 30px;
         height: 18px;
         font-size: 12px;
     }
+
+    
 }
 
