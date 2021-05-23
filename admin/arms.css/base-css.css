@@ -2,6 +2,7 @@ body{
     width: 100%;
     margin: 0px;
 }
+
 #main-header{
     width: 98%;
     margin-top: -2%;
@@ -18,6 +19,7 @@ header{
 }
 .header #h1{
     font-size: 200%;
+    /* color: #0099FF; */
     text-align: center;
     padding: 0%;
     margin-bottom: 0%;
@@ -25,6 +27,7 @@ header{
 }
 .header #h3{
     font-size: 180%;
+    /* color: #0099FF; */
     text-align: center;
     margin-top: 0%;
     margin-bottom: 0%;
@@ -59,127 +62,36 @@ header{
 }
 
 
-/* For mobile phones: */
-[class*="col-"] {
-    width: 100%;
-}
 
-@media only screen and (min-width: 600px) {
-    /* body{
-        width: 98%;
-        margin: 0px;
-    } */
-    /* For tablets: */
-    .col-m-1 {width: 8.33%;}
-    .col-m-2 {width: 16.66%;}
-    .col-m-3 {width: 25%;}
-    .col-m-4 {width: 33.33%;}
-    .col-m-5 {width: 41.66%;}
-    .col-m-6 {width: 50%;}
-    .col-m-7 {width: 58.33%;}
-    .col-m-8 {width: 66.66%;}
-    .col-m-9 {width: 75%;}
-    .col-m-10 {width: 83.33%;}
-    .col-m-11 {width: 91.66%;}
-    .col-m-12 {width: 100%;}
-}
-@media only screen and (min-width: 768px) {
-    /* For desktop: */
-    .col-1 {width: 8.33%;}
-    .col-2 {width: 16.66%;}
-    .col-3 {width: 25%;}
-    .col-4 {width: 33.33%;}
-    .col-5 {width: 41.66%;}
-    .col-6 {width: 50%;}
-    .col-7 {width: 58.33%;}
-    .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
-    .col-10 {width: 83.33%;}
-    .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}
-}
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
 
-@media only screen and (max-width: 399px){
+
+@media only screen and (max-width: 600px){
+    [class*="col-"]{
+        width: 100%;
+    }
+       
     header{
         width: 100%;
     }
     .header #h1{
-        font-size: 120%;
+        font-size: 20px;
     }
     .header #h3{
-        font-size: 80%;
-        padding-left: 2%;
-        
-    }
-
-    #content-pane{
-        position: absolute;
-        top: 22%;
-    }
-
-    #session-selection{
-        margin-left: 60%;
-        font-size: 13px;
-    }
-
-}
-
-@media only screen and (min-width: 400px) and (max-width: 499px){
-    header{
-        width: 100%;
-    }
-    .header #h1{
-        font-size: 150%;
-    }
-    .header #h3{
-        font-size: 100%;
-        padding-left: 2%;
-        
-    }
-
-    #content-pane{
-        position: absolute;
-        top: 23%;
-    }
-
-    #session-selection{
-        margin-left: 60%;
-        font-size: 13px;
-    }
-}
-@media only screen and (min-width: 500px) and (max-width: 599px){
-    header{
-        width: 100%;
-    }
-    .header #h1{
-        font-size: 180%;
-    }
-    .header #h3{
-        font-size: 140%;
-        padding-left: 2%;
-        
-    }
-
-    #content-pane{
-        position: absolute;
-        top: 27%;
-    }
-
-    #session-selection{
-        margin-left: 60%;
-        font-size: 13px;
-    }
-}
-@media only screen and (min-width: 600px) and (max-width: 750px){
-    header{
-        width: 100%;
-    }
-    .header #h1{
-        font-size: 200%;
-    }
-    .header #h3{
-        font-size: 160%;
-        padding-left: 2%;
+        font-size: 20px;
+        padding-left: 8%;
     }
     .arrow-left{
         width: 13px;
@@ -191,6 +103,7 @@ header{
     }
 
     #content-pane{
+        width: 96%;
         position: absolute;
         top: 26%;
     }

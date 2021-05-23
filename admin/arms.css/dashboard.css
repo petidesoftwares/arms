@@ -38,8 +38,11 @@
 
 /*************** Implementing mobile view ****************/
 @media only screen and (max-width: 600px){
+    /* #dashboard-item-pane{
+        border: 1px solid red;
+    } */
     .card-rows{
-        width: 100%;
+        width: 96%;
         padding-left: 0px;
     }
     #card-row-1{
@@ -47,7 +50,7 @@
     }
 
     .dashboard-item{
-        width: 80%;
+        width: 88%;
         height: 240px;
         border: solid 1px grey;
         margin-left: 8%;

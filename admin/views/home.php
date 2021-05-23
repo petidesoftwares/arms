@@ -40,7 +40,7 @@
             <hr id="header-seperator"/>
         </div>
         
-        <div class="col-12 col-m-12" id="content-pane">  
+        <div class="col-12" id="content-pane">  
             <div id="menu-list">
                 <div class="col-1 col-m-1" id="close-menu" onclick="hideMenu();"><p class="arrow-left" ></p></div><div class="col-10 col-m-10" id="menu_header">Menu</div>
                 <div class="col-12 col-m-12" id="list_item_pane">
@@ -70,7 +70,7 @@
                     </ul>
                 </div>
             </div><div class="col-8"></div>
-            <div class="col-12-custom" id="display-pane"></div>
+            <div class="col-12" id="display-pane"></div>
         </div>
     </body>
     </html>
