@@ -321,11 +321,11 @@
     }
 
     #menu-list{
-        height: 480px;        
+        height: 440px;        
     }
 
     #list_item_pane{
-        height: 540px;
+        height: 460px;
         text-align: justify;
         overflow-y: auto;
         overflow-x: hidden;
