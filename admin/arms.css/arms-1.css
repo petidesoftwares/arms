@@ -325,7 +325,7 @@
     }
 
     #list_item_pane{
-        height: 430px;
+        height: 420px;
         text-align: justify;
         overflow-y: auto;
         overflow-x: hidden;
