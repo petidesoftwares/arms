@@ -49,9 +49,9 @@
                     <tr>
                         <?php
                             if($levelCheck=="others"){
-                                echo '<th colspan="'.count($newCourses[0]).'">New Courses</th><th colspan="'.count($repeatedCourses[0]).'">Repeated Courses</th><th rowspan="3">First Semester</th><th rowspan="3">Second Semester</th>';
+                                echo '<th colspan="'.count($newCourses[0]).'">New Courses</th><th colspan="'.count($repeatedCourses[0]).'">Repeated Courses</th><th rowspan="3" class = "repeats_carryover">First Semester</th><th rowspan="3" class = "repeats_carryover">Second Semester</th>';
                             }else{
-                                echo '<th colspan="'.count($newCourses[0]).'">New Courses</th><th rowspan="3" class="no-transform">First Semester</th><th rowspan="3" class="no-transform">Second Semester</th>';
+                                echo '<th colspan="'.count($newCourses[0]).'">New Courses</th><th rowspan="3" class="no-transform repeats_carryover">First Semester</th><th rowspan="3" class="no-transform repeats_carryover">Second Semester</th>';
                             }
                         ?>
                     </tr>

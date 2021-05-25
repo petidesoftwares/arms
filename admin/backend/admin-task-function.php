@@ -414,7 +414,7 @@
                             $repeats+=mysqli_num_rows($queryFailedCourses);
                             $remarks="R".$repeats;
                             while($failedCourse = mysqli_fetch_assoc($queryFailedCourses)){
-                                $f_s_failedCourses.=$failedCourse['code'];
+                                $f_s_failedCourses.=$failedCourse['code']." ";
                             }
                         }else{
                             $f_s_failedCourses.="NIL";
@@ -437,7 +437,7 @@
                             $repeats+=mysqli_num_rows($queryFailedCourses);
                             $remarks="R".$repeats;
                             while($failedCourse = mysqli_fetch_assoc($queryFailedCourses)){
-                                $f_s_failedCourses.=$failedCourse['code'];
+                                $f_s_failedCourses.=$failedCourse['code']." ";
                             }
                         }else{
                             $f_s_failedCourses.="NIL";
@@ -448,7 +448,7 @@
                             $repeats+=mysqli_num_rows($queryS_FailedCourses);
                             $remarks="R".$repeats;
                             while($failedCourse = mysqli_fetch_assoc($queryS_FailedCourses)){
-                                $s_s_failedCourses.=$failedCourse['code'];
+                                $s_s_failedCourses.=$failedCourse['code']." ";
                             }
                         }else{
                             $s_s_failedCourses="NIL";
@@ -546,7 +546,7 @@
                             $repeats+=mysqli_num_rows($queryFailedCourses);
                             $remarks="R".$repeats;
                             while($failedCourse = mysqli_fetch_assoc($queryFailedCourses)){
-                                $f_s_failedCourses.=$failedCourse['code'];
+                                $f_s_failedCourses.=$failedCourse['code']." ";
                             }
                         }else{
                             $f_s_failedCourses.="";
@@ -561,7 +561,7 @@
                             if(mysqli_num_rows($queryDroppedCourses)>0){
                                 $dropCourse="";
                             }else{
-                                $dropCourse.=$c_l_course->code;
+                                $dropCourse.=$c_l_course->code." ";
                                 $totalDropCourse++;
 
                             }
@@ -599,7 +599,7 @@
                             $repeats+=mysqli_num_rows($queryFailedCourses);
                             $remarks="R".$repeats;
                             foreach($queryFailedCourses as $failedCourse){
-                                $f_s_failedCourses.=$failedCourse['code'];
+                                $f_s_failedCourses.=$failedCourse['code']." ";
                             }
                         }else{
                             $f_s_failedCourses.="";
@@ -614,7 +614,7 @@
                             if(mysqli_vum_rows($queryDroppedCourses)>0){
                                 $dropCourse="";
                             }else{
-                                $dropCourse.=$c_l_course['code'];
+                                $dropCourse.=$c_l_course['code']." ";
                                 $totalDropCourse++;
                             }
                         }
@@ -630,7 +630,7 @@
                         if(mysqli_num_rows($queryS_FailedCourses)>0){
                             $repeats+=mysqli_num_rows($queryS_FailedCourses);
                             while($f_course = mysqli_fetch_assoc($queryS_FailedCourses)){
-                                $s_s_failedCourses.=$f_course['code'];
+                                $s_s_failedCourses.=$f_course['code']." ";
                             }
 
                         }else{
@@ -645,7 +645,7 @@
                             if(mysqli_num_rows($queryS_semester_drop_course)>0){
                                 $secondSemesterDropCourse="";
                             }else{
-                                $secondSemesterDropCourse.=$course['code'];
+                                $secondSemesterDropCourse.=$course['code']." ";
                                 $totalDropCourse++;
                             }
                         }

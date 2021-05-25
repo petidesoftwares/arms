@@ -282,6 +282,10 @@ width: 98%;
 #result-table-body td{
     font-size: 12px;
     text-align: center;
+    word-wrap:break-word;
+}
+.repeats_carryover, #repeats_carryover{
+    width: 150px;
 }
 
 .no-transform{
@@ -437,10 +441,10 @@ width: 98%;
 }
 
 #view-result-pane{
-    display: inline-block;
+    /* display: inline-block; */
     float: right;
     margin-right: 4%;
-    margin-top: -10%;
+    margin-top: -40px;
 }
 
 #result-list-pane table{

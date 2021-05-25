@@ -17,6 +17,7 @@
         $cgpa = $resultData->cgpa;
         $fSemesterFailedCourses = $resultData->fSemesterFailedCourses;
         $sSemesterFailedCourses = $resultData->sSemesterFailedCourses;
+        $totalUnitsPassed = $resultData->totalUnitsPassed;
     }
 
 ?>
@@ -71,7 +72,7 @@
             <tr><td>CUMMULATIVE GRADE POINT</td><td><?php echo $cumm_gp; ?></td></tr>
             <tr><td>CUMMULATIVE UNIT</td><td><?php echo $cumm_units; ?></td></tr>
             <tr><td>C.G.P.A</td><td><?php echo $cgpa; ?></td></tr>
-            <tr><td>TOTAL UNITS PASSED</td><td></td></tr>
+            <tr><td>TOTAL UNITS PASSED</td><td><?php echo $totalUnitsPassed; ?></td></tr>
         </table>
     </div>
     <div>
