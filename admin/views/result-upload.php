@@ -59,7 +59,7 @@
                 <div id="form-pane">
                     <form enctype="multipart/form-data" id="resultUploadForm">
                         <input type="file" name="file" class ="uploadFile_style" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
-                        <input type="hidden" name="code" id="course-code">
+                        <input type="hidden" name="code" class="course-code">
                         <div class="col-spacer"></div>
                         <input type="submit" name="submit" value="Upload Result" class="btn-large rounded-corner-btn submit_btn_style" id="uploadResult_btn" onclick = "resultBatchUpload()"/>
                     </form>
