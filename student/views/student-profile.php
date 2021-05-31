@@ -1,3 +1,36 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['id'])){
+        header("Locatoin:../index.php");
+    }else{
+    require("../backend/student-functions.php");
+    $bioData = getStudentProfileBiodata($_SESSION['id']);
+    $studentLevel =getCurrentLevel($_SESSION['id']);
+    $currentSession = getCurrentSession();
+    $currentSemester = getCurrentSemester($currentSession, $studentLevel);
+    $admissionSession = getStudentAdmissionSession($_SESSION['id']);
+    $studentStatus = getStudentStatus($currentSession, $bioData['matno']);
+    $studentResult = json_decode(individualStudentResult($bioData['matno'],$currentSession,$studentLevel,$currentSemester), false);
+
+    $standing ="";
+    if($studentResult->fSemesterFailedCourses=='NIL' && $studentResult->sSemesterFailedCourses=='NIL'){
+        $standing = "Clear Standing";
+    }elseif ($studentResult->fSemesterFailedCourses !='NIL' && $studentResult->sSemesterFailedCourses=='NIL'){
+        $newArray = explode(" ", $studentResult->fSemesterFailedCourses);
+        $numOfFailures = count($newArray)-1;
+        $standing = "R". $numOfFailures;
+    }elseif ($studentResult->fSemesterFailedCourses =='NIL' && $studentResult->sSemesterFailedCourses!='NIL'){
+        $newArray = explode(" ", $studentResult->fSemesterFailedCourses);
+        $numOfFailures = count($newArray)-1;
+        $standing = "R". $numOfFailures;
+    }elseif ($studentResult->fSemesterFailedCourses !='NIL' && $studentResult->sSemesterFailedCourses!='NIL'){
+        $stringContent = $studentResult->fSemesterFailedCourses." ".$studentResult->fSemesterFailedCourses;
+        $newArray = explode(" ", $stringContent);
+        $standing = "R". count($newArray);// To be Updated
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,16 +57,16 @@
         </div>
         <div class ="col-9" id ="profile-details">
             <table class="col-6 profile-table">
-                <tr><td>Matric Number:</td><td class="profiles">UG/21/0001</td></tr>
-                <tr><td>Surname:</td><td class="profiles">My Surname</td></tr>
-                <tr><td>First Name:</td><td class="profiles">My first name</td></tr>
-                <tr><td>Other Name:</td><td class="profiles">My other name</td></tr>
-                <tr><td>Email:</td><td class="profiles">myemail@email.com</td></tr>
+                <tr><td>Matric Number:</td><td class="profiles"><?php echo $bioData['matno']; ?></td></tr>
+                <tr><td>Surname:</td><td class="profiles"><?php echo $bioData['surname']; ?></td></tr>
+                <tr><td>First Name:</td><td class="profiles"><?php echo $bioData['firstname']; ?></td></tr>
+                <tr><td>Other Name:</td><td class="profiles"><?php echo $bioData['othername']; ?></td></tr>
+                <tr><td>Email:</td><td class="profiles"><?php echo $bioData['email']; ?></td></tr>
             </table>
             <table class="col-3 profile-table">
-                <tr><td>Level:</td><td class="profiles">100</td></tr>
-                <tr><td>Status:</td><td class="profiles">Active</td></tr>
-                <tr><td>Standing:</td><td class="profiles">Clear standing</td></tr>
+                <tr><td>Level:</td><td class="profiles"><?php echo $studentLevel; ?></td></tr>
+                <tr><td>Status:</td><td class="profiles"><?php echo  $studentStatus; ?></td></tr>
+                <tr><td>Standing:</td><td class="profiles"><?php echo $standing; ?></td></tr>
                 <tr><td>Total Reg Units:</td><td class="profiles">20</td></tr>
                 <tr><td>Fees Status</td><td class="profiles">Cleared</td></tr>
             </table>
@@ -42,6 +75,9 @@
                 <tr><td>100L C.G.P.A:</td><td class="profiles">None</td></tr>
             </table>
         </div>
-    </div> 
+    </div>
 </body>
 </html>
+        <?php
+    }
+?>

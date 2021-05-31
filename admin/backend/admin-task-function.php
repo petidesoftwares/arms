@@ -95,7 +95,7 @@
             $queryStudents = mysqli_query($conn, "SELECT matno, firstname, surname FROM student") or die(mysqli_error($conn));
             if(mysqli_num_rows($queryStudents)>0){
                 while($row = mysqli_fetch_assoc($queryStudents)){
-                    $checkSuspension = mysqli_query($conn,"SELECT matno FROM suspension_of_studies WHERE return_session<".$currentSession." AND response ='Granted' AND matno='".$row['matno']."'") or die(mysqli_error($conn));
+                    $checkSuspension = mysqli_query($conn,"SELECT matno FROM suspension_of_studies WHERE return_session>".$currentSession." AND response ='Granted' AND matno='".$row['matno']."'") or die(mysqli_error($conn));
                     if(mysqli_num_rows($checkSuspension)>0){
 
                     }else{
