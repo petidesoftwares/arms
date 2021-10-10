@@ -11,22 +11,32 @@
     $admissionSession = getStudentAdmissionSession($_SESSION['id']);
     $studentStatus = getStudentStatus($currentSession, $bioData['matno']);
     $studentResult = json_decode(individualStudentResult($bioData['matno'],$currentSession,$studentLevel,$currentSemester), false);
+    $totalRegUnits = 0;
+    if($studentResult->cumm_units == 0 || $studentResult->cumm_units == null){
+        $totalRegUnits = 0;
+    }else{
+        $totalRegUnits = $studentResult->cumm_units;
+    }
 
     $standing ="";
-    if($studentResult->fSemesterFailedCourses=='NIL' && $studentResult->sSemesterFailedCourses=='NIL'){
-        $standing = "Clear Standing";
-    }elseif ($studentResult->fSemesterFailedCourses !='NIL' && $studentResult->sSemesterFailedCourses=='NIL'){
-        $newArray = explode(" ", $studentResult->fSemesterFailedCourses);
-        $numOfFailures = count($newArray)-1;
-        $standing = "R". $numOfFailures;
-    }elseif ($studentResult->fSemesterFailedCourses =='NIL' && $studentResult->sSemesterFailedCourses!='NIL'){
-        $newArray = explode(" ", $studentResult->fSemesterFailedCourses);
-        $numOfFailures = count($newArray)-1;
-        $standing = "R". $numOfFailures;
-    }elseif ($studentResult->fSemesterFailedCourses !='NIL' && $studentResult->sSemesterFailedCourses!='NIL'){
-        $stringContent = $studentResult->fSemesterFailedCourses." ".$studentResult->fSemesterFailedCourses;
-        $newArray = explode(" ", $stringContent);
-        $standing = "R". count($newArray);// To be Updated
+    if($studentResult == "Error!"){
+        $standing = "Not Registered";
+    }else{
+        if($studentResult->fSemesterFailedCourses=='NIL' && $studentResult->sSemesterFailedCourses=='NIL'){
+            $standing = "Clear Standing";
+        }elseif ($studentResult->fSemesterFailedCourses !='NIL' && $studentResult->sSemesterFailedCourses=='NIL'){
+            $newArray = explode(" ", $studentResult->fSemesterFailedCourses);
+            $numOfFailures = count($newArray)-1;
+            $standing = "R". $numOfFailures;
+        }elseif ($studentResult->fSemesterFailedCourses =='NIL' && $studentResult->sSemesterFailedCourses!='NIL'){
+            $newArray = explode(" ", $studentResult->fSemesterFailedCourses);
+            $numOfFailures = count($newArray)-1;
+            $standing = "R". $numOfFailures;
+        }elseif ($studentResult->fSemesterFailedCourses !='NIL' && $studentResult->sSemesterFailedCourses!='NIL'){
+            $stringContent = $studentResult->fSemesterFailedCourses." ".$studentResult->fSemesterFailedCourses;
+            $newArray = explode(" ", $stringContent);
+            $standing = "R". count($newArray);// To be Updated
+        }
     }
 
 ?>
@@ -67,8 +77,8 @@
                 <tr><td>Level:</td><td class="profiles"><?php echo $studentLevel; ?></td></tr>
                 <tr><td>Status:</td><td class="profiles"><?php echo  $studentStatus; ?></td></tr>
                 <tr><td>Standing:</td><td class="profiles"><?php echo $standing; ?></td></tr>
-                <tr><td>Total Reg Units:</td><td class="profiles">20</td></tr>
-                <tr><td>Fees Status</td><td class="profiles">Cleared</td></tr>
+                <tr><td>Total Reg Units:</td><td class="profiles"><?php echo $totalRegUnits; ?></td></tr>
+<!--                <tr><td>Fees Status</td><td class="profiles">Cleared</td></tr>-->
             </table>
             <table class="col-3 profile-table">
                 <tr><td>Current Grade:</td><td class="profiles">None</td></tr>

@@ -573,7 +573,9 @@ function individualStudentResult($matno, $session, $level, $semester_in)
         );
         return json_encode($data);
     } else {
-        return "Error! Student Registration or Matno does not exist";
+        return json_encode("Error!");
     }
 }
+
+//function totalReg
 ?>
