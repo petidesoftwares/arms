@@ -361,6 +361,7 @@ function detectScreenForAttendancePDF(){
 }
 
 function getLecturerEditor(a){
+    alert(this.getAttribute('id'));
     $("#lecturer-editor"). show();
     var id = $("#id_"+a+"").html();
     var title = $("#title_"+a+"").html();
