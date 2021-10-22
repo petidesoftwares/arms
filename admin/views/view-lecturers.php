@@ -23,7 +23,6 @@
         <table id = "view-lecturer-table">
             <thead id = "grey-row">
                 <th>S/N</th>
-                <th>ID</th>
                 <th>TITLE</th>
                 <th>SURNAME</th>
                 <th>FIRST NAME</th>
