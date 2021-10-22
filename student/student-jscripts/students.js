@@ -102,6 +102,7 @@ function enrolCourse(a){
         newVal= Number(totalUnits) - Number(value);
         newNum = Number(totalcourses)-1;
         $("#total-courses").val(newNum);
+        enrolledCourses.pop(code);
     }
     if(newVal > maxUnits){
         $("#modal").show();
@@ -112,27 +113,28 @@ function enrolCourse(a){
 }
 
 function submitCourseEnrollment(){
-    var  matnum = $("#matnum").val();
-    var session = $("#session").val();
-    var level = $("#level").val();
-    
-    var enrolledArray = [];
-    for (var index = 0; index <enrolledCourses.length; index++) {
-        var arrayRows ={
-            'matnum': matnum,
-            'code': enrolledCourses[index],
-            'session': session,
-            'level': level
-        }    
-        enrolledArray[index] = arrayRows;    
-    }
-    $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(enrolledArray)}, function(data){
-        if(data == "success"){
-            $("#modal").show();
-            $("#modal-content").html('<p style="color:green, font-weight:bold, margin:5%">Course enrollment successful.</p>');
-        }else{
-            $("#modal").show();
-            $("#modal-content").html('<p style="color:green, font-weight:bold, margin:5%">'+data+'</p>');
-        }
-    })
+    console.log(enrolledCourses);
+    // var  matnum = $("#matnum").val();
+    // var session = $("#session").val();
+    // var level = $("#level").val();
+    //
+    // var enrolledArray = [];
+    // for (var index = 0; index <enrolledCourses.length; index++) {
+    //     var arrayRows ={
+    //         'matnum': matnum,
+    //         'code': enrolledCourses[index],
+    //         'session': session,
+    //         'level': level
+    //     }
+    //     enrolledArray[index] = arrayRows;
+    // }
+    // $.post("../backend/process-student-course-enrollment.php",{allenrolledCourses:JSON.stringify(enrolledArray)}, function(data){
+    //     if(data == "success"){
+    //         $("#modal").show();
+    //         $("#modal-content").html('<p style="color:green, font-weight:bold, margin:5%">Course enrollment successful.</p>');
+    //     }else{
+    //         $("#modal").show();
+    //         $("#modal-content").html('<p style="color:green, font-weight:bold, margin:5%">'+data+'</p>');
+    //     }
+    // })
 }
