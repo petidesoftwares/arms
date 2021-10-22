@@ -102,7 +102,11 @@ function enrolCourse(a){
         newVal= Number(totalUnits) - Number(value);
         newNum = Number(totalcourses)-1;
         $("#total-courses").val(newNum);
-        enrolledCourses.pop(code);
+        for (let i =0; i<enrolledCourses.length;i++){
+            if (enrolledCourses[i] === code){
+                enrolledCourses.splice(i,1);
+            }
+        }
     }
     if(newVal > maxUnits){
         $("#modal").show();
