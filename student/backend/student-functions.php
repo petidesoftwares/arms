@@ -325,7 +325,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
 
                 /***********************Query first semester failed courses**************************/
                 $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '" . $matno . "' AND course.semester = 'First' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno = '" . $matno . "' AND course.semester = 'First' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryFailedCourses)) {
                         $firstSemesterFailedCourses .= $failedCourse['code'] . " ";
@@ -384,7 +384,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
                 /***********************Query failed courses**************************/
                 //Query First Semester Failed Courses.
                 $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno ='" . $matno . "' AND course.semester = 'First' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno ='" . $matno . "' AND course.semester = 'First' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryFailedCourses)) {
                         $firstSemesterFailedCourses .= $failedCourse['code'] . " ";
@@ -394,7 +394,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
                 }
                 // Query Second Semester Failed Courses
                 $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '" . $matno . "' AND course.semester ='" . $semester . "' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno = '" . $matno . "' AND course.semester ='" . $semester . "' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryFailedCourses)) {
                         $secondSemesterFailedCourses .= $failedCourse['code'] . " ";
@@ -454,7 +454,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
                 /********OUTSTANDING COURSES************/
                 //Query First Semester Failed Courses.
                 $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '" . $matno . "' AND course.semester = '" . $semester . "' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno = '" . $matno . "' AND course.semester = '" . $semester . "' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryFailedCourses)) {
                         $firstSemesterFailedCourses .= $failedCourse['code'] . " ";
@@ -465,7 +465,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
                 // Query Second Semester Failed Courses
                 $lowerLevel = $level - 100;
                 $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '" . $matno . "' AND course.semester = '" . $semester . "' AND course_registration.level = " . $lowerLevel . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno = '" . $matno . "' AND course.semester = '" . $semester . "' AND course_registration.level = " . $lowerLevel . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryFailedCourses)) {
                         $secondSemesterFailedCourses .= $failedCourse['code'] . " ";
@@ -536,7 +536,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
                 /***********************OUTSTANDING COURSES**************************/
                 //Query First Semester Failed Courses.
                 $queryFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '" . $matno . "' AND course.semester = 'First' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno = '" . $matno . "' AND course.semester = 'First' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryFailedCourses)) {
                         $firstSemesterFailedCourses .= $failedCourse['code'] . " ";
@@ -546,7 +546,7 @@ function individualStudentResult($matno, $session, $level, $semester_in)
                 }
                 // Query Second Semester Failed Courses
                 $queryCurrentFailedCourses = mysqli_query($conn, "SELECT course.code FROM course_registration, student, course WHERE student.matno = course_registration.matno AND course.code = course_registration.code AND
-                    course_registration.score<45 AND course_registration.matno = '" . $matno . "' AND course.semester = '" . $semester . "' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
+                    course_registration.score<45 AND course_registration.score>-1 AND course_registration.matno = '" . $matno . "' AND course.semester = '" . $semester . "' AND course_registration.level = " . $level . "") or die(mysqli_error($conn));
                 if (mysqli_num_rows($queryCurrentFailedCourses) > 0) {
                     while ($failedCourse = mysqli_fetch_assoc($queryCurrentFailedCourses)) {
                         $secondSemesterFailedCourses .= $failedCourse['code'] . " ";
