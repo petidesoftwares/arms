@@ -360,8 +360,8 @@ function detectScreenForAttendancePDF(){
     $("#screen-width").val(screenwidth);
 }
 
-function getLecturerEditor(a){
-    alert(this.getAttribute('id'));
+function getLecturerEditor(a, userTag){
+    alert(userTag);
     $("#lecturer-editor"). show();
     var id = $("#id_"+a+"").html();
     var title = $("#title_"+a+"").html();
